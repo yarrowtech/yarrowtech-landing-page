@@ -126,7 +126,6 @@ const bootstrapLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootst
 
 const nodeLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
 const expressLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
-// const djangoLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
 const djangoLogo = "https://w7.pngwing.com/pngs/10/113/png-transparent-django-web-development-web-framework-python-software-framework-django-text-trademark-logo-thumbnail.png"
 const flaskLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
 
@@ -135,14 +134,13 @@ const mysqlLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysq
 const firebaseLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
 const postgresLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
 
-const awsLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg";
+const awsLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
 const dockerLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
 const githubLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
 
 const figmaLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
 const xdLogo = "https://upload.wikimedia.org/wikipedia/commons/c/c2/Adobe_XD_CC_icon.svg"
 
-// App Development Logos
 const flutterLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
 const kotlinLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg"
 const reactNativeLogo = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
@@ -218,18 +216,16 @@ export default function ExpertisePage() {
           {expertise.map((category, index) => (
             <div key={index} className="expertise-card">
               <h3 className="category-title">{category.title}</h3>
+
               <div className="tools-grid">
                 {category.tools.map((tool, idx) => (
                   <div className="tool-box" key={idx}>
-                    <img
-                      src={tool.logo}
-                      alt={tool.name}
-                      className="tool-logo"
-                    />
+                    <img src={tool.logo} alt={tool.name} className="tool-logo" />
                     <p className="tool-name">{tool.name}</p>
                   </div>
                 ))}
               </div>
+
             </div>
           ))}
         </div>

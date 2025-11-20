@@ -1,103 +1,127 @@
+/* 🌙 EXPERTISE SECTION */
 .expertise-section {
   background-color: #071920;
   color: #fff;
-  padding: 6rem 0;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.title {
-  font-size: 3rem;
-  font-weight: 700;
+  padding: 60px 16px;
   text-align: center;
+}
+
+/* Container (Scoped) */
+.expertise-section .container {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+/* ⭐ Center Title */
+.expertise-section .title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
-.subtitle {
-  text-align: center;
+/* ⭐ Subtitle */
+.expertise-section .subtitle {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 4rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 auto 2.8rem;
+  max-width: 680px;
 }
 
-/* --- Expertise Grid --- */
+/* ⭐ GRID STRUCTURE (Perfect) */
 .expertise-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  align-items: stretch;
 }
 
+/* ⭐ CARD DESIGN (Same as Services) */
 .expertise-card {
-  background-color: #0b2b2f;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.5rem;
-  padding: 2rem;
-  transition: all 0.3s ease;
+  background: #00000095;
+  border-radius: 16px;
+  padding: 24px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  transition: 0.3s ease;
+  height: 100%;
 }
 
 .expertise-card:hover {
-  background-color: #10373d;
-  transform: translateY(-6px);
-  box-shadow: 0 0 25px rgba(255, 154, 31, 0.15);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 180, 0, 0.28);
 }
 
+/* ⭐ Category Title */
 .category-title {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #ff9a1f;
+  color: #ffb400;
   margin-bottom: 1.5rem;
-  text-align: center;
 }
 
-/* --- Tools Grid --- */
+/* ⭐ TOOLS GRID (Fully structured) */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 18px;
   justify-items: center;
+  align-items: center;
 }
 
+/* ⭐ TOOL BOX */
 .tool-box {
+  width: 100%;
+  background: #0b2b2f;
+  border-radius: 14px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: 0.3s ease;
+  text-align: center;
+  min-height: 110px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: rgba(11, 43, 47, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 1rem;
-  padding: 1rem;
-  width: 100%;
-  transition: all 0.3s ease;
+  justify-content: center;
 }
 
 .tool-box:hover {
-  background-color: #10373d;
+  background: #113a41;
   transform: translateY(-5px);
-  box-shadow: 0 0 15px rgba(255, 154, 31, 0.15);
+  box-shadow: 0 6px 18px rgba(255, 180, 0, 0.25);
 }
 
+/* ⭐ TOOL LOGO */
 .tool-logo {
-  width: 45px;
-  height: 45px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
-  margin-bottom: 0.5rem;
+  margin-bottom: 6px;
+  transition: 0.25s ease;
 }
 
+.tool-box:hover .tool-logo {
+  transform: scale(1.1);
+}
+
+/* ⭐ MAKE DARK LOGOS VISIBLE */
+.tool-logo[src*="express"],
+.tool-logo[src*="github"],
+.tool-logo[src*="django"],
+.tool-logo[src*="aws"],
+.tool-logo[src*="amazon"],
+.tool-logo[src*="flask"],
+.tool-logo[src*="next"] {
+  filter: invert(1) brightness(2) contrast(150%);
+}
+
+/* ⭐ Tool Name */
 .tool-name {
-  font-size: 0.9rem;
-  font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
-/* --- Responsive --- */
+/* Mobile */
 @media (max-width: 768px) {
-  .title {
-    font-size: 2.3rem;
-  }
   .expertise-grid {
     grid-template-columns: 1fr;
   }

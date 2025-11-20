@@ -1,5 +1,3 @@
-/* contact.css */
-
 .contact-section {
   background-color: #071920;
   color: #fff;
@@ -8,42 +6,71 @@
   z-index: 10;
 }
 
+/* Center alignment for top section */
 .contact-section .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  text-align: center;
 }
 
+/* Title + animated underline */
 .title {
   font-size: 3rem;
   font-weight: 700;
-  text-align: center;
   margin-bottom: 1rem;
+  width: 100%;
+  position: relative;
+  display: inline-block;
 }
 
+/* 🔥 Underline animation */
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ffb23a, #ff9a1f);
+  border-radius: 4px;
+  transform: translateX(-50%);
+  animation: underlineExpand 0.8s ease forwards;
+}
+
+@keyframes underlineExpand {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  40% {
+    width: 40px;
+    opacity: 1;
+  }
+  100% {
+    width: 80px;
+  }
+}
+
+/* Subtitle centered */
 .subtitle {
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
-  margin-bottom: 3rem;
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 3rem auto;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
 }
 
-/* Layout grid */
+/* GRID */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
+  margin-top: 2rem;
+  text-align: left;
 }
 
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
+/* INFO CARDS */
 .info-card {
   display: flex;
   align-items: center;
@@ -52,31 +79,26 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
   padding: 1.25rem 1.5rem;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
 }
 
 .info-card:hover {
   background-color: #10373d;
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(255, 154, 31, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(255, 154, 31, 0.25);
 }
 
-.info-card .icon {
+.icon {
   color: #ff9a1f;
 }
 
 .info-card h4 {
   font-size: 1.25rem;
-  font-weight: 600;
   color: #ff9a1f;
+  margin-bottom: 2px;
 }
 
-.info-card p {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-/* Form */
+/* FORM */
 .contact-form {
   background-color: #0b2b2f;
   border-radius: 1.25rem;
@@ -85,15 +107,9 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.25rem;
-}
-
 label {
-  font-weight: 500;
   margin-bottom: 0.5rem;
+  font-weight: 600;
   color: #ff9a1f;
 }
 
@@ -102,52 +118,88 @@ textarea {
   background-color: #09242b;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 0.75rem;
-  color: #fff;
   padding: 0.75rem 1rem;
-  font-size: 1rem;
-  outline: none;
+  color: white;
   transition: all 0.3s ease;
 }
 
 input:focus,
 textarea:focus {
+  background-color: #11333a;
   border-color: #ff9a1f;
-  background-color: #0f333a;
+  transform: scale(1.02);
 }
 
+/* SUBMIT BUTTON */
 .submit-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
   background-color: #ff9a1f;
   color: #071920;
-  font-weight: 600;
-  border: none;
+  padding: 1rem;
   border-radius: 2rem;
-  padding: 0.9rem 2rem;
+  border: none;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 10px;
   transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .submit-btn:hover {
   background-color: #ffb23a;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.03);
 }
 
+/* SUCCESS MESSAGE */
 .success-msg {
-  margin-top: 1rem;
   text-align: center;
+  margin-top: 1rem;
   color: #4ade80;
   font-weight: 500;
 }
 
-/* Responsive */
+/* --- Smooth Fade + Slide animations --- */
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: slideUp 0.7s ease forwards;
+}
+
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.35s; }
+.delay-4 { animation-delay: 0.5s; }
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .contact-grid {
     grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .contact-form {
+    text-align: left;
   }
 
   .title {
-    font-size: 2.25rem;
+    font-size: 2.3rem;
   }
 }
