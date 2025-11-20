@@ -1,0 +1,42 @@
+.manager-sidebar {
+  width: 240px;
+  background: #020d1a;
+  color: #fff;
+  padding: 25px 20px;
+  min-height: 100vh;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+}
+
+.manager-logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #ffcb05;
+  text-align: center;
+}
+
+.manager-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  color: #e5e5e5;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.25s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffcb05;
+}

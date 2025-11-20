@@ -1,0 +1,18 @@
+.manager-page {
+  background: #071a2d;
+  padding: 25px 30px;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+.manager-page h2 {
+  font-size: 1.8rem;
+  color: #ffcb05;
+  margin-bottom: 10px;
+}
+
+.manager-page p {
+  font-size: 1rem;
+  color: #ccc;
+}

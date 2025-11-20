@@ -1,0 +1,19 @@
+.manager-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #061628;
+}
+
+.manager-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background: #0a1f33;
+  color: white;
+}
+
+.manager-inner {
+  padding: 25px;
+  min-height: calc(100vh - 70px);
+}

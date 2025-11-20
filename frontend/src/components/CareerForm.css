@@ -1,0 +1,159 @@
+/* Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.25s ease forwards;
+  z-index: 1000;                /* OVERLAY BEHIND MODAL */
+}
+
+/* Main modal box */
+.modal-box-career {
+  background: #fff;
+  padding: 32px;
+  width: 420px;
+  border-radius: 18px;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  animation: scaleIn 0.25s ease forwards;
+  z-index: 1100;                /* HIGHER THAN OVERLAY */
+}
+
+/* Close button FIX */
+.close-btn {
+  background: #fff;
+  border: none;
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: 0.2s ease;
+  z-index: 1200;                /* TOPMOST */
+}
+
+.close-btn:hover {
+  background: #f1f3f5;
+  transform: scale(1.1);
+}
+
+/* Titles */
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #071a2d;
+}
+
+.modal-subtitle {
+  color: #607185;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.demo-form input,
+.demo-form textarea,
+.career-form input,
+.career-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.2s ease;
+  background: #f8fafc;
+  color: #000;              /* 👈 FIX: MAKE TYPING BLACK */
+}
+
+.demo-form input::placeholder,
+.demo-form textarea::placeholder,
+.career-form input::placeholder,
+.career-form textarea::placeholder {
+  color: #444;              /* 👈 Slightly grey, professional */
+}
+
+
+.career-form input:focus,
+.career-form textarea:focus {
+  border-color: #071a2d;
+  box-shadow: 0 0 0 3px rgba(0, 30, 60, 0.12);
+}
+
+/* Resume box */
+.resume-upload {
+  border: 2px dashed #d1d5db;
+  padding: 18px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  transition: 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.resume-upload:hover {
+  background: #f0f4f8;
+}
+
+.resume-upload input {
+  display: none;
+}
+
+/* Buttons */
+.form-action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.primary-btn {
+  background: #071a2d;
+  color: #fff;
+  padding: 12px;
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primary-btn:hover {
+  background: #0b2947;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: #071a2d;
+  padding: 12px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #071a2d;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.secondary-btn:hover {
+  background: #071a2d;
+  color: #fff;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.93); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

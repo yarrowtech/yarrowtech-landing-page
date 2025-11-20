@@ -1,0 +1,96 @@
+/* =======================================
+   🌐 Global Responsive Styles
+   ======================================= */
+
+/* Base adjustments */
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Desktop styles are already in your normal CSS files */
+
+/* 📱 Tablets (width ≤ 992px) */
+@media (max-width: 992px) {
+  section, .section {
+    padding: 40px 20px;
+  }
+
+  .hero-content, .about-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+/* 📱 Mobiles (width ≤ 576px) */
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  section, .section {
+    padding: 20px 10px;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-content, .about-content {
+    flex-direction: column;
+  }
+
+  .hero-image, .about-img {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-image img, .about-img img {
+    width: 85%;
+    margin: 0 auto;
+  }
+}
+
+/* Utility classes */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide-mobile {
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .hide-mobile {
+    display: none;
+  }
+}

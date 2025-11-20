@@ -1,0 +1,256 @@
+/* .about-section {
+  background-color: #071920;
+  color: #fff;
+  padding: 6rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.about-text {
+  line-height: 1.6;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ff9a1f;
+  margin-bottom: 1rem;
+}
+
+.desc {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  color: #ff9a1f;
+  font-weight: 600;
+}
+
+.contact-btn {
+  background-color: #ff9a1f;
+  color: #071920;
+  border: none;
+  padding: 0.9rem 1.8rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color: #ffa83a;
+  transform: translateY(-3px);
+}
+
+
+.about-image img {
+  width: 100%;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 25px rgba(255, 154, 31, 0.15);
+}
+
+
+.values-section {
+  text-align: center;
+}
+
+.values-title {
+  font-size: 2rem;
+  color: #ff9a1f;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
+}
+
+.value-card {
+  background-color: #0b2b2f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.value-card:hover {
+  background-color: #10373d;
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(255, 154, 31, 0.15);
+}
+
+.value-card h4 {
+  color: #ff9a1f;
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+}
+
+.value-card p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-text {
+    order: 2;
+  }
+
+  .about-image {
+    order: 1;
+  }
+
+  .title {
+    font-size: 2.3rem;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+} */
+
+
+
+
+.about-section {
+  background-color: #071920;
+  color: #fff;
+  padding: 6rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --- Top Grid --- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.about-text {
+  line-height: 1.6;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ff9a1f;
+  margin-bottom: 1rem;
+}
+
+.desc {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.desc.last-para {
+  margin-bottom: 0; /* Removes the gap under last paragraph */
+}
+
+.highlight {
+  color: #ff9a1f;
+  font-weight: 600;
+}
+
+/* --- Image --- */
+.about-image img {
+  width: 100%;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 25px rgba(255, 154, 31, 0.15);
+}
+
+/* --- Core Values --- */
+.values-section {
+  text-align: center;
+}
+
+.values-title {
+  font-size: 2rem;
+  color: #ff9a1f;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
+}
+
+.value-card {
+  background-color: #0b2b2f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.value-card:hover {
+  background-color: #10373d;
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(255, 154, 31, 0.15);
+}
+
+.value-card h4 {
+  color: #ff9a1f;
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+}
+
+.value-card p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-text {
+    order: 2;
+  }
+
+  .about-image {
+    order: 1;
+  }
+
+  .title {
+    font-size: 2.3rem;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}

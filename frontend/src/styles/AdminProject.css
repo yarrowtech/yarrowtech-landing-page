@@ -1,0 +1,204 @@
+/* ======================================================
+   YARROWTECH ADMIN – PROJECTS PAGE (PROFESSIONAL)
+====================================================== */
+
+.admin-projects-container {
+  padding: 25px 30px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header */
+.admin-header h2 {
+  font-size: 1.8rem;
+  color: #ffcb05;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.admin-header .subtitle {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* ======================================================
+   TABLE WRAPPER
+====================================================== */
+.projects-table-wrapper {
+  background: #071a2d;
+  border-radius: 16px;
+  padding: 20px 25px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+  overflow-x: auto;
+}
+
+.projects-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 850px;
+  color: #eaeaea;
+  font-size: 0.95rem;
+}
+
+.projects-table thead {
+  background: #0c2b47;
+}
+
+.projects-table th {
+  padding: 14px 12px;
+  color: #ffcb05;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.projects-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.projects-table tr:hover td {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ======================================================
+   STATUS COLORS
+====================================================== */
+.status {
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  font-size: 0.85rem;
+}
+
+.status-completed {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+}
+
+.status-ongoing {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffcb05;
+}
+
+.status-pending {
+  background: rgba(255, 82, 82, 0.2);
+  color: #ff5252;
+}
+
+/* ======================================================
+   PROGRESS BAR
+====================================================== */
+.progress-bar {
+  background: rgba(255, 255, 255, 0.15);
+  height: 8px;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 120px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffcb05, #ff8800);
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+/* ======================================================
+   ACTION BUTTONS
+====================================================== */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.view-btn svg {
+  color: #4fa3ff;
+}
+
+.edit-btn svg {
+  color: #ffcb05;
+}
+
+.delete-btn svg {
+  color: #ff5252;
+}
+
+.actions button:hover svg {
+  transform: scale(1.2);
+}
+
+/* ======================================================
+   SKELETON LOADER
+====================================================== */
+.skeleton-table-wrapper {
+  background: #071a2d;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.skeleton-row {
+  height: 48px;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 45, 70, 0.6),
+    rgba(35, 75, 110, 0.9),
+    rgba(20, 45, 70, 0.6)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.35s infinite;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ======================================================
+   RESPONSIVE DESIGN
+====================================================== */
+
+@media (max-width: 992px) {
+  .admin-projects-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .progress-text {
+    display: none;
+  }
+  .projects-table {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-table th,
+  .projects-table td {
+    font-size: 0.75rem;
+  }
+  .admin-header h2 {
+    font-size: 1.4rem;
+  }
+}

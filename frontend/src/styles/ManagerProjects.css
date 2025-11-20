@@ -1,0 +1,26 @@
+.manager-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #071a2d;
+  border-radius: 12px;
+  overflow: hidden;
+  color: #eaeaea;
+}
+
+.manager-table th {
+  background: #0c2b47;
+  color: #ffcb05;
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.manager-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.manager-table tr:hover td {
+  background: rgba(255, 255, 255, 0.05);
+}

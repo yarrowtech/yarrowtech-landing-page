@@ -1,0 +1,108 @@
+/* ===============================
+   DASHBOARD PAGE
+================================= */
+
+.admin-dashboard-container {
+  padding: 25px 30px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Header */
+.admin-header h2 {
+  font-size: 1.8rem;
+  color: #ffcb05;
+}
+
+.admin-header .subtitle {
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+/* Stat Cards Grid */
+.top-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.stat-card {
+  background: #071a2d;
+  padding: 18px 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.35);
+}
+
+.stat-card h4 {
+  font-size: 1rem;
+  color: #ffcb05;
+  margin-bottom: 6px;
+}
+
+.stat-card .value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.change {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.change.up {
+  color: #4caf50;
+}
+
+.change.down {
+  color: #ff5252;
+}
+
+/* Charts Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+/* Chart Box */
+.chart-box {
+  background: #071a2d;
+  padding: 18px 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+.chart-box h3 {
+  color: #ffcb05;
+  margin-bottom: 10px;
+}
+
+/* For Pie Chart Section */
+.chart-wide {
+  grid-column: span 2;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .top-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .stat-card .value {
+    font-size: 1.5rem;
+  }
+}

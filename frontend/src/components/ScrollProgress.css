@@ -1,0 +1,39 @@
+.scroll-progress {
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.scroll-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(90deg);
+}
+
+.progress-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 6;
+}
+
+.progress-fill {
+  fill: none;
+  stroke: #ff9a1f;
+  stroke-width: 6;
+  transition: stroke-dashoffset 0.2s ease;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  color: #ff9a1f;
+  font-size: 1.2rem;
+  font-weight: bold;
+  pointer-events: none;
+}
