@@ -35,21 +35,38 @@
 
 
 
+// import express from "express";
+// import { authMiddleware } from "../middleware/auth.js";
+// import uploadResume from "../middleware/uploadResume.js";
+// import { submitCareer } from "../controllers/career.Controller.js";
+// import { submitRequestDemo } from "../controllers/requestDemo.Controller.js";
+
+// const router = express.Router();
+
+// router.post(
+//   "/career",
+//   uploadResume.single("resume"),
+//   submitCareer
+// );
+
+// router.post("/request-demo", authMiddleware, submitRequestDemo);
+
+// export default router;
+
+
+
+
 import express from "express";
 import { authMiddleware } from "../middleware/auth.js";
-import uploadResume from "../middleware/uploadResume.js";
-import { submitCareer } from "../controllers/career.Controller.js";
 import { submitRequestDemo } from "../controllers/requestDemo.Controller.js";
 
 const router = express.Router();
 
+// PROTECTED → Request Demo (requires login)
 router.post(
-  "/career",
+  "/request-demo",
   authMiddleware,
-  uploadResume.single("resume"),
-  submitCareer
+  submitRequestDemo
 );
-
-router.post("/request-demo", authMiddleware, submitRequestDemo);
 
 export default router;

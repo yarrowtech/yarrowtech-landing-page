@@ -1,0 +1,98 @@
+/* Container */
+.client-profile-container {
+  padding: 25px 30px;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Header */
+.client-header h2 {
+  font-size: 1.8rem;
+  color: #ffcb05;
+  font-weight: 700;
+}
+
+.client-header .subtitle {
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+/* Card */
+.client-profile-card {
+  background: #071a2d;
+  border-radius: 16px;
+  padding: 25px 28px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+  max-width: 650px;
+}
+
+.client-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Inputs */
+.form-group label {
+  color: #ffcb05;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #0d2438;
+  border: 1px solid #1e3a55;
+  color: #fff;
+  font-size: 0.95rem;
+  resize: none;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+/* Focus */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #ffcb05;
+  box-shadow: 0 0 0 3px rgba(255, 203, 5, 0.15);
+}
+
+/* Disabled Inputs */
+.form-group input:disabled {
+  background: #0b1f33;
+  border-color: #1b3148;
+  color: #7e8b99;
+  cursor: not-allowed;
+}
+
+/* Save Button */
+.client-profile-save-btn {
+  background: #ffcb05;
+  color: #000;
+  border: none;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.client-profile-save-btn:hover {
+  background: #ffd74d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .client-profile-container {
+    padding: 20px;
+  }
+
+  .client-profile-card {
+    padding: 20px;
+  }
+}

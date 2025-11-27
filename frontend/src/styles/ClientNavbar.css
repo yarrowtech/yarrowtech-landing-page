@@ -1,0 +1,68 @@
+/* ------------------------------
+   CLIENT NAVBAR
+------------------------------ */
+.client-navbar {
+  background: #0e1a28;
+  color: #fff;
+  height: 70px;
+  padding: 0 25px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* LEFT SECTION */
+.client-brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffbe3d; /* Gold accent */
+}
+
+/* RIGHT - NAVIGATION */
+.client-nav-right {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.client-nav-right a {
+  color: #cbd3df;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: 0.25s ease;
+}
+
+.client-nav-right a:hover {
+  color: #fff;
+}
+
+/* SPECIAL PROFILE BUTTON */
+.profile-btn {
+  padding: 8px 14px;
+  border: 1px solid #ffbe3d;
+  border-radius: 6px;
+  color: #ffbe3d !important;
+}
+
+.profile-btn:hover {
+  background: #ffbe3d;
+  color: #000 !important;
+}
+
+/* ACTIVE NAVBAR LINK */
+.client-nav-right a.active {
+  color: #000 !important;
+  background: #ffbe3d;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.client-nav-right a.active:hover {
+  background: #e6ac33;
+  color: #000 !important;
+}
+

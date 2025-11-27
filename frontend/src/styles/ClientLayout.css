@@ -1,0 +1,31 @@
+.client-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.client-content {
+  margin-left: 16rem;
+  width: calc(100% - 16rem);
+  padding: 25px 30px;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .client-content {
+    margin-left: 14rem;
+    width: calc(100% - 14rem);
+    padding: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .client-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 18px;
+  }
+}

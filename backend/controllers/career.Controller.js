@@ -1,76 +1,31 @@
-// import Career from "../models/Career.js";
-
-// export const submitCareer = async (req, res) => {
-//   try {
-//     const data = await Career.create({
-//       ...req.body,
-//       userId: req.user.userId,
-//       resumeUrl: req.file?.path || null,
-//       resumeName: req.file?.originalname || null,
-//     });
-
-//     res.json({ message: "Career application submitted", data });
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import cloudinary from "../utils/cloudinary.js";
+// backend/controllers/career.Controller.js
 import Career from "../models/Career.js";
 
 export const submitCareer = async (req, res) => {
   try {
-    let resumeUrl = null;
-    let resumeName = null;
+    // Debug logs
+    console.log(
+      "REQ.FILE:",
+      req.file ? JSON.stringify(req.file, null, 2) : "NO FILE"
+    );
+    console.log(
+      "REQ.BODY:",
+      req.body ? JSON.stringify(req.body, null, 2) : "NO BODY"
+    );
 
-    // Upload file to cloudinary
-    if (req.file) {
-      const uploaded = await cloudinary.uploader.upload_stream(
-        {
-          folder: "resumes",
-          resource_type: "raw"
-        },
-        async (error, result) => {
-          if (error) {
-            return res.status(500).json({ message: "Upload failed", error });
-          }
-
-          resumeUrl = result.secure_url;
-          resumeName = req.file.originalname;
-
-          const data = await Career.create({
-            ...req.body,
-            userId: req.user.userId,
-            resumeUrl,
-            resumeName
-          });
-
-          return res.json({ message: "Career application submitted", data });
-        }
-      );
-
-      // pipe buffer
-      uploaded.end(req.file.buffer);
-    } else {
+    if (!req.file) {
       return res.status(400).json({ message: "Resume is required" });
     }
 
+    const data = await Career.create({
+      ...req.body,
+      resumeUrl: req.file.path,
+      resumeName: req.file.originalname,
+    });
+
+    res.json({ message: "Career application submitted", data });
   } catch (err) {
+    console.error("Career Submit Error:", JSON.stringify(err, null, 2));
     res.status(500).json({ message: err.message });
   }
 };

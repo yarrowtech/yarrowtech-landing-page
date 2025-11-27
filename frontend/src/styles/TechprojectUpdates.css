@@ -1,0 +1,17 @@
+.update-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.update-card {
+  background: #0b2235;
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.update-card span {
+  font-size: 0.85rem;
+  color: #aaa;
+}

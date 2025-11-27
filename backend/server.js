@@ -32,16 +32,29 @@
 
 
 
+
+
+
+
+
+
+
+
+
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 import cors from "cors";
 
 import contactRoutes from "./routes/contact.Routes.js";
 import formRoutes from "./routes/form.Routes.js";
 import authRoutes from "./routes/auth.Routes.js";
+import careerRoutes from "./routes/career.Routes.js";
 
-dotenv.config();
+// dotenv.config();
 const app = express();
 
 // Middleware
@@ -59,10 +72,13 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/forms", formRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/register", authRoutes);
+app.use("/api/career", careerRoutes);
 
 app.get("/", (req, res) => res.send("🔥 YarrowTech API is running..."));
 
 app.listen(process.env.PORT, () =>
   console.log(`🚀 Server running on port ${process.env.PORT}`)
 );
+
+
 

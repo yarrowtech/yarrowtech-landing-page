@@ -1,0 +1,30 @@
+.tech-container {
+  display: flex;
+}
+
+.tech-content {
+  margin-left: 17rem;
+  padding: 30px;
+  width: 100%;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffbe3d;
+  margin-bottom: 25px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #0b2235;
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+}

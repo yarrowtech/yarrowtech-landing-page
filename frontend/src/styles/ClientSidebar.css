@@ -1,0 +1,120 @@
+/* ==========================================================
+   DESKTOP SIDEBAR (Default)
+========================================================== */
+.client-sidebar {
+  width: 16rem;
+  background: #071a2d;
+  color: #fff;
+  min-height: 100vh;
+  padding: 20px 15px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: width 0.3s ease, transform 0.3s ease;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 999;
+}
+
+/* Logo */
+.client-sidebar-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffcb05;
+  margin-bottom: 35px;
+}
+
+/* Menu */
+.client-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.client-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 6px;
+  color: #cfd8e3;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.client-sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.client-sidebar-link.active {
+  background: #ffcb05;
+  color: #000 !important;
+  font-weight: 600;
+}
+
+
+/* ==========================================================
+   TABLET VIEW (sidebar shrinks)
+========================================================== */
+@media (max-width: 1024px) {
+  .client-sidebar {
+    width: 14rem;
+  }
+
+  .client-sidebar-link {
+    padding: 10px 12px;
+  }
+}
+
+/* ==========================================================
+   MOBILE VIEW (sidebar becomes slide-in drawer)
+========================================================== */
+@media (max-width: 768px) {
+  .client-sidebar {
+    transform: translateX(-100%);
+    width: 16rem; /* full width sidebar on mobile */
+    padding: 20px;
+  }
+
+  .client-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .client-sidebar-logo {
+    font-size: 1.2rem;
+    text-align: left;
+  }
+
+  /* Dim background when sidebar is open */
+  .client-sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    z-index: 998;
+    display: none;
+  }
+
+  .client-sidebar-overlay.show {
+    display: block;
+  }
+}
+
+/* ==========================================================
+   EXTRA SMALL MOBILE < 480px
+========================================================== */
+@media (max-width: 480px) {
+  .client-sidebar {
+    width: 14rem;
+  }
+
+  .client-sidebar-link {
+    padding: 10px 10px;
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+
+  .client-sidebar-logo {
+    font-size: 1.1rem;
+  }
+}

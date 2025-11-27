@@ -1,0 +1,85 @@
+.technical-profile {
+  padding: 20px;
+  color: #fff;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffbe3d;
+  margin-bottom: 25px;
+}
+
+.profile-card {
+  display: flex;
+  gap: 25px;
+  background: #0b2235;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+/* LEFT SIDE */
+.profile-left {
+  width: 220px;
+  text-align: center;
+}
+
+.profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid #ffbe3d;
+}
+
+.profile-name {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.profile-role {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* RIGHT SIDE */
+.profile-right {
+  flex: 1;
+}
+
+.field-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field-group label {
+  color: #ddd;
+  margin-bottom: 6px;
+}
+
+.field-group input,
+.field-group textarea {
+  padding: 10px;
+  border-radius: 8px;
+  background: #071a2d;
+  color: #fff;
+  border: 1px solid #24415d;
+  outline: none;
+}
+
+.field-group input:focus,
+.field-group textarea:focus {
+  border-color: #ffbe3d;
+}
+
+.save-btn {
+  margin-top: 10px;
+  padding: 12px 20px;
+  background: #ffbe3d;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}

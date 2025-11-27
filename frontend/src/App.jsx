@@ -11,6 +11,7 @@ import Expertise from "./pages/expertise";
 import About from "./pages/about";
 import ScrollProgress from "./components/ScrollProgress";
 import SectionRouteRedirect from "./components/SectionRouteRedirect";
+import Footer from "./components/Footer";
 
 /* 🧩 Admin Module */
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -29,6 +30,21 @@ import CreateClient from "./pages/manager/CreateClient";
 import Notifications from "./pages/manager/Notifications";
 import ManagerSettings from "./pages/manager/Settings";
 
+/* 🧩 Client Module */
+import ClientLayout from "./pages/client/ClientLayout";
+import ClientDashboard from "./pages/client/ClientDashboard";
+import MyProjects from "./pages/client/MyProjects";
+import Payments from "./pages/client/Payments";
+import ProjectHistory from "./pages/client/ProjectHistory";
+import Profile from "./pages/client/Profile";
+
+/* 🧩 Technical Lead Module (NEW) */
+import TechnicalLayout from "./pages/technical/TechnicalLayout";
+import TechnicalDashboard from "./pages/technical/TechnicalDashboard";
+import ProjectUpdates from "./pages/technical/ProjectUpdates";
+import TeamOverview from "./pages/technical/TeamOverview";
+import TechnicalProfile from "./pages/technical/TechnicalProfile";
+
 /* 🔔 Notification System */
 import { Toaster } from "react-hot-toast";
 
@@ -36,15 +52,15 @@ import { Toaster } from "react-hot-toast";
 import "./App.css";
 import "./styles/Admin.css";
 
-// -----------------------------
-// HOME (Public)
-// -----------------------------
+/* ----------------------------- */
+/* HOME (Public) */
+/* ----------------------------- */
 function Home() {
   useEffect(() => {
     if (window.location.hash) {
-      history.replaceState(null, "", "/#");
+      window.history.replaceState(null, "", "/#");
     }
-    window.scrollTo({ top: 0, behavior: "instant" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
 
   return (
@@ -55,13 +71,14 @@ function Home() {
       <Expertise />
       <About />
       <Contact />
+      <Footer />
     </>
   );
 }
 
-// -----------------------------
-// MAIN APP
-// -----------------------------
+/* ----------------------------- */
+/* MAIN APP */
+/* ----------------------------- */
 export default function App() {
   return (
     <Router>
@@ -81,7 +98,7 @@ export default function App() {
           />
 
           {/* Smooth Scrolling Sections */}
-          {["services", "products", "expertise", "about", "contact"].map((sec) => (
+          {["services", "products", "expertise", "about", "contact", "footer"].map((sec) => (
             <Route
               key={sec}
               path={`/${sec}`}
@@ -107,11 +124,29 @@ export default function App() {
           {/* 🧱 MANAGER ROUTES */}
           <Route path="/manager" element={<ManagerLayout />}>
             <Route index element={<ManagerDashboard />} />
-
             <Route path="projects" element={<ManageProjects />} />
             <Route path="create-client" element={<CreateClient />} />
             <Route path="notifications" element={<Notifications />} />
             <Route path="settings" element={<ManagerSettings />} />
+          </Route>
+
+          {/* 🧱 ⭐ TECHNICAL LEAD ROUTES (NEW) */}
+          <Route path="/technical" element={<TechnicalLayout />}>
+            <Route index element={<TechnicalDashboard />} />
+            <Route path="dashboard" element={<TechnicalDashboard />} />
+            <Route path="project-updates" element={<ProjectUpdates />} />
+            <Route path="team-overview" element={<TeamOverview />} />
+            <Route path="profile" element={<TechnicalProfile />} />
+          </Route>
+
+          {/* 🧱 CLIENT ROUTES */}
+          <Route path="/client" element={<ClientLayout />}>
+            <Route index element={<ClientDashboard />} />
+            <Route path="dashboard" element={<ClientDashboard />} />
+            <Route path="projects" element={<MyProjects />} />
+            <Route path="payments" element={<Payments />} />
+            <Route path="history" element={<ProjectHistory />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
 
           {/* 404 FALLBACK */}

@@ -150,8 +150,8 @@
 }
 
 /* Extra scroll space */
-body::after {
+/* body::after {
   content: "";
   display: block;
   height: 200px;
-}
+} */

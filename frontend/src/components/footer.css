@@ -1,0 +1,161 @@
+/* -----------------------------------
+    FOOTER WAVE DIVIDER
+------------------------------------ */
+.footer-wave {
+  width: 100%;
+  height: 120px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2305182a' d='M0,192L60,181.3C120,171,240,149,360,154.7C480,160,600,192,720,208C840,224,960,224,1080,224C1200,224,1320,224,1380,224L1440,224V0H0Z'/%3E%3C/svg%3E")
+    no-repeat;
+  background-size: cover;
+  margin-bottom: -5px;
+}
+
+/* -----------------------------------
+    FOOTER SECTION
+------------------------------------ */
+.footer-section {
+  background: #05182a; /* YarrowTech dark blue theme */
+  color: #fff;
+  padding: 2rem 1rem 2rem;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+/* -----------------------------------
+    FOOTER COLUMNS
+------------------------------------ */
+.footer-col {
+  flex: 1 1 300px;
+}
+
+.footer-logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffcb05;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.footer-text {
+  color: #d2d2d2;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  max-width: 330px;
+}
+
+.footer-col h4 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #ffcb05;
+}
+
+/* -----------------------------------
+    CONTACT INFO
+------------------------------------ */
+.footer-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+.footer-info svg {
+  color: #ffcb05;
+}
+
+/* -----------------------------------
+    SOCIAL ICONS
+------------------------------------ */
+.footer-socials {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.footer-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 203, 5, 0.15);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: 0.3s ease;
+}
+
+.glow-hover:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(255, 203, 5, 0.7);
+  color: #ffcb05;
+}
+
+/* -----------------------------------
+    FOOTER BOTTOM
+------------------------------------ */
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* -----------------------------------
+    ANIMATIONS
+------------------------------------ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -----------------------------------
+    RESPONSIVE
+------------------------------------ */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .footer-col {
+    align-items: center;
+  }
+
+  .footer-info {
+    justify-content: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+}

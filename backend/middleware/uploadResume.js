@@ -4,13 +4,10 @@ import cloudinary from "../utils/cloudinary.js";
 
 const storage = new CloudinaryStorage({
   cloudinary,
-  params: async (req, file) => {
-    return {
-      folder: "resumes",
-      resource_type: "raw",
-      public_id: `${Date.now()}-${file.originalname}`,
-      format: file.originalname.split(".").pop(),
-    };
+  params: {
+    folder: "resumes",
+    resource_type: "auto",
+    allowed_formats: ["pdf", "doc", "docx"],
   },
 });
 
