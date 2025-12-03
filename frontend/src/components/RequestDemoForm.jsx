@@ -1,88 +1,4 @@
-// import React, { useState } from "react";
-// import "./ModalForm.css";
-// import { X } from "lucide-react";
 
-// export default function RequestDemoForm({ onClose }) {
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     company: "",
-//     message: "",
-//   });
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log("Request Demo Submitted:", formData);
-//     onClose();
-//   };
-
-//   return (
-//     <div className="modal-overlay" onClick={onClose}>
-//       <div className="modal-box-demo" onClick={(e) => e.stopPropagation()}>
-        
-//         {/* Close Button */}
-//         <button className="close-btn" onClick={onClose}>
-//           <X size={22} />
-//         </button>
-
-//         <h2 className="modal-title">Request a Demo</h2>
-//         <p className="modal-subtitle">
-//           Tell us about yourself and your company.
-//         </p>
-
-//         <form onSubmit={handleSubmit} className="demo-form">
-//           <input
-//             type="text"
-//             name="name"
-//             placeholder="Your Name"
-//             required
-//             onChange={(e) =>
-//               setFormData({ ...formData, name: e.target.value })
-//             }
-//           />
-
-//           <input
-//             type="email"
-//             name="email"
-//             placeholder="Your Email"
-//             required
-//             onChange={(e) =>
-//               setFormData({ ...formData, email: e.target.value })
-//             }
-//           />
-
-//           <input
-//             type="text"
-//             name="company"
-//             placeholder="Company Name"
-//             onChange={(e) =>
-//               setFormData({ ...formData, company: e.target.value })
-//             }
-//           />
-
-//           <textarea
-//             name="message"
-//             rows={4}
-//             placeholder="Your Message"
-//             onChange={(e) =>
-//               setFormData({ ...formData, message: e.target.value })
-//             }
-//           ></textarea>
-
-//           <div className="form-action-buttons">
-//             <button type="submit" className="primary-btn">
-//               Submit Request
-//             </button>
-
-//             <button type="button" className="secondary-btn" onClick={onClose}>
-//               Cancel
-//             </button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
 
 import React, { useState } from "react";
 import "./ModalForm.css";
@@ -117,7 +33,7 @@ export default function RequestDemoForm({ onClose, showToast }) {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/forms/request-demo",
+        "http://localhost:5000/api/forms/demo",
         formData,
         {
           headers: {

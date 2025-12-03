@@ -1,0 +1,87 @@
+/* ======================================================
+   YARROWTECH — ADMIN CONTACTS PAGE (PROFESSIONAL UI)
+====================================================== */
+
+.admin-contacts-container {
+  padding: 25px 30px;
+  color: #e8eef5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header */
+.admin-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffcb05;
+  margin-bottom: 6px;
+}
+
+.admin-header .subtitle {
+  font-size: 1rem;
+  color: #9eb2c8;
+}
+
+/* Table Wrapper */
+.contacts-table-wrapper {
+  background: #071a2d;
+  border-radius: 16px;
+  padding: 20px 25px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  overflow-x: auto;
+}
+
+/* Table */
+.contacts-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 850px;
+  color: #dce4ee;
+}
+
+.contacts-table thead {
+  background: #0c2b47;
+}
+
+.contacts-table th {
+  padding: 14px 12px;
+  color: #ffcb05;
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.contacts-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contacts-table tr:hover td {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Message Styling */
+.contacts-table td.message-cell {
+  max-width: 300px;
+  white-space: normal;
+  line-height: 1.4;
+  color: #cfe3ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-contacts-container {
+    padding: 20px;
+  }
+  .contacts-table {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contacts-table th,
+  .contacts-table td {
+    font-size: 0.75rem;
+  }
+}

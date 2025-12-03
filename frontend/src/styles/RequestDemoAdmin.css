@@ -1,128 +1,152 @@
-/* ------------------------------
-   PAGE WRAPPER
------------------------------- */
+/* ======================================================
+   YARROWTECH ADMIN • REQUEST DEMO MODULE (PRO UI 2025)
+   Clean • Modern • Fully Responsive
+====================================================== */
+
 .admin-requests-container {
-  padding: 25px;
-  color: #fff;
+  padding: 30px 32px;
+  color: #e8eef5;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-/* ------------------------------
-   HEADER
------------------------------- */
+/* HEADER */
 .admin-header h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 700;
   color: #ffcb05;
-  margin-bottom: 5px;
 }
-
 .admin-header .subtitle {
-  color: #aaa;
-  font-size: 0.95rem;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  color: #9bb2c8;
+  font-size: 1rem;
 }
 
-/* ------------------------------
-   TABLE WRAPPER
------------------------------- */
-.requests-table-wrapper {
-  background: #071a2d;
-  padding: 25px;
+/* SEARCH BAR */
+.rd-search-bar {
+  background: #081726;
+  padding: 18px 22px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rd-search-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 10px 16px;
+  border-radius: 12px;
+  width: 320px;
+}
+.rd-search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #dce4ee;
+  font-size: 0.95rem;
+}
+.rd-search-box .icon {
+  color: #ffcb05;
+}
+
+.rd-count-chip {
+  background: #0e2e4d;
+  color: #ffcb05;
+  padding: 8px 16px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+}
+
+/* TABLE WRAPPER */
+.rd-table-wrapper {
+  background: #081726;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   overflow-x: auto;
 }
 
-/* ------------------------------
-   TABLE BASE
------------------------------- */
-.requests-table {
+/* TABLE */
+.rd-table {
   width: 100%;
   border-collapse: collapse;
-  color: #eaeaea;
+  color: #dce4ee;
+}
+.rd-table thead {
+  background: linear-gradient(90deg, #0c2235, #0a1a2c);
+}
+.rd-table th {
+  padding: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  color: #ffcb05;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+.rd-table td {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   font-size: 0.95rem;
 }
-
-.requests-table thead {
-  background: rgba(255, 255, 255, 0.06);
+.rd-table tr:hover td {
+  background: rgba(255,255,255,0.05);
 }
 
-.requests-table th {
-  text-align: left;
-  padding: 12px 14px;
-  font-weight: 600;
-  color: #ffcb05;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+/* MESSAGE COLUMN (wrap text) */
+.rd-msg-cell {
+  max-width: 280px;
+  white-space: normal;
+  line-height: 1.4;
 }
 
-.requests-table td {
-  padding: 12px 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  color: #d7dbe0;
+/* EMPTY STATE */
+.rd-no-records {
+  text-align: center;
+  padding: 35px 0;
+  color: #9fb1c5;
+}
+.rd-no-data-img {
+  width: 80px;
+  opacity: 0.7;
+  margin-bottom: 10px;
 }
 
-/* Hover row */
-.requests-table tr:hover td {
-  background: rgba(255, 255, 255, 0.05);
+/* SKELETON LOADER */
+.rd-skeleton-wrapper {
+  background: #081726;
+  padding: 22px;
+  border-radius: 16px;
+}
+.rd-skeleton-row {
+  height: 48px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg,
+    rgba(20,45,70,0.5),
+    rgba(45,85,120,0.9),
+    rgba(20,45,70,0.5)
+  );
+  border-radius: 10px;
+  background-size: 200% 100%;
+  animation: shimmer 1.3s infinite;
 }
 
-/* ------------------------------
-   STATUS BADGES
------------------------------- */
-.status {
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: capitalize;
+@keyframes shimmer {
+  0% { background-position: 180% 0; }
+  100% { background-position: -180% 0; }
 }
 
-/* New */
-.status-new {
-  background: #1e90ff;
-  color: #fff;
-}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .rd-search-bar {
+    flex-direction: column;
+    gap: 14px;
+  }
 
-/* Viewed */
-.status-viewed {
-  background: #22c55e;
-  color: #fff;
-}
-
-/* ------------------------------
-   ACTION BUTTONS
------------------------------- */
-.actions {
-  display: flex;
-  gap: 10px;
-}
-
-.view-btn,
-.delete-btn {
-  padding: 7px 14px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: 0.2s;
-}
-
-/* VIEW BUTTON */
-.view-btn {
-  background: #2563eb;
-  color: #fff;
-}
-
-.view-btn:hover {
-  background: #1e4fcf;
-}
-
-/* DELETE BUTTON */
-.delete-btn {
-  background: #dc2626;
-  color: #fff;
-}
-
-.delete-btn:hover {
-  background: #b91c1c;
+  .rd-search-box {
+    width: 100%;
+  }
 }

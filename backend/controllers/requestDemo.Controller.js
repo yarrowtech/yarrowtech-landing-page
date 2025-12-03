@@ -1,32 +1,50 @@
-// import RequestDemo from "../models/RequestDemo.js";
-
-// export const submitRequestDemo = async (req, res) => {
-//   try {
-//     const data = await RequestDemo.create({
-//       ...req.body,
-//       userId: req.user.userId,
-//     });
-
-//     res.json({ message: "Demo request submitted", data });
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
 
 
-// controllers/requestDemo.Controller.js
 import RequestDemo from "../models/RequestDemo.js";
 
+/* ============================================================
+   SUBMIT REQUEST DEMO (Normal public user)
+============================================================ */
 export const submitRequestDemo = async (req, res) => {
   try {
-    const data = await RequestDemo.create({
-      ...req.body,
-      userId: req.user?.id || req.user?.userId || null, // safe if route is public
+    const { name, email, companyName, message } = req.body;
+
+    if (!name || !email) {
+      return res.status(400).json({ error: "Name and Email required." });
+    }
+
+    const newReq = await RequestDemo.create({
+      name,
+      email,
+      companyName,
+      message,
     });
 
-    return res.status(201).json({ message: "Demo request submitted", data });
+    res.status(201).json({
+      success: true,
+      message: "Demo request submitted successfully!",
+      data: newReq,
+    });
   } catch (err) {
-    console.error("Request Demo Error:", err);
-    return res.status(500).json({ error: err.message || "Internal server error" });
+    console.error("❌ DEMO REQUEST ERROR:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+/* ============================================================
+   GET ALL DEMO REQUESTS (Admin only)
+============================================================ */
+export const getAllDemoRequests = async (req, res) => {
+  try {
+    const requests = await RequestDemo.find().sort({ createdAt: -1 });
+
+    res.json({
+      success: true,
+      count: requests.length,
+      requests,
+    });
+  } catch (err) {
+    console.error("❌ FETCH DEMO REQUESTS ERROR:", err);
+    res.status(500).json({ error: "Failed to fetch demo requests" });
   }
 };

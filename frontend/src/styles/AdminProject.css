@@ -1,183 +1,240 @@
-/* ======================================================
-   YARROWTECH ADMIN – PROJECTS PAGE (PROFESSIONAL)
-====================================================== */
+/* =======================================================================
+   Y A R R O W T E C H — ADMIN PROJECTS UI (ENTERPRISE DESIGN)
+   Perfectly matched with updated JSX (Inline Editing Version)
+========================================================================= */
 
+/* ======================================================
+   PAGE WRAPPER
+====================================================== */
 .admin-projects-container {
-  padding: 25px 30px;
-  color: #fff;
+  padding: 32px 34px;
+  color: #e8eef5;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-/* Header */
+/* ======================================================
+   HEADER
+====================================================== */
 .admin-header h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 700;
   color: #ffcb05;
   margin-bottom: 8px;
-  font-weight: 700;
 }
 
 .admin-header .subtitle {
-  color: #aaa;
-  font-size: 0.95rem;
-  margin-bottom: 20px;
+  color: #9bb2c8;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
 }
 
 /* ======================================================
-   TABLE WRAPPER
+   FILTER BAR
+====================================================== */
+.project-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0b1a2b;
+  padding: 14px 18px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #071422;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e6edf5;
+  font-size: 0.95rem;
+}
+
+.filter-select {
+  background: #071422;
+  color: #e6edf5;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.95rem;
+}
+
+/* ======================================================
+   TABLE CONTAINER
 ====================================================== */
 .projects-table-wrapper {
-  background: #071a2d;
-  border-radius: 16px;
-  padding: 20px 25px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+  background: #081726;
+  border-radius: 18px;
+  padding: 22px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
   overflow-x: auto;
 }
 
 .projects-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 850px;
-  color: #eaeaea;
+  min-width: 900px;
   font-size: 0.95rem;
+  color: #dce4ee;
 }
 
+/* TABLE HEADER */
 .projects-table thead {
-  background: #0c2b47;
+  background: linear-gradient(90deg, #0e2438, #0d1f31);
 }
 
 .projects-table th {
-  padding: 14px 12px;
+  padding: 15px;
+  font-weight: 700;
   color: #ffcb05;
-  font-weight: 600;
-  white-space: nowrap;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
 }
 
+/* BODY CELLS */
 .projects-table td {
-  padding: 14px 12px;
+  padding: 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   white-space: nowrap;
 }
 
 .projects-table tr:hover td {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 /* ======================================================
-   STATUS COLORS
+   INLINE INPUTS
 ====================================================== */
-.status {
-  font-weight: 600;
-  padding: 4px 12px;
+.projects-table input,
+.projects-table select {
+  width: 130px;
+  background: #0b1a2b;
+  color: #e8eef5;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.projects-table input[type="date"] {
+  width: 160px;
+}
+
+/* ======================================================
+   STATUS BADGES
+====================================================== */
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-weight: 700;
   display: inline-block;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
+  text-transform: capitalize;
 }
 
 .status-completed {
-  background: rgba(76, 175, 80, 0.2);
-  color: #4caf50;
+  background: rgba(46, 204, 113, 0.22);
+  color: #2ecc71;
 }
 
 .status-ongoing {
-  background: rgba(255, 193, 7, 0.2);
+  background: rgba(255, 193, 7, 0.22);
   color: #ffcb05;
 }
 
 .status-pending {
-  background: rgba(255, 82, 82, 0.2);
+  background: rgba(255, 82, 82, 0.22);
   color: #ff5252;
 }
 
 /* ======================================================
-   PROGRESS BAR
+   ACTION BUTTONS (EDIT, SAVE, CANCEL)
 ====================================================== */
-.progress-bar {
-  background: rgba(255, 255, 255, 0.15);
-  height: 8px;
-  border-radius: 5px;
-  overflow: hidden;
-  width: 120px;
-  display: inline-block;
-  margin-right: 8px;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #ffcb05, #ff8800);
-  border-radius: 5px;
-  transition: width 0.4s ease;
-}
-
-.progress-text {
-  font-size: 0.85rem;
-  color: #ccc;
-}
-
-/* ======================================================
-   ACTION BUTTONS
-====================================================== */
-.actions {
-  display: flex;
-  gap: 10px;
-}
-
-.actions button {
-  background: transparent;
-  border: none;
+.save-btn,
+.cancel-btn,
+.edit-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.25s ease;
+  transition: 0.2s ease;
 }
 
-.view-btn svg {
-  color: #4fa3ff;
+.save-btn svg {
+  color: #2ecc71;
+}
+
+.cancel-btn svg {
+  color: #ff5252;
 }
 
 .edit-btn svg {
   color: #ffcb05;
 }
 
-.delete-btn svg {
-  color: #ff5252;
-}
-
-.actions button:hover svg {
-  transform: scale(1.2);
+.save-btn:hover,
+.cancel-btn:hover,
+.edit-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
 }
 
 /* ======================================================
-   SKELETON LOADER
+   SKELETON LOADING UI
 ====================================================== */
 .skeleton-table-wrapper {
-  background: #071a2d;
-  padding: 20px;
-  border-radius: 16px;
+  background: #081726;
+  padding: 22px;
+  border-radius: 18px;
 }
 
 .skeleton-row {
-  height: 48px;
+  height: 50px;
+  border-radius: 10px;
   background: linear-gradient(
     90deg,
-    rgba(20, 45, 70, 0.6),
-    rgba(35, 75, 110, 0.9),
-    rgba(20, 45, 70, 0.6)
+    rgba(18, 45, 70, 0.5),
+    rgba(45, 85, 120, 0.9),
+    rgba(18, 45, 70, 0.5)
   );
   background-size: 200% 100%;
-  animation: shimmer 1.35s infinite;
-  border-radius: 8px;
-  margin-bottom: 12px;
+  animation: shimmer 1.3s infinite;
+  margin-bottom: 14px;
 }
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% { background-position: 180% 0; }
+  100% { background-position: -180% 0; }
+}
+
+/* ======================================================
+   NO RECORDS
+====================================================== */
+.no-records {
+  text-align: center;
+  padding: 20px;
+  color: #9bb2c8;
+  font-size: 1rem;
 }
 
 /* ======================================================
    RESPONSIVE DESIGN
 ====================================================== */
-
 @media (max-width: 992px) {
   .admin-projects-container {
     padding: 20px;
@@ -185,11 +242,13 @@
 }
 
 @media (max-width: 768px) {
-  .progress-text {
-    display: none;
-  }
   .projects-table {
     font-size: 0.85rem;
+  }
+
+  .projects-table input,
+  .projects-table select {
+    width: 110px;
   }
 }
 
@@ -197,8 +256,9 @@
   .projects-table th,
   .projects-table td {
     font-size: 0.75rem;
+    padding: 10px;
   }
   .admin-header h2 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 }

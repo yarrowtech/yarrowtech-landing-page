@@ -499,3 +499,43 @@
   align-items: center;
   z-index: 5000; /* stays on top */
 }
+
+
+
+/* ============================================================
+   LOGIN SWITCH (Website Login / ERP Login)
+   Matching Yarrowtech Glass UI
+============================================================ */
+
+.login-switch {
+  display: flex;
+  justify-content: center;
+  background: #f4f5f7;
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 18px;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.06);
+}
+
+.switch-btn {
+  padding: 10px 22px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0c1a2d;
+  transition: all 0.25s ease;
+}
+
+.switch-btn:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.switch-btn.active {
+  background: linear-gradient(135deg, #e8b100, #ffcb05);
+  color: black;
+  box-shadow: 0 3px 10px rgba(255, 200, 40, 0.35);
+  transform: translateY(-2px);
+}

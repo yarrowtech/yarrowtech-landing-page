@@ -1,93 +1,167 @@
+/* ===========================================================
+   YARROWTECH – PREMIUM DEMO REQUEST MODAL (Glassmorphism)
+   Clean • Modern • Responsive
+=========================================================== */
+
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
-}
-
-.modal-box {
-  background: white;
-  color: #333;
-  border-radius: 10px;
-  padding: 30px;
-  width: 400px;
-  max-width: 90%;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   animation: fadeIn 0.3s ease;
 }
 
-.modal-box h2 {
+/* MAIN CARD */
+.modal-box-demo {
+  background: rgba(10, 20, 35, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 35px;
+  width: 520px;
+  max-width: 92%;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  position: relative;
+  animation: slideUp 0.35s ease;
+  color: #f5f7ff;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.25s ease;
+  color: white;
+}
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+/* HEADER */
+.modal-title {
+  font-size: 1.8rem;
   text-align: center;
+  font-weight: 700;
+  color: #ffcb05;
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  text-align: center;
+  color: #b5c5d8;
   margin-bottom: 20px;
-  color: #222;
 }
 
-.modal-box form {
+/* FORM */
+.demo-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
-.modal-box input,
-.modal-box textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
+.demo-form input,
+.demo-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(0, 20, 35, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 0.95rem;
+  border-radius: 12px;
   outline: none;
+  transition: 0.25s ease;
 }
 
-.modal-box textarea {
+.demo-form input:focus,
+.demo-form textarea:focus {
+  background: rgba(0, 20, 35, 0.85);
+  border-color: #ffcb05;
+}
+
+.demo-form textarea {
   resize: none;
-  height: 80px;
+  height: 110px;
 }
 
-.file-upload {
-  font-size: 14px;
-  color: #555;
+/* BUTTONS WRAPPER */
+.form-action-buttons {
   display: flex;
-  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
 }
 
-.form-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
-.submit-btn {
-  background-color: #0078ff;
-  color: white;
+/* PRIMARY BUTTON */
+.primary-btn {
+  flex: 1;
+  background: linear-gradient(90deg, #0061ff, #4c8dff);
   border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.submit-btn:hover {
-  background-color: #005ed1;
-}
-
-.cancel-btn {
-  background-color: #ff4c4c;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 0.95rem;
   color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
+  font-weight: 700;
   cursor: pointer;
+  transition: 0.25s ease;
 }
 
-.cancel-btn:hover {
-  background-color: #e60000;
+.primary-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, #1b6eff, #77a8ff);
 }
 
+/* DISABLED */
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* CANCEL BUTTON */
+.secondary-btn {
+  flex: 1;
+  background: #e2e2e2;
+  color: #1a1a1a;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.secondary-btn:hover {
+  background: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* ANIMATIONS */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 520px) {
+  .modal-box-demo {
+    padding: 28px 22px;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    font-size: 0.9rem;
+  }
 }
