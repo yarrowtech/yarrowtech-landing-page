@@ -5,10 +5,8 @@
   color: #f5f5f5;
   text-align: center;
   overflow: hidden;
-  margin-top: 0 !important;
 }
 
-/* Container */
 .container {
   width: 100%;
   max-width: 1100px;
@@ -23,8 +21,6 @@
   margin-bottom: 45px;
   position: relative;
   display: inline-block;
-  letter-spacing: 1px;
-  line-height: 1.2;
 }
 
 .title::after {
@@ -37,20 +33,33 @@
   height: 4px;
   background: linear-gradient(90deg, #ffb400, #ff7a00);
   border-radius: 2px;
-  transition: width 0.4s ease, filter 0.3s ease;
+  transition: width 0.4s ease;
 }
 
 .title:hover::after {
   width: 110px;
-  filter: brightness(1.3);
 }
 
-/* Grid Layout */
+/* 🌟 FIXED GRID — PERFECT STRUCTURE */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
   margin-top: 35px;
+}
+
+/* Tablet: 2 per row */
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 per row */
+@media (max-width: 576px) {
+  .services-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 /* Service Card */
@@ -63,8 +72,10 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
+/* Glow on hover */
 .service-card::before {
   content: "";
   position: absolute;
@@ -72,11 +83,7 @@
   left: -100%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 180, 0, 0.15) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgba(255, 180, 0, 0.15) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -100,11 +107,10 @@
   width: 60px;
   height: 60px;
   margin-bottom: 15px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .service-card:hover .icon-ring {
-  background-color: rgba(255, 180, 0, 0.25);
   transform: scale(1.1);
 }
 
@@ -123,11 +129,6 @@
   font-weight: 600;
   margin-bottom: 10px;
   color: #ffb400;
-  transition: color 0.3s ease;
-}
-
-.service-card:hover h3 {
-  color: #ffcd4d;
 }
 
 .service-card p {
@@ -136,7 +137,7 @@
   line-height: 1.5;
 }
 
-/* Floating Particles (Dense + Fixed) */
+/* Floating Particles */
 .floating-particles {
   position: absolute;
   top: 0;
@@ -144,6 +145,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  z-index: 0;
 }
 
 .floating-particles li {
@@ -166,23 +168,9 @@
   }
 }
 
-/* Responsive */
+/* Responsive Title */
 @media (max-width: 768px) {
   .title {
     font-size: 2rem;
-  }
-  .icon-ring {
-    width: 55px;
-    height: 55px;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 1.6rem;
-  }
-  .icon-ring {
-    width: 48px;
-    height: 48px;
   }
 }

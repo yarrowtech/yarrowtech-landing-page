@@ -6,118 +6,104 @@
   text-align: center;
 }
 
-/* Container (scoped to about) */
+/* Container */
 .about-section .container {
-  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-/* ABOUT TEXT CENTERED */
+/* ABOUT TEXT */
 .about-section .about-text {
   max-width: 850px;
-  margin: 0 auto 20px auto;
-  text-align: center;
+  margin: 0 auto 40px auto;
 }
 
-/* TITLE */
 .about-section .title {
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(2rem, 4vw, 2.6rem);
   font-weight: 700;
-  color: #ff9a1f;
-  margin-bottom: 1rem;
-  text-align: center;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
 }
 
-/* DESCRIPTION PARAGRAPHS */
+/* Paragraph styling for readability */
 .about-section .desc {
   font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 780px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 1.4rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 760px;
+  margin: 0 auto 1.2rem;
 }
 
 .about-section .desc.last-para {
   margin-bottom: 0;
 }
 
-/* HIGHLIGHTED TEXT */
 .about-section .highlight {
   color: #ff9a1f;
   font-weight: 600;
 }
 
-/* REMOVE EMPTY IMAGE COLUMN (previous issue) */
-.about-section .about-image {
-  display: none !important;
+/* CORE VALUES SECTION */
+.values-section {
+  margin-top: 50px;
 }
 
-/* OUR CORE VALUES SECTION */
-.about-section .values-section {
-  margin-top: 40px;
-  text-align: center;
-}
-
-/* VALUE SECTION TITLE */
-.about-section .values-title {
+.values-title {
   font-size: 2rem;
-  color: #ff9a1f;
   font-weight: 600;
+  color: #ff9a1f;
   margin-bottom: 2rem;
 }
 
-/* VALUE CARDS GRID (STRUCTURED) */
-.about-section .values-grid {
+/* GRID: 3 columns → 2 columns → 1 column */
+.values-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  justify-content: center;
   align-items: stretch;
 }
 
-/* VALUE CARD DESIGN */
-.about-section .value-card {
+/* Tablet */
+@media (max-width: 992px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .values-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* CARD DESIGN */
+.value-card {
   background: #00000090;
   border-radius: 16px;
-  padding: 28px 20px;
+  padding: 28px 22px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
   transition: 0.3s ease;
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.about-section .value-card:hover {
+.value-card:hover {
   transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 8px 28px rgba(255, 180, 0, 0.25);
+  box-shadow: 0 8px 26px rgba(255, 180, 0, 0.25);
 }
 
-.about-section .value-card h4 {
-  font-size: 1.25rem;
+.value-card h4 {
+  font-size: 1.22rem;
+  font-weight: 600;
   color: #ffb400;
   margin-bottom: 10px;
 }
 
-.about-section .value-card p {
-  font-size: 0.95rem;
+.value-card p {
+  font-size: 0.96rem;
   color: rgba(255, 255, 255, 0.85);
-  line-height: 1.5;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .about-section .title {
-    font-size: 2.2rem;
-  }
-
-  .about-section .desc {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-section .title {
-    font-size: 1.8rem;
-  }
+  line-height: 1.6;
 }

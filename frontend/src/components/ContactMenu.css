@@ -1,0 +1,76 @@
+.contact-widget {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9999;
+}
+
+.contact-toggle {
+  width: 55px;
+  height: 55px;
+  background: #1e66ff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: 0.3s ease;
+}
+
+.contact-toggle:hover {
+  transform: scale(1.07);
+}
+
+.contact-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: 0.35s ease;
+}
+
+.contact-options.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  transform : translateX(-6rem)
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.label {
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.icon-circle {
+  width: 42px;
+  height: 42px;
+  background: #1e66ff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+.contact-widget {
+  position: fixed;
+  bottom: 150px;   /* was 25px */
+  right: -4rem;
+  z-index: 99999;
+}

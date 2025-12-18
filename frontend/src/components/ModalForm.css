@@ -1,6 +1,5 @@
 /* ===========================================================
-   YARROWTECH – PREMIUM DEMO REQUEST MODAL (Glassmorphism)
-   Clean • Modern • Responsive
+   FIXED RESPONSIVE MODAL — FINAL WORKING VERSION
 =========================================================== */
 
 .modal-overlay {
@@ -10,158 +9,207 @@
   backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 999;
-  animation: fadeIn 0.3s ease;
+  align-items: center; /* 🔥 Always center — fixes your issue */
+  z-index: 9999;
+  padding: 0; /* 🔥 Remove top/bottom push */
+  overflow-y: auto;
 }
 
 /* MAIN CARD */
 .modal-box-demo {
-  background: rgba(10, 20, 35, 0.75);
+  background: rgba(10, 20, 35, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 40px 35px;
-  width: 520px;
-  max-width: 92%;
+  width: 900px;
+  max-width: 96%;
+  max-height: 90vh;       /* 🔥 Never exceed screen */
+  overflow-y: auto;       /* 🔥 Internal scrolling */
   border-radius: 18px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 20px 50px rgba(0,0,0,0.55);
   position: relative;
-  animation: slideUp 0.35s ease;
-  color: #f5f7ff;
+  display: flex;
+  flex-direction: row;
+  animation: fadeUp 0.35s ease;
 }
 
 /* CLOSE BUTTON */
 .close-btn {
   position: absolute;
-  top: 18px;
-  right: 18px;
-  background: rgba(255, 255, 255, 0.12);
-  border: none;
-  padding: 6px;
+  top: 14px;
+  right: 14px;
+  z-index: 50;
+  width: 42px;
+  height: 42px;
+  background: rgba(255,255,255,0.15);
   border-radius: 50%;
+  border: none;
   cursor: pointer;
-  transition: 0.25s ease;
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .close-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255,255,255,0.25);
   transform: scale(1.1);
 }
 
-/* HEADER */
+/* LEFT FORM SECTION */
+.demo-form-side {
+  width: 50%;
+  padding: 40px 35px;
+}
+
 .modal-title {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
+  color: #ffcb05;
   text-align: center;
+}
+
+.modal-subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #b8c7d8;
+}
+
+.demo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* FORM ELEMENTS */
+.demo-form input,
+.demo-form textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(0,20,35,0.55);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+}
+
+.demo-form textarea {
+  resize: none;
+  height: 100px;
+}
+
+.form-action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.primary-btn, .secondary-btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.primary-btn {
+  background: linear-gradient(90deg,#0061ff,#4c8dff);
+  color: white;
+}
+
+.secondary-btn {
+  background: #e2e2e2;
+  color: black;
+}
+
+/* RIGHT INFO PANEL */
+.demo-info-side {
+  width: 50%;
+  padding: 40px 30px;
+  background: rgba(255,255,255,0.06);
+  border-left: 1px solid rgba(255,255,255,0.12);
+  overflow-y: auto;
+}
+
+.info-title {
+  font-size: 1.3rem;
   font-weight: 700;
   color: #ffcb05;
   margin-bottom: 8px;
 }
 
-.modal-subtitle {
-  text-align: center;
-  color: #b5c5d8;
+.info-step {
+  display: flex;
+  gap: 12px;
   margin-bottom: 20px;
 }
 
-/* FORM */
-.demo-form {
+.info-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 14px;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  color: #ffcb05;
+  font-size: 22px;
 }
 
-.demo-form input,
-.demo-form textarea {
-  width: 100%;
-  padding: 14px 16px;
-  background: rgba(0, 20, 35, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: white;
-  font-size: 0.95rem;
-  border-radius: 12px;
-  outline: none;
-  transition: 0.25s ease;
-}
 
-.demo-form input:focus,
-.demo-form textarea:focus {
-  background: rgba(0, 20, 35, 0.85);
-  border-color: #ffcb05;
-}
+/* ===========================================================
+   RESPONSIVE FIXES
+=========================================================== */
 
-.demo-form textarea {
-  resize: none;
-  height: 110px;
-}
-
-/* BUTTONS WRAPPER */
-.form-action-buttons {
-  display: flex;
-  gap: 14px;
-  margin-top: 10px;
-}
-
-/* PRIMARY BUTTON */
-.primary-btn {
-  flex: 1;
-  background: linear-gradient(90deg, #0061ff, #4c8dff);
-  border: none;
-  padding: 14px;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.primary-btn:hover:not(:disabled) {
-  transform: translateY(-3px);
-  background: linear-gradient(90deg, #1b6eff, #77a8ff);
-}
-
-/* DISABLED */
-.primary-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* CANCEL BUTTON */
-.secondary-btn {
-  flex: 1;
-  background: #e2e2e2;
-  color: #1a1a1a;
-  border: none;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.secondary-btn:hover {
-  background: #ffffff;
-  transform: translateY(-3px);
-}
-
-/* ANIMATIONS */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* RESPONSIVE */
-@media (max-width: 520px) {
+/* Large Tablets */
+@media (max-width: 900px) {
   .modal-box-demo {
+    flex-direction: column;
+    max-height: 95vh;
+  }
+
+  .demo-form-side,
+  .demo-info-side {
+    width: 100%;
     padding: 28px 22px;
   }
 
-  .primary-btn,
-  .secondary-btn {
-    font-size: 0.9rem;
+  .demo-info-side {
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.12);
   }
+}
+
+/* Small Screens (Phones) */
+@media (max-width: 480px) {
+
+  .modal-box-demo {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .modal-title {
+    font-size: 1.4rem;
+  }
+
+  .close-btn {
+    width: 34px;
+    height: 34px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .info-step {
+    gap: 10px;
+  }
+
+  .info-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .demo-info-side {
+    padding: 20px 18px;
+  }
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -3,8 +3,9 @@ import mongoose from "mongoose";
 
 const projectSchema = new mongoose.Schema({
   projectId: { type: String, unique: true },
-  name: String,
-  description: String,
+  name: { type: String, required: true },
+  description: { type: String },
+  projectDetails: { type: String },
   client: { type: mongoose.Schema.Types.ObjectId, ref: "ERPClient" },
   clientName: String,
   clientEmail: String,
@@ -15,4 +16,6 @@ const projectSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-export default mongoose.model("ERPProject", projectSchema);
+// ⬇⬇ FIX for OverwriteModelError ⬇⬇
+export default mongoose.models.ERPProject ||
+  mongoose.model("ERPProject", projectSchema);

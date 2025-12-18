@@ -1,0 +1,127 @@
+/* ==========================================================
+   BLOG PAGE — PROFESSIONAL UI
+========================================================== */
+
+.blog-page {
+  padding: 90px 0 80px;
+  background: linear-gradient(180deg, #050f1d, #071a2e);
+  min-height: 100vh;
+}
+
+.blog-container {
+  width: 92%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.blog-header {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.blog-header h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.blog-header p {
+  margin-top: 8px;
+  color: #9bb3c9;
+  font-size: 1rem;
+}
+
+/* STATES */
+.loading-text,
+.empty-text {
+  text-align: center;
+  color: #9bb3c9;
+  font-size: 1rem;
+}
+
+/* GRID */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* CARD */
+.blog-card {
+  background: #0c1f35;
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 45px rgba(0, 123, 255, 0.35);
+}
+
+/* IMAGE */
+.blog-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.4s ease;
+}
+
+.blog-card:hover img {
+  transform: scale(1.08);
+}
+
+/* CONTENT */
+.blog-content {
+  padding: 22px;
+}
+
+.blog-category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #00c6ff;
+  text-transform: uppercase;
+}
+
+.blog-content h3 {
+  margin: 10px 0 10px;
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.blog-content p {
+  font-size: 0.95rem;
+  color: #c4d2e3;
+  line-height: 1.6;
+}
+
+/* META */
+.blog-meta {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #8aa6c1;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .blog-header h1 {
+    font-size: 2.1rem;
+  }
+
+  .blog-image {
+    height: 180px;
+  }
+}

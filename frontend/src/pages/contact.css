@@ -9,7 +9,7 @@
 
 /* WRAPPER */
 .contact-section .container {
-  max-width: 1200px;        /* Wider for equal sizing */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
   text-align: center;
@@ -21,8 +21,6 @@
   font-weight: 700;
   margin-bottom: 1rem;
   width: 100%;
-  position: relative;
-  display: inline-block;
 }
 
 /* SUBTITLE */
@@ -33,31 +31,31 @@
   line-height: 1.6;
 }
 
-/* ⭐ 2-COLUMN GRID (LEFT = CARDS, RIGHT = FORM) */
+/* GRID LAYOUT */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
-  align-items: stretch;        /* 🔥 makes form height = left cards combined */
+  align-items: stretch;   /* Ensures both columns match height */
 }
 
-/* LEFT CARD WRAPPER – makes all 3 equal height */
+/* LEFT COLUMN WRAPPER (Equal height) */
 .left-card-group {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
   height: 100%;
+  gap: 1.2rem;
 }
 
-/* EACH CARD SAME HEIGHT */
+/* EACH CARD MATCHES HEIGHT */
 .info-card {
-  flex: 1;                         /* 🔥 All 3 cards equal height */
+  flex: 1; /* Makes all cards equal height */
   display: flex;
   align-items: center;
   gap: 1rem;
   background-color: #0b2b2f;
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1.6rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.35s ease;
 }
@@ -68,7 +66,7 @@
   box-shadow: 0 12px 25px rgba(255, 154, 31, 0.25);
 }
 
-/* TITLES */
+/* CARD TITLES */
 .info-card h4 {
   font-size: 1.25rem;
   color: #ff9a1f;
@@ -80,19 +78,19 @@
   color: #ff9a1f;
 }
 
-/* RIGHT FORM – SAME HEIGHT AS LEFT CARDS */
+/* RIGHT FORM COLUMN */
 .contact-form {
   background-color: #0b2b2f;
   border-radius: 1.25rem;
   padding: 2.5rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-  height: 100%;                  /* 🔥 matches left height automatically */
+  height: 100%;             /* This ensures equal height with left side */
   display: flex;
   flex-direction: column;
 }
 
-/* FORM ELEMENTS */
+/* FORM INPUTS */
 label {
   color: #ff9a1f;
   font-weight: 600;
@@ -121,7 +119,7 @@ textarea:focus {
   background-color: #ff9a1f;
   padding: 1rem;
   border-radius: 2rem;
-  margin-top: auto;          /* Moves button to bottom */
+  margin-top: auto; /* Moves button to bottom */
   font-weight: 600;
   font-size: 1rem;
   border: none;

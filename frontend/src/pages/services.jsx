@@ -1,13 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Code,
-  Smartphone,
-  Cloud,
-  Database,
-  Globe,
-  Layers,
-} from "lucide-react";
+import { Code, Smartphone, Cloud, Database, Globe, Layers } from "lucide-react";
 import "./services.css";
 
 export default function ServicePage() {
@@ -62,7 +55,7 @@ export default function ServicePage() {
 
   return (
     <section id="services" className="services-section">
-      {/* Randomized Floating Particles */}
+      {/* Floating Particles */}
       <ul className="floating-particles">
         {Array.from({ length: 40 }).map((_, i) => (
           <li

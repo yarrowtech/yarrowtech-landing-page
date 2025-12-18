@@ -1,26 +1,121 @@
+.manager-project-page {
+  padding: 30px 32px;
+  color: #e8eef5;
+}
+
+.header-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffcb05;
+}
+
+.header-section .subtitle {
+  color: #9bb2c8;
+  margin-top: 5px;
+}
+
+/* Table Wrapper */
+.project-table-wrapper {
+  margin-top: 20px;
+  background: #081726;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  overflow-x: auto;
+}
+
+/* Table */
 .manager-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-  background: #071a2d;
-  border-radius: 12px;
-  overflow: hidden;
-  color: #eaeaea;
+  color: #dce4ee;
 }
 
 .manager-table th {
-  background: #0c2b47;
-  color: #ffcb05;
+  background: #0e2438;
   padding: 14px;
-  text-align: left;
-  font-weight: 600;
+  color: #ffcb05;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .manager-table td {
-  padding: 12px;
+  padding: 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .manager-table tr:hover td {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.status-completed {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+}
+
+.status-ongoing {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffcb05;
+}
+
+.status-pending {
+  background: rgba(255, 82, 82, 0.2);
+  color: #ff5252;
+}
+
+/* Chat Button */
+.chat-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.chat-btn svg {
+  color: #4fa3ff;
+}
+
+.chat-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Skeleton Loader */
+.skeleton-table {
+  background: #081726;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.skeleton-row {
+  height: 50px;
+  background: linear-gradient(90deg, #122d46, #2d5578, #122d46);
+  background-size: 200% 100%;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  animation: shimmer 1.3s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 180% 0; }
+  100% { background-position: -180% 0; }
+}
+
+/* No Records */
+.no-records {
+  text-align: center;
+  padding: 20px;
+  color: #a7b4c3;
 }

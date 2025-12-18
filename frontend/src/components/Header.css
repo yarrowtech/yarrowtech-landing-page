@@ -122,22 +122,7 @@
   transform: translateY(-1px);
 }
 
-/* REQUEST DEMO */
-.request-btn {
-  background: linear-gradient(135deg, #b8860b, #ffa500);
-  color: #ffffff;
-  height: 2.6rem;
-  padding: 0.55rem 1.3rem;
-  font-weight: 600;
-  border-radius: 999px;
-}
-
-.request-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 18px rgba(255, 165, 0, 0.35);
-}
-
-/* LOGIN */
+/* LOGIN BUTTON */
 .login-btn {
   background: transparent;
   border: 1px solid #007bff;
@@ -150,7 +135,7 @@
 }
 
 /* -----------------------------------------------------------------------
-   5. USER AVATAR + MENU (LOGGED IN STATE)
+   5. USER AVATAR + MENU
 ------------------------------------------------------------------------ */
 
 .user-box {
@@ -243,7 +228,6 @@
   margin-bottom: 15px;
 }
 
-/* MODAL INPUTS */
 .modal-form {
   display: flex;
   flex-direction: column;
@@ -269,7 +253,6 @@
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.18);
 }
 
-/* Modal primary submit */
 .submit-btn {
   margin-top: 8px;
   padding: 0.65rem 1.3rem;
@@ -288,14 +271,12 @@
   box-shadow: 0 8px 20px rgba(0, 94, 209, 0.35);
 }
 
-/* Google button container */
 .google-auth-box {
   margin-top: 15px;
   display: flex;
   justify-content: center;
 }
 
-/* Links below modal */
 .modal-links {
   margin-top: 18px;
   font-size: 0.86rem;
@@ -309,7 +290,6 @@
   color: #005ed1;
   font-weight: 600;
   cursor: pointer;
-  padding: 0;
 }
 
 /* -----------------------------------------------------------------------
@@ -339,7 +319,7 @@
 }
 
 /* -----------------------------------------------------------------------
-   8. HAMBURGER & MOBILE MENU
+   8. HAMBURGER (Mobile)
 ------------------------------------------------------------------------ */
 
 .hamburger {
@@ -349,7 +329,6 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
 }
 
 .hamburger span {
@@ -359,12 +338,11 @@
   border-radius: 2px;
 }
 
-/* Buttons shown only in mobile nav drawer */
+/* MOBILE MENU */
 .mobile-buttons {
   display: none;
   flex-direction: column;
   gap: 0.75rem;
-  /* margin-top: auto; */
   padding: 1.5rem 1.75rem 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -384,6 +362,7 @@
     transform: scale(0.9) translateY(15px);
     opacity: 0;
   }
+
   to {
     transform: scale(1) translateY(0);
     opacity: 1;
@@ -395,6 +374,7 @@
     opacity: 0;
     transform: translate(-50%, -20px);
   }
+
   to {
     opacity: 1;
     transform: translate(-50%, 0);
@@ -402,10 +382,9 @@
 }
 
 /* -----------------------------------------------------------------------
-   10. RESPONSIVE DESIGN
+   10. RESPONSIVE BREAKPOINTS
 ------------------------------------------------------------------------ */
 
-/* Tablets */
 @media (max-width: 900px) {
   .logo {
     width: 220px;
@@ -441,13 +420,8 @@
   .nav-menu.open .mobile-buttons {
     display: flex;
   }
-
-  .nav-link {
-    font-size: 1rem;
-  }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
   .logo {
     width: 200px;
@@ -466,46 +440,9 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-.nav-menu.open {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  inset: 75px 0 auto auto;
-  width: 75%;
-  height: calc(100vh - 75px);
-  background: rgba(5, 20, 35, 0.96);
-  padding: 1.8rem 1.75rem 1rem;
-  gap: 1.5rem;
-  z-index: 5000;
-}
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(5, 20, 35, 0.78);
-  backdrop-filter: blur(12px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 5000; /* stays on top */
-}
-
-
-
-/* ============================================================
-   LOGIN SWITCH (Website Login / ERP Login)
-   Matching Yarrowtech Glass UI
-============================================================ */
+/* -----------------------------------------------------------------------
+   11. ERP LOGIN TOGGLE SWITCH
+------------------------------------------------------------------------ */
 
 .login-switch {
   display: flex;
@@ -514,7 +451,7 @@
   border-radius: 14px;
   padding: 4px;
   margin-bottom: 18px;
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.06);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.06);
 }
 
 .switch-btn {
@@ -530,7 +467,7 @@
 }
 
 .switch-btn:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .switch-btn.active {
@@ -538,4 +475,85 @@
   color: black;
   box-shadow: 0 3px 10px rgba(255, 200, 40, 0.35);
   transform: translateY(-2px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =======================================================================
+   12. BLOG STRIP (BELOW HEADER)
+======================================================================= */
+
+.blog-strip {
+  position: fixed;
+  top: 75px;
+  /* exactly below header */
+  width: 100%;
+  height: 48px;
+  background: linear-gradient(90deg, #061c2d, #0b2b45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 1800;
+  display: flex;
+  align-items: center;
+}
+
+.blog-strip-container {
+  width: 92%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LEFT TEXT */
+.blog-strip-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #9fc5ff;
+}
+
+/* BLOG BUTTON */
+.blog-strip-btn {
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.35);
+}
+
+.blog-strip-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 123, 255, 0.55);
+}
+
+/* ===============================
+   MOBILE ADJUSTMENT
+================================ */
+@media (max-width: 900px) {
+  .blog-strip {
+    height: 44px;
+  }
+
+  .blog-strip-label {
+    font-size: 0.78rem;
+  }
+
+  .blog-strip-btn {
+    font-size: 0.75rem;
+    padding: 5px 14px;
+  }
 }

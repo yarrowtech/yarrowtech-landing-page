@@ -1,20 +1,19 @@
-// erp/routes/manager.routes.js
-import express from "express";
-import {
-  createClientAndProject,
-  getProjects,
-  updateProject
-} from "../controllers/manager.controller.js";
+// erp/models/Project.js
+import mongoose from "mongoose";
 
-import { verifyErpToken } from "../middleware/erpAuth.js";
-import verifyRoles from "../middleware/verifyRoles.js";
+const projectSchema = new mongoose.Schema({
+  projectId: { type: String, unique: true },
+  name: { type: String, required: true },  // ✔ FIXED
+  description: { type: String },
+  projectDetails: { type: String },        // optional – you used this field
+  client: { type: mongoose.Schema.Types.ObjectId, ref: "ERPClient" },
+  clientName: { type: String },
+  clientEmail: { type: String },
+  managerEmail: { type: String },
+  techLeadEmail: { type: String },
+  expectedDelivery: { type: Date },
+  status: { type: String, default: "new" },
+  createdAt: { type: Date, default: Date.now }
+});
 
-const router = express.Router();
-
-router.use(verifyErpToken, verifyRoles("manager"));
-
-router.post("/create-client-project", createClientAndProject);
-router.get("/projects", getProjects);
-router.put("/project/:id", updateProject);
-
-export default router;
+export default mongoose.model("ERPProject", projectSchema);

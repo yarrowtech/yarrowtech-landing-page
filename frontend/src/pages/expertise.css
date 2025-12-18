@@ -1,128 +1,139 @@
-/* 🌙 EXPERTISE SECTION */
+/* SECTION BACKGROUND */
 .expertise-section {
-  background-color: #071920;
-  color: #fff;
-  padding: 60px 16px;
+  padding: 70px 0 90px;
+  background: linear-gradient(180deg, #0b1320, #0e1629, #09101d);
+}
+
+/* HEADER */
+.title {
   text-align: center;
-}
-
-/* Container (Scoped) */
-.expertise-section .container {
-  width: 100%;
-  max-width: 1150px;
-  margin: 0 auto;
-}
-
-/* ⭐ Center Title */
-.expertise-section .title {
-  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 1rem;
+  color: #ffffff;
+  margin-bottom: 8px;
 }
 
-/* ⭐ Subtitle */
-.expertise-section .subtitle {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0 auto 2.8rem;
-  max-width: 680px;
-}
-
-/* ⭐ GRID STRUCTURE (Perfect) */
-.expertise-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 28px;
-  align-items: stretch;
-}
-
-/* ⭐ CARD DESIGN (Same as Services) */
-.expertise-card {
-  background: #00000095;
-  border-radius: 16px;
-  padding: 24px 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
-  transition: 0.3s ease;
-  height: 100%;
-}
-
-.expertise-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(255, 180, 0, 0.28);
-}
-
-/* ⭐ Category Title */
-.category-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #ffb400;
-  margin-bottom: 1.5rem;
-}
-
-/* ⭐ TOOLS GRID (Fully structured) */
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  gap: 18px;
-  justify-items: center;
-  align-items: center;
-}
-
-/* ⭐ TOOL BOX */
-.tool-box {
-  width: 100%;
-  background: #0b2b2f;
-  border-radius: 14px;
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: 0.3s ease;
+.subtitle {
   text-align: center;
-  min-height: 110px;
+  color: #b9bfd0;
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
+/* ROW LAYOUT */
+.expertise-row-inline {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 55px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+/* LEFT TITLE */
+.title-wrapper {
+  width: 260px;
+}
+
+.expertise-title-inline {
+  font-size: 20px;
+  font-weight: 600;
+  color: #e8ecf7;
+}
+
+.title-divider {
+  width: 0%;
+  height: 3px;
+  margin-top: 6px;
+  background: linear-gradient(90deg, #00b4ff, #00d4ff);
+  border-radius: 30px;
+  animation: dividerGrow 1s ease forwards;
+}
+
+@keyframes dividerGrow {
+  from { width: 0%; opacity: 0.3; }
+  to { width: 100%; opacity: 1; }
+}
+
+/* SCROLL CONTAINER */
+.scroll-inline {
+  flex: 1;
+  overflow: hidden;
+  height: 90px;
+  position: relative;
+}
+
+.scroll-inline::before,
+.scroll-inline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 90px;
+  height: 100%;
+  z-index: 10;
+}
+
+.scroll-inline::before {
+  left: 0;
+  background: linear-gradient(to right, #0e1629, transparent);
+}
+
+.scroll-inline::after {
+  right: 0;
+  background: linear-gradient(to left, #0e1629, transparent);
+}
+
+/* SCROLL TRACK */
+.scroll-inline-track {
+  display: inline-flex;
+  gap: 60px;
+  align-items: center;
+  white-space: nowrap;
+  animation: ticker 16s linear infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.scroll-inline:hover .scroll-inline-track {
+  animation-play-state: paused;
+}
+
+/* LOGO ITEM (VERTICAL LAYOUT) */
+.tool-inline {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  min-width: 85px;
 }
 
-.tool-box:hover {
-  background: #113a41;
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(255, 180, 0, 0.25);
-}
-
-/* ⭐ TOOL LOGO */
-.tool-logo {
-  width: 46px;
-  height: 46px;
+.tool-inline-logo {
+  width: 42px;
+  height: 42px;
   object-fit: contain;
-  margin-bottom: 6px;
-  transition: 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
-.tool-box:hover .tool-logo {
-  transform: scale(1.1);
+/* WHITE BACKGROUND FOR DARK LOGOS */
+.white-bg-logo {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 12px;
 }
 
-/* ⭐ MAKE DARK LOGOS VISIBLE */
-.tool-logo[src*="express"],
-.tool-logo[src*="github"],
-.tool-logo[src*="django"],
-.tool-logo[src*="aws"],
-.tool-logo[src*="amazon"],
-.tool-logo[src*="flask"],
-.tool-logo[src*="next"] {
-  filter: invert(1) brightness(2) contrast(150%);
+/* HOVER ENLARGE EFFECT */
+.tool-inline:hover .tool-inline-logo {
+  transform: scale(1.18);
 }
 
-/* ⭐ Tool Name */
-.tool-name {
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .expertise-grid {
-    grid-template-columns: 1fr;
-  }
+/* TEXT BELOW LOGO */
+.tool-inline-name {
+  font-size: 14px;
+  color: #dfe3ef;
 }

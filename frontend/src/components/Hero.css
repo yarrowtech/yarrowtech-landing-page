@@ -1,4 +1,4 @@
-/* Base Hero UI */
+/* 
 .hero {
   position: relative;
   width: 100%;
@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-/* Canvas Background */
+
 .hero-canvas {
   position: absolute;
   inset: 0;
@@ -19,14 +19,15 @@
   transform: translateZ(0);
 }
 
-/* Hero Content */
+
 .hero-content {
   position: relative;
   z-index: 3;
   padding-left: 4rem;
+  max-width: 900px;
 }
 
-/* Main Title */
+
 .hero-title {
   font-size: 4.5rem;
   font-weight: 700;
@@ -34,14 +35,14 @@
   line-height: 1.2;
 }
 
-/* Highlight Text */
+
 .highlight {
   background: linear-gradient(135deg, #FFD700, #FFA500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Typing + Fade Animation */
+
 .fade-text {
   display: inline-block;
   opacity: 1;
@@ -52,16 +53,17 @@
   opacity: 0;
 }
 
-/* Subtitle */
+
 .hero-subtitle {
   margin-top: 1rem;
   color: #cfcfcf;
   font-size: 1.3rem;
   font-weight: 300;
   line-height: 1.6;
+  max-width: 650px;
 }
 
-/* CTA Button */
+
 .cta-btn {
   display: inline-block;
   margin-top: 2.5rem;
@@ -73,6 +75,8 @@
   font-weight: 600;
   transition: 0.3s ease;
   text-decoration: none;
+  cursor: pointer;
+  border: none;
 }
 
 .cta-btn:hover {
@@ -80,14 +84,260 @@
   box-shadow: 0px 10px 30px rgba(255, 140, 0, 0.4);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 3rem;
+  .hero {
+    justify-content: center;
     text-align: center;
   }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
   .hero-content {
     padding: 0 1.5rem;
+    padding-top: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    margin: 1rem auto;
+  }
+
+  .cta-btn {
+    margin-top: 2rem;
+    padding: 0.9rem 2.3rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .cta-btn {
+    width: 100%;
+    max-width: 260px;
+  }
+}
+
+
+
+.heroImg {
+  position: absolute;
+  bottom: -11rem;
+  right: -60rem;
+  width: 80rem;
+  z-index: 2;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 75% 50%,
+    rgba(0, 180, 255, 0.15),
+    transparent 60%
+  );
+  pointer-events: none;
+} */
+
+
+
+
+/* =====================================================
+   HERO SECTION – PROFESSIONAL & RESPONSIVE
+===================================================== */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 70% 40%,
+    #0a2a35 0%,
+    #031016 40%,
+    #000 100%
+  );
+  display: flex;
+  align-items: center;
+}
+
+/* ============================
+   THREE.JS CANVAS
+============================ */
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transform: translateZ(0);
+}
+
+/* ============================
+   HERO CONTENT
+============================ */
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  padding-left: 4rem;
+  max-width: 900px;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fade-text {
+  display: inline-block;
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
+.fade-text.fade-out {
+  opacity: 0;
+}
+
+.hero-subtitle {
+  margin-top: 1rem;
+  color: #cfcfcf;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 650px;
+}
+
+/* ============================
+   CTA BUTTON
+============================ */
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 2.5rem;
+  padding: 1rem 2.6rem;
+  background: linear-gradient(135deg, #ffa500, #ff7a00);
+  color: #ffffff;
+  border-radius: 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.cta-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 10px 30px rgba(255, 140, 0, 0.4);
+}
+
+/* ============================
+   HERO IMAGE (DESKTOP ONLY)
+============================ */
+
+.heroImg {
+  position: absolute;
+  bottom: -11rem;
+  right: -60rem;
+  width: 80rem;
+  z-index: 2;
+}
+
+/* Glow Overlay */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 75% 50%,
+    rgba(0, 180, 255, 0.15),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* ============================
+   LAPTOP / DESKTOP ONLY
+   (≥1025px)
+============================ */
+
+/* No changes needed – image visible */
+
+/* ============================
+   TABLET & MOBILE (≤1024px)
+   HIDE LAPTOP IMAGE
+============================ */
+
+@media (max-width: 1024px) {
+  .heroImg {
+    display: none;
+  }
+
+  .hero-content {
+    padding-left: 2.5rem;
+    max-width: 100%;
+  }
+}
+
+/* ============================
+   MOBILE (≤768px)
+============================ */
+
+@media (max-width: 768px) {
+  .hero {
+    justify-content: center;
     text-align: center;
+  }
+
+  .hero-content {
+    padding: 0 1.4rem;
+    padding-top: 3rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    margin: 1rem auto;
+  }
+
+  .cta-btn {
+    margin-top: 2rem;
+    padding: 0.9rem 2.3rem;
+    font-size: 1rem;
+  }
+}
+
+/* ============================
+   SMALL MOBILE (≤480px)
+============================ */
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.25;
+  }
+
+  .cta-btn {
+    width: 100%;
+    max-width: 260px;
   }
 }
