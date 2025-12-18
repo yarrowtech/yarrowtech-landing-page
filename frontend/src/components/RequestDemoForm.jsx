@@ -260,54 +260,57 @@ export default function RequestDemoForm({ onClose, showToast }) {
         </div>
 
         {/* RIGHT INFORMATION PANEL */}
-        <div className="demo-info-side">
-          <h3 className="info-title">What Happens After You Reach Out?</h3>
-          <p className="info-sub">
-            See how we move from your initial inquiry to a smooth project kickoff.
-          </p>
+<div className="demo-info-side">
+  <h3 className="info-title">How We Turn Your Idea Into a Working Product</h3>
+  <p className="info-sub">
+    A clear look at the steps we follow to move from your initial request to project kickoff.
+  </p>
 
-          <div className="info-step">
-            <div className="info-icon">📩</div>
-            <div>
-              <h4>Initial Response</h4>
-              <p>
-                You’ll receive a confirmation email with an NDA and our portfolio
-                within minutes.
-              </p>
-            </div>
-          </div>
+  <div className="info-step">
+    <div className="info-icon">📨</div>
+    <div>
+      <h4>Quick Acknowledgement</h4>
+      <p>
+        You’ll receive a confirmation email shortly, along with a confidentiality agreement
+        and a brief overview of our work.
+      </p>
+    </div>
+  </div>
 
-          <div className="info-step">
-            <div className="info-icon">📞</div>
-            <div>
-              <h4>Discovery Call</h4>
-              <p>
-                After the NDA is signed, we schedule a call to understand your requirements.
-              </p>
-            </div>
-          </div>
+  <div className="info-step">
+    <div className="info-icon">📞</div>
+    <div>
+      <h4>Introductory Discussion</h4>
+      <p>
+        After the agreement is in place, we schedule a call to understand your objectives,
+        requirements, and expectations.
+      </p>
+    </div>
+  </div>
 
-          <div className="info-step">
-            <div className="info-icon">📝</div>
-            <div>
-              <h4>Requirement Gathering & Proposal</h4>
-              <p>
-                We prepare a complete proposal including scope, pricing, and timeline.
-              </p>
-            </div>
-          </div>
+  <div className="info-step">
+    <div className="info-icon">📋</div>
+    <div>
+      <h4>Solution Planning & Proposal</h4>
+      <p>
+        Our team prepares a clear proposal covering features, timelines, and estimated
+        costs based on your needs.
+      </p>
+    </div>
+  </div>
 
-          <div className="info-step">
-            <div className="info-icon">🚀</div>
-            <div>
-              <h4>Project Kickoff</h4>
-              <p>
-                Once approved, development begins as per the planned roadmap.
-              </p>
-            </div>
-          </div>
+  <div className="info-step">
+    <div className="info-icon">🚀</div>
+    <div>
+      <h4>Project Initiation</h4>
+      <p>
+        Once everything is approved, we begin development and start executing the agreed
+        roadmap.
+      </p>
+    </div>
+  </div>
+</div>
 
-        </div>
 
       </div>
     </div>

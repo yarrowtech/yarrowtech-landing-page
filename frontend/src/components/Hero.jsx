@@ -454,7 +454,7 @@ import HeroImg from "../assets/laptop.png";
 import HeroParticles from "./HeroParticles";
 
 const Hero = () => {
-  const words = ["Website", "Mobile App", "Software", "ERP System"];
+  const words = ["Website", "AI Systems" , "Mobile App", "Software", "ERP System"];
   const [wordIndex, setWordIndex] = useState(0);
   const [typedText, setTypedText] = useState("");
 
@@ -490,7 +490,7 @@ const Hero = () => {
         </div>
 
         <h1 className="hero-title">
-          Leading <br />
+          Industry-focused <br />
           <span className="highlight">{typedText}</span> <br />
           Development Company
         </h1>

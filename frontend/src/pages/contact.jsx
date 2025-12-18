@@ -97,7 +97,7 @@ export default function ContactPage() {
                 <MapPin size={32} className="icon" />
                 <div>
                   <h4>Address</h4>
-                  <p>Esplanade, Kolkata, India</p>
+                  <p>3A,Humayan Place , Esplanade, Kolkata, India</p>
                 </div>
               </div>
 
