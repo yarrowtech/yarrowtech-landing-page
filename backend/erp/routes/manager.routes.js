@@ -1,19 +1,43 @@
-// erp/models/Project.js
-import mongoose from "mongoose";
+import express from "express";
+import {
+  createClientAndProject,
+  getProjects,
+  updateProject,
+  getTechLeads,
+} from "../controllers/manager.controller.js";
 
-const projectSchema = new mongoose.Schema({
-  projectId: { type: String, unique: true },
-  name: { type: String, required: true },  // ✔ FIXED
-  description: { type: String },
-  projectDetails: { type: String },        // optional – you used this field
-  client: { type: mongoose.Schema.Types.ObjectId, ref: "ERPClient" },
-  clientName: { type: String },
-  clientEmail: { type: String },
-  managerEmail: { type: String },
-  techLeadEmail: { type: String },
-  expectedDelivery: { type: Date },
-  status: { type: String, default: "new" },
-  createdAt: { type: Date, default: Date.now }
-});
+import { verifyErpToken } from "../middleware/erpAuth.js";
+import verifyRoles from "../middleware/verifyRoles.js";
 
-export default mongoose.model("ERPProject", projectSchema);
+const router = express.Router();
+
+/* 🔥 TECH LEAD DROPDOWN */
+router.get(
+  "/techleads",
+  verifyErpToken,
+  verifyRoles("manager"),
+  getTechLeads
+);
+
+router.post(
+  "/create-project",
+  verifyErpToken,
+  verifyRoles("manager"),
+  createClientAndProject
+);
+
+router.get(
+  "/projects",
+  verifyErpToken,
+  verifyRoles("manager"),
+  getProjects
+);
+
+router.put(
+  "/projects/:id",
+  verifyErpToken,
+  verifyRoles("manager"),
+  updateProject
+);
+
+export default router;

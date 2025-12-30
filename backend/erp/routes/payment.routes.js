@@ -1,15 +1,15 @@
-// erp/routes/payment.routes.js
 import express from "express";
-import {
-  create,
-  listByProject
-} from "../controllers/payment.controller.js";
-
+import { addPayment } from "../controllers/payment.controller.js";
 import { verifyErpToken } from "../middleware/erpAuth.js";
+import verifyRoles from "../middleware/verifyRoles.js";
 
 const router = express.Router();
 
-router.post("/", verifyErpToken, create);
-router.get("/project/:projectId", verifyErpToken, listByProject);
+router.post(
+  "/",
+  verifyErpToken,
+  verifyRoles("manager"),
+  addPayment
+);
 
 export default router;

@@ -88,7 +88,7 @@ import erpProjectRoutes from "./erp/routes/project.routes.js";
 import erpPaymentRoutes from "./erp/routes/payment.routes.js";
 import erpMessageRoutes from "./erp/routes/message.routes.js";
 import erpAdminRoutes from "./erp/routes/admin.routes.js";
-import managerTechleadRoutes from "./erp/routes/managerTechlead.routes.js";
+// import managerTechleadRoutes from "./erp/routes/managerTechlead.routes.js";
 
 // EXPRESS APP
 const app = express();
@@ -122,7 +122,7 @@ app.use("/api/erp/message", erpMessageRoutes);
 app.use("/api/erp/admin", erpAdminRoutes);
 
 // ✅ FIXED ROUTE — MATCHES FRONTEND
-app.use("/api/erp/manager/techleads", managerTechleadRoutes);
+// app.use("/api/erp/manager/techleads", managerTechleadRoutes);
 
 app.get("/", (req, res) => res.send("🔥 YarrowTech API with ERP is running..."));
 

@@ -1,59 +1,84 @@
 import API from "./axiosInstance";
 
-// ===============================
-// ADMIN DASHBOARD STATS  ✅ FIXED
-// ===============================
+/* ===============================
+   ADMIN DASHBOARD STATS
+================================ */
 export const getAdminStats = async () => {
   const res = await API.get("/erp/admin/stats");
   return res.data;
 };
 
-// ===============================
-// All Projects (Admin Monitor)
-// ===============================
+/* ===============================
+   ALL PROJECTS (ADMIN)
+================================ */
 export const getAllProjects = async () => {
   const res = await API.get("/erp/projects");
   return res.data;
 };
-// ===============================
-// All ERP Users (Admin Only)
-// ===============================
+
+/* ===============================
+   ALL ERP USERS (ADMIN)
+================================ */
 export const getERPUsers = async () => {
   const res = await API.get("/erp/admin/users");
-
-  console.log("USERS RESPONSE:", res.data); // Debug
-
-  return res.data.users || []; // MUST return an array
+  return res.data.users || [];
 };
 
-// ===============================
-// Contact Form Submissions
-// ===============================
+/* ===============================
+   CREATE ERP USER (ADMIN)
+   role: admin | manager | techlead
+================================ */
+export const createERPUser = async (payload) => {
+  const res = await API.post("/erp/admin/create-user", payload);
+  return res.data;
+};
+
+/* ===============================
+   TOGGLE USER STATUS (ADMIN)
+   active ↔ inactive
+================================ */
+export const toggleUserStatus = async (userId) => {
+  const res = await API.put(`/erp/admin/user/${userId}/toggle-status`);
+  return res.data;
+};
+
+/* ===============================
+   RESET USER PASSWORD (ADMIN)
+================================ */
+export const resetUserPassword = async (userId, password) => {
+  const res = await API.put(`/erp/admin/user/${userId}/reset-password`, {
+    password,
+  });
+  return res.data;
+};
+
+/* ===============================
+   CONTACT FORM SUBMISSIONS
+================================ */
 export const getContacts = async () => {
   const res = await API.get("/contact/all");
   return res.data;
 };
 
-
-// ===============================
-// Demo Requests
-// ===============================
+/* ===============================
+   DEMO REQUESTS
+================================ */
 export const getDemoRequests = async () => {
   const res = await API.get("/forms/demo");
   return res.data;
 };
 
-// ===============================
-// Update Admin Profile
-// ===============================
+/* ===============================
+   UPDATE ADMIN PROFILE
+================================ */
 export const updateAdminProfile = async (payload) => {
   const res = await API.put("/erp/admin/profile", payload);
   return res.data;
 };
 
-
-// Update Project (Admin Inline Edit)
-// ===============================
+/* ===============================
+   UPDATE PROJECT (ADMIN)
+================================ */
 export const updateProject = async (projectId, payload) => {
   const res = await API.put(`/erp/projects/${projectId}`, payload);
   return res.data;

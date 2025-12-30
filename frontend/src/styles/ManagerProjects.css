@@ -1,121 +1,230 @@
-.manager-project-page {
-  padding: 30px 32px;
-  color: #e8eef5;
+/* =========================================================
+   MANAGER PROJECTS – ERP STYLE
+========================================================= */
+
+.manager-projects-page {
+  padding: 24px;
+  color: #ffffff;
+  font-family: Inter, system-ui, sans-serif;
 }
 
-.header-section h2 {
-  font-size: 2rem;
+/* PAGE TITLE */
+.page-title {
+  font-size: 1.8rem;
   font-weight: 700;
   color: #ffcb05;
+  margin-bottom: 22px;
 }
 
-.header-section .subtitle {
-  color: #9bb2c8;
-  margin-top: 5px;
-}
+/* =========================================================
+   PROJECT CARD
+========================================================= */
 
-/* Table Wrapper */
-.project-table-wrapper {
-  margin-top: 20px;
-  background: #081726;
-  padding: 20px;
+.project-card {
+  background: linear-gradient(145deg, #071a2d, #0c2238);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-  overflow-x: auto;
+  margin-bottom: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
-/* Table */
-.manager-table {
-  width: 100%;
-  border-collapse: collapse;
-  color: #dce4ee;
-}
-
-.manager-table th {
-  background: #0e2438;
-  padding: 14px;
-  color: #ffcb05;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.manager-table td {
-  padding: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.manager-table tr:hover td {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-/* Status Badges */
-.status-badge {
-  padding: 6px 12px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: capitalize;
-}
-
-.status-completed {
-  background: rgba(46, 204, 113, 0.2);
-  color: #2ecc71;
-}
-
-.status-ongoing {
-  background: rgba(255, 193, 7, 0.2);
-  color: #ffcb05;
-}
-
-.status-pending {
-  background: rgba(255, 82, 82, 0.2);
-  color: #ff5252;
-}
-
-/* Chat Button */
-.chat-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: none;
-  padding: 8px 10px;
-  border-radius: 10px;
+/* HEADER */
+.project-header {
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
-  transition: 0.25s ease;
 }
 
-.chat-btn svg {
-  color: #4fa3ff;
+.project-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
 }
 
-.chat-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+.project-header .muted {
+  font-size: 0.85rem;
+  color: #9bb3c9;
+  margin-top: 4px;
 }
 
-/* Skeleton Loader */
-.skeleton-table {
-  background: #081726;
-  padding: 20px;
-  border-radius: 16px;
+/* SUMMARY */
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.skeleton-row {
-  height: 50px;
-  background: linear-gradient(90deg, #122d46, #2d5578, #122d46);
-  background-size: 200% 100%;
-  margin-bottom: 12px;
+.summary span {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+}
+
+.summary button {
+  border: none;
+  background: transparent;
+  color: #ffcb05;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* =========================================================
+   EXPANDED ERP PANEL
+========================================================= */
+
+.erp-panel {
+  padding: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 22px;
+}
+
+/* FIELD */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #9bb3c9;
+}
+
+.field input,
+.field select {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #0c2238;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #ffcb05;
+}
+
+/* RANGE */
+.field input[type="range"] {
+  padding: 0;
+}
+
+/* =========================================================
+   PAYMENTS BOX
+========================================================= */
+
+.payments-box {
+  grid-column: span 2;
+  background: #061a2a;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.payments-box h4 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: #ffcb05;
+}
+
+.payments-box p {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.payments-box button {
+  margin-top: 10px;
+  padding: 8px 14px;
   border-radius: 10px;
-  animation: shimmer 1.3s infinite;
+  background: #ffcb05;
+  color: #071a2d;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-@keyframes shimmer {
-  0% { background-position: 180% 0; }
-  100% { background-position: -180% 0; }
+/* =========================================================
+   CHAT BOX
+========================================================= */
+
+.chat-box {
+  grid-column: span 2;
+  background: #061a2a;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* No Records */
-.no-records {
-  text-align: center;
-  padding: 20px;
-  color: #a7b4c3;
+.chat-box h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #ffcb05;
+}
+
+.chat-box input {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #0c2238;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.chat-box button {
+  align-self: flex-end;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: #3b82f6;
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+.save-btn {
+  grid-column: span 2;
+  margin-top: 6px;
+  padding: 12px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffcb05, #f5b800);
+  color: #071a2d;
+  border: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  filter: brightness(0.95);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .erp-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .payments-box,
+  .chat-box,
+  .save-btn {
+    grid-column: span 1;
+  }
 }

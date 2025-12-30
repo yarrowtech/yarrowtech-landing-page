@@ -42,7 +42,7 @@
   color: #9bb3c9;
 }
 
-/* SEARCH ROW */
+/* SEARCH */
 .search-row-wrapper {
   margin-bottom: 18px;
 }
@@ -60,11 +60,14 @@
   color: #fff;
   border-radius: 10px;
 }
+.search-input:focus {
+  outline: none;
+  border-color: #ffcb05;
+}
 
 /* TABLE SECTION */
 .client-list-section {
   margin-top: 6px;
-  overflow: visible !important;
 }
 .table-wrapper {
   margin-top: 6px;
@@ -72,18 +75,15 @@
   border-radius: 14px;
   padding: 4px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  overflow: visible !important;
   position: relative;
-  z-index: 2;
+  overflow: visible;
 }
 .client-table {
   width: 100%;
   border-collapse: collapse;
   background: #0c2238;
   border-radius: 10px;
-  overflow: visible !important;
   position: relative;
-  z-index: 2;
 }
 .client-table th {
   padding: 12px 14px;
@@ -102,10 +102,9 @@
 }
 .row-hover:hover {
   background: #0f2c46;
-  transition: background 0.18s ease;
 }
 
-/* STATUS BADGES */
+/* STATUS */
 .status-badge {
   padding: 4px 10px;
   border-radius: 999px;
@@ -140,11 +139,11 @@
   font-size: 0.9rem;
 }
 
-/* ACTION DROPDOWN — FIXED HERE */
+/* ACTION MENU */
 .action-dropdown {
   position: relative;
   display: inline-block;
-  z-index: 9999; /* <— Highest priority */
+  z-index: 100;
 }
 
 .menu-btn {
@@ -155,45 +154,41 @@
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: transform 0.15s ease;
 }
 .menu-btn:hover {
-  transform: scale(1.1);
+  background: #163c61;
 }
 
-/* MENU POPUP */
 .menu-content {
   display: none;
   position: absolute;
   right: 0;
-  top: 34px;
+  top: 36px;
   background: #0c2238;
   border-radius: 10px;
   min-width: 160px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  z-index: 99999; /* <— Ensures menu is always on top */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  z-index: 9999;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 .menu-content.show {
   display: block;
 }
 .menu-content button {
   width: 100%;
-  padding: 9px 12px;
+  padding: 10px 12px;
   background: transparent;
   color: #dbeafe;
   border: none;
   cursor: pointer;
   text-align: left;
-  font-size: 0.9rem;
 }
 .menu-content button:hover {
   background: #102b45;
   color: #ffcb05;
 }
 .menu-content .delete:hover {
-  background: #ff4d4f;
+  background: #ef4444;
   color: #fff;
 }
 
@@ -207,7 +202,6 @@
   padding: 22px 24px;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  overflow: visible !important;
 }
 
 /* FORM GRID */
@@ -222,11 +216,11 @@
 .form-group label {
   display: block;
   margin-bottom: 6px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: #dce7ff;
 }
 
-/* FORM INPUTS */
+/* INPUTS */
 .form-group input,
 .form-group select {
   width: 100%;
@@ -235,14 +229,14 @@
   color: #fff;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.07);
-  outline: none;
 }
 .form-group input:focus,
 .form-group select:focus {
+  outline: none;
   border-color: #ffcb05;
 }
 
-/* PASSWORD ROW */
+/* PASSWORD */
 .password-row {
   display: flex;
   gap: 8px;
@@ -265,7 +259,7 @@
   cursor: pointer;
 }
 
-/* SUBMIT BUTTON */
+/* SUBMIT */
 .submit-btn {
   margin-top: 16px;
   width: 100%;
@@ -277,16 +271,20 @@
   border: none;
   cursor: pointer;
 }
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
-/* MODALS */
+/* MODAL */
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3000;
+  z-index: 5000;
 }
 .modal-box {
   background: #071a2d;
@@ -298,11 +296,7 @@
 }
 .modal-box h2 {
   color: #ffcb05;
-  margin-top: 0;
   margin-bottom: 14px;
-}
-.modal-box p {
-  margin: 6px 0;
 }
 .modal-box input,
 .modal-box select {
@@ -327,4 +321,12 @@
   .form-group.full {
     grid-column: span 1;
   }
+}
+
+
+
+.form-group select {
+  position: relative;
+  z-index: 5;
+  appearance: auto; /* ensure native dropdown */
 }

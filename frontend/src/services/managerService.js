@@ -20,18 +20,39 @@ export const getManagerProjects = async () => {
    Manager → Update Project
 ================================ */
 export const updateManagerProject = async (projectId, payload) => {
-  const res = await API.put(`/erp/manager/project/${projectId}`, payload);
+  const res = await API.put(`/erp/manager/projects/${projectId}`, payload);
   return res.data;
 };
 
-/* Get list of tech leads */
+/* ================================
+   Manager → Delete Project
+   (optional: delete client)
+================================ */
+export const deleteManagerProject = async (
+  projectId,
+  deleteClient = false
+) => {
+  const res = await API.delete(
+    `/erp/manager/projects/${projectId}?deleteClient=${deleteClient}`
+  );
+  return res.data;
+};
+
+/* ================================
+   Manager → Get Tech Leads
+================================ */
 export const getTechLeads = async () => {
   const res = await API.get("/erp/manager/techleads");
-  return res.data.techLeads || [];  // ← FIXED
+  const data = res.data;
+
+  const list =
+    data?.techLeads ||
+    data?.techLead ||
+    data?.leads ||
+    data?.users ||
+    data?.data ||
+    [];
+
+  return Array.isArray(list) ? list : [];
 };
 
-/* new: delete project (optional delete client) */
-export const deleteManagerProject = async (projectId, deleteClient = false) => {
-  const res = await API.delete(`/erp/manager/project/${projectId}?deleteClient=${deleteClient}`);
-  return res.data;
-};

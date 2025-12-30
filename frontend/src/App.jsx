@@ -425,19 +425,19 @@ export default function App() {
           {/* 🔐 TECHNICAL LEAD          */}
           {/* ========================== */}
           <Route
-            path="/technical"
-            element={
-              <ERPProtectedRoute role="techlead">
-                <TechnicalLayout />
-              </ERPProtectedRoute>
-            }
-          >
-            <Route index element={<TechnicalDashboard />} />
-            <Route path="dashboard" element={<TechnicalDashboard />} />
-            <Route path="project-updates" element={<ProjectUpdates />} />
-            <Route path="team-overview" element={<TeamOverview />} />
-            <Route path="profile" element={<TechnicalProfile />} />
-          </Route>
+  path="/techlead"
+  element={
+    <ERPProtectedRoute role="techlead">
+      <TechnicalLayout />
+    </ERPProtectedRoute>
+  }
+>
+  <Route index element={<TechnicalDashboard />} />
+  <Route path="dashboard" element={<TechnicalDashboard />} />
+  <Route path="project-updates" element={<ProjectUpdates />} />
+  <Route path="team-overview" element={<TeamOverview />} />
+  <Route path="profile" element={<TechnicalProfile />} />
+</Route>
 
           {/* ========================== */}
           {/* 🔐 CLIENT (Protected)      */}
