@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 import "../styles/ManagerNavbar.css";
 import { Bell, LogOut, User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function ManagerNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // REMOVE token or manager data from localStorage
-    localStorage.removeItem("managerToken");
+  /* ================= LOGOUT ================= */
+  const handleLogout = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-    // Redirect to login page
-    window.location.href = "/manager/login";
+    // ✅ Clear ERP auth data
+    localStorage.removeItem("erp_token");
+    localStorage.removeItem("erp_role");
+
+    navigate("/manager/login");
+  };
+
+  /* ================= TOGGLE MENU ================= */
+  const toggleMenu = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setMenuOpen((prev) => !prev);
   };
 
   return (
@@ -22,31 +35,54 @@ export default function ManagerNavbar() {
           <Bell className="nav-icon" />
         </div>
 
-        {/* Avatar + dropdown */}
-        <div
+        {/* AVATAR BUTTON */}
+        <button
+          type="button"
           className="avatar-wrapper"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onClick={toggleMenu}
         >
           <img
             src="https://avatar.iran.liara.run/public"
             alt="manager"
             className="manager-avatar"
           />
+        </button>
 
-          {menuOpen && (
-            <div className="nav-dropdown">
-              <div className="dropdown-item">
-                <User size={18} />
-                <span>Profile</span>
-              </div>
-
-              <div className="dropdown-item logout" onClick={handleLogout}>
-                <LogOut size={18} />
-                <span>Logout</span>
-              </div>
+        {/* DROPDOWN */}
+        {menuOpen && (
+          <div
+            className="nav-dropdown"
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          >
+            <div className="dropdown-item">
+              <User size={18} />
+              <span>Profile</span>
             </div>
-          )}
-        </div>
+
+            <div
+              className="dropdown-item logout"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              onClick={handleLogout}
+            >
+              <LogOut size={18} />
+              <span>Logout</span>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

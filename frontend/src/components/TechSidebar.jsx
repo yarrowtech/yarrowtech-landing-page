@@ -9,7 +9,7 @@ export default function TechSidebar() {
 
       <nav className="sidebar-menu">
         <NavLink
-          to="/technical/dashboard"
+          to="/techlead/dashboard"
           className={({ isActive }) =>
             isActive ? "menu-item active" : "menu-item"
           }
@@ -18,7 +18,7 @@ export default function TechSidebar() {
         </NavLink>
 
         <NavLink
-          to="/technical/project-updates"
+          to="/techlead/project-updates"
           className={({ isActive }) =>
             isActive ? "menu-item active" : "menu-item"
           }
@@ -27,12 +27,21 @@ export default function TechSidebar() {
         </NavLink>
 
         <NavLink
-          to="/technical/team-overview"
+          to="/techlead/team-overview"
           className={({ isActive }) =>
             isActive ? "menu-item active" : "menu-item"
           }
         >
           Team Overview
+        </NavLink>
+
+        <NavLink
+          to="/techlead/profile"
+          className={({ isActive }) =>
+            isActive ? "menu-item active" : "menu-item"
+          }
+        >
+          Profile
         </NavLink>
       </nav>
     </aside>

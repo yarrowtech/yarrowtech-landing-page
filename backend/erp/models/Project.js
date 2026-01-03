@@ -21,10 +21,13 @@
 //   mongoose.model("ERPProject", projectSchema);
 
 
+
+
+
 import mongoose from "mongoose";
 
 const projectSchema = new mongoose.Schema({
-  projectId: { type: String, required: true, unique: true },
+  projectId: { type: String, required: true, unique: true }, // display only
   name: { type: String, required: true },
   projectDetails: String,
 
@@ -33,8 +36,6 @@ const projectSchema = new mongoose.Schema({
   clientEmail: String,
 
   managerEmail: String,
-
-  // ✅ Tech Lead assigned from ERPUser
   techLeadEmail: String,
 
   expectedDelivery: Date,

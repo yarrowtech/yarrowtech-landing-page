@@ -117,7 +117,7 @@ app.use("/api/erp/manager", erpManagerRoutes);
 app.use("/api/erp/techlead", erpTechLeadRoutes);
 app.use("/api/erp/client", erpClientRoutes);
 app.use("/api/erp/projects", erpProjectRoutes);
-app.use("/api/erp/payment", erpPaymentRoutes);
+app.use("/api/erp/payments", erpPaymentRoutes);
 app.use("/api/erp/message", erpMessageRoutes);
 app.use("/api/erp/admin", erpAdminRoutes);
 
