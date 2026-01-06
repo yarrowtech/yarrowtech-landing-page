@@ -38,7 +38,7 @@ export default function AboutUs() {
           <h2 className="title">About Us</h2>
 
           <p className="desc">
-            At <span className="highlight">YarrowTech</span>, we are a next-generation software development
+             <span className="highlight">YarrowTech</span>, we are a next-generation software development
             company dedicated to transforming ideas into intelligent, high-impact digital solutions.
             Our expertise spans custom software development, ERP systems, AI-driven applications,
             and full-stack web and mobile development—built to support the evolving needs
