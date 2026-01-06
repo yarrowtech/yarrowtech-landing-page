@@ -1,7 +1,20 @@
+/* ===========================================================
+   EXPERTISE SECTION – FINAL RESPONSIVE VERSION
+=========================================================== */
+
 /* SECTION BACKGROUND */
 .expertise-section {
   padding: 70px 0 90px;
   background: linear-gradient(180deg, #0b1320, #0e1629, #09101d);
+  overflow-x: hidden;
+}
+
+/* SAFE CONTAINER */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
 }
 
 /* HEADER */
@@ -25,10 +38,10 @@
   display: flex;
   align-items: center;
   gap: 40px;
-  margin-bottom: 55px;
+  margin-bottom: 45px;
   padding: 20px;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 12px;
+  border-radius: 14px;
   backdrop-filter: blur(4px);
 }
 
@@ -44,45 +57,40 @@
 }
 
 .title-divider {
-  width: 0%;
+  width: 140px;
   height: 3px;
   margin-top: 6px;
   background: linear-gradient(90deg, #00b4ff, #00d4ff);
   border-radius: 30px;
-  animation: dividerGrow 1s ease forwards;
-}
-
-@keyframes dividerGrow {
-  from { width: 0%; opacity: 0.3; }
-  to { width: 100%; opacity: 1; }
 }
 
 /* SCROLL CONTAINER */
 .scroll-inline {
   flex: 1;
   overflow: hidden;
-  height: 90px;
+  height: 88px;
   position: relative;
 }
 
+/* GRADIENT MASKS */
 .scroll-inline::before,
 .scroll-inline::after {
   content: "";
   position: absolute;
   top: 0;
-  width: 90px;
+  width: 80px;
   height: 100%;
-  z-index: 10;
+  z-index: 5;
 }
 
 .scroll-inline::before {
   left: 0;
-  background: linear-gradient(to right, #0e1629, transparent);
+  background: linear-gradient(to right, #0e1629 65%, transparent);
 }
 
 .scroll-inline::after {
   right: 0;
-  background: linear-gradient(to left, #0e1629, transparent);
+  background: linear-gradient(to left, #0e1629 65%, transparent);
 }
 
 /* SCROLL TRACK */
@@ -91,26 +99,22 @@
   gap: 60px;
   align-items: center;
   white-space: nowrap;
-  animation: ticker 16s linear infinite;
+  animation: ticker 18s linear infinite;
 }
 
 @keyframes ticker {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  from { transform: translateX(0%); }
+  to   { transform: translateX(-50%); }
 }
 
-.scroll-inline:hover .scroll-inline-track {
-  animation-play-state: paused;
-}
-
-/* LOGO ITEM (VERTICAL LAYOUT) */
+/* LOGO ITEM */
 .tool-inline {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  min-width: 80px;
   text-align: center;
-  min-width: 85px;
 }
 
 .tool-inline-logo {
@@ -120,20 +124,131 @@
   transition: transform 0.25s ease;
 }
 
-/* WHITE BACKGROUND FOR DARK LOGOS */
+/* WHITE BG FOR DARK LOGOS */
 .white-bg-logo {
   background: #ffffff;
-  padding: 10px;
+  padding: 8px;
   border-radius: 12px;
 }
 
-/* HOVER ENLARGE EFFECT */
-.tool-inline:hover .tool-inline-logo {
-  transform: scale(1.18);
+/* HOVER EFFECT (DESKTOP ONLY) */
+@media (hover: hover) {
+  .tool-inline:hover .tool-inline-logo {
+    transform: scale(1.15);
+  }
 }
 
-/* TEXT BELOW LOGO */
+/* TOOL NAME */
 .tool-inline-name {
   font-size: 14px;
   color: #dfe3ef;
+}
+
+/* ===========================================================
+   TABLET
+=========================================================== */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .expertise-row-inline {
+    gap: 28px;
+    padding: 18px;
+  }
+
+  .title-wrapper {
+    width: 220px;
+  }
+
+  .scroll-inline-track {
+    gap: 44px;
+  }
+}
+
+/* ===========================================================
+   MOBILE
+=========================================================== */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .expertise-section {
+    padding: 50px 0 60px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .expertise-row-inline {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 16px;
+    margin-bottom: 28px;
+  }
+
+  .title-wrapper {
+    width: 100%;
+  }
+
+  .expertise-title-inline {
+    font-size: 17px;
+  }
+
+  .title-divider {
+    width: 120px;
+  }
+
+  .scroll-inline {
+    height: 72px;
+  }
+
+  .scroll-inline::before,
+  .scroll-inline::after {
+    width: 36px;
+  }
+
+  .scroll-inline-track {
+    gap: 32px;
+    animation-duration: 22s;
+  }
+
+  .tool-inline {
+    min-width: 70px;
+  }
+
+  .tool-inline-logo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .tool-inline-name {
+    font-size: 12px;
+  }
+}
+
+/* ===========================================================
+   SMALL MOBILE
+=========================================================== */
+@media (max-width: 480px) {
+  .title {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .scroll-inline-track {
+    gap: 26px;
+    animation-duration: 26s;
+  }
 }

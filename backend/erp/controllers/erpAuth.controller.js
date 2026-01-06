@@ -96,18 +96,12 @@
 //   });
 // };
 
-
 import ERPUser from "../models/User.js";
 import ERPClient from "../models/Client.js";
 import { signErpToken } from "../middleware/erpAuth.js";
 
 /* ============================================================
    ERP LOGIN
-   Supports:
-   - Admin
-   - Manager
-   - Tech Lead
-   - Client
 ============================================================ */
 export const erpLogin = async (req, res) => {
   try {
@@ -119,9 +113,7 @@ export const erpLogin = async (req, res) => {
         .json({ message: "Email and password are required" });
     }
 
-    /* ======================================================
-       ERP USERS LOGIN (Admin / Manager / TechLead)
-    ====================================================== */
+    /* ================= ADMIN / MANAGER / TECH LEAD ================= */
     const user = await ERPUser.findOne({ email: email.toLowerCase() });
 
     if (user) {
@@ -148,9 +140,7 @@ export const erpLogin = async (req, res) => {
       });
     }
 
-    /* ======================================================
-       CLIENT LOGIN
-    ====================================================== */
+    /* ================= CLIENT LOGIN ================= */
     const client = await ERPClient.findOne({
       email: email.toLowerCase(),
     });
@@ -178,5 +168,20 @@ export const erpLogin = async (req, res) => {
   } catch (err) {
     console.error("❌ ERP LOGIN ERROR:", err);
     res.status(500).json({ message: "Server error during login" });
+  }
+};
+
+/* ============================================================
+   ERP LOGOUT (JWT – Stateless)
+============================================================ */
+export const erpLogout = async (req, res) => {
+  try {
+    res.json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  } catch (err) {
+    console.error("❌ ERP LOGOUT ERROR:", err);
+    res.status(500).json({ message: "Logout failed" });
   }
 };
