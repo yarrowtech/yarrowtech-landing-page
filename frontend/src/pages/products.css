@@ -145,3 +145,10 @@
     display: none;
   }
 }
+
+/* PRODUCT LOGO (EEC) */
+.product-logo {
+  width: 34px;
+  height: auto;
+  object-fit: contain;
+}

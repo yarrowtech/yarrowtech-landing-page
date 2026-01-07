@@ -103,10 +103,9 @@
 // }
 
 
-
 import React, { useRef } from "react";
 import "./products.css";
-import { GraduationCap, Store, UtensilsCrossed, Trophy } from "lucide-react";
+import { Store, UtensilsCrossed, Trophy } from "lucide-react";
 import {
   motion,
   useScroll,
@@ -115,44 +114,45 @@ import {
   useMotionValue,
 } from "framer-motion";
 
+import eecLogo from "../assets/eec-logo.jpg";
+
 export default function ProductsPage() {
   const sectionRef = useRef(null);
 
-  /* Scroll progress */
+  /* Scroll progress for parallax */
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  /* Parallax */
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   const products = [
     {
       name: "EEC – Electronic Educare",
-      icon: GraduationCap,
-      accent: "#f5c542",
+      logo: eecLogo,
+      accent: "#f5c542", // Yellow
       description:
         "A unified digital campus combining LMS and ERP into one intelligent ecosystem connecting students, teachers, parents, and administrators.",
     },
     {
       name: "RMS – Retail Management System",
       icon: Store,
-      accent: "#4f9cff",
+      accent: "#4f9cff", // Blue
       description:
         "A web-based retail platform digitizing product, inventory, sales, vendor, and employee operations with real-time insights.",
     },
     {
       name: "F&B – Food & Beverage Management System",
       icon: UtensilsCrossed,
-      accent: "#3ccf91",
+      accent: "#3ccf91", // Green
       description:
         "A modern platform optimizing restaurant operations from orders and inventory to kitchen workflows and financial insights.",
     },
     {
       name: "SportBit – Sports Management System",
       icon: Trophy,
-      accent: "#9b7cff",
+      accent: "#9b7cff", // Purple
       description:
         "A sports ecosystem enabling player discovery, performance analytics, health metrics, and data-driven club decisions.",
     },
@@ -160,7 +160,7 @@ export default function ProductsPage() {
 
   return (
     <section ref={sectionRef} className="products-section">
-      {/* FLOATING BACKGROUND PARTICLES */}
+      {/* BACKGROUND AMBIENT MOTION */}
       <motion.div
         className="ambient-particles"
         style={{ y: bgY }}
@@ -182,7 +182,7 @@ export default function ProductsPage() {
           </p>
         </motion.div>
 
-        {/* PRODUCTS */}
+        {/* PRODUCT CARDS */}
         <div className="products-list">
           {products.map((product, index) => (
             <AliveCard key={index} product={product} index={index} />
@@ -242,10 +242,20 @@ function AliveCard({ product, index }) {
         y.set(0);
       }}
     >
+      {/* Accent stripe */}
       <div className="accent-bar" />
 
+      {/* LOGO OR ICON */}
       <div className="product-icon">
-        <product.icon size={26} />
+        {product.logo ? (
+          <img
+            src={product.logo}
+            alt={product.name}
+            className="product-logo"
+          />
+        ) : (
+          <product.icon size={26} />
+        )}
       </div>
 
       <h3>{product.name}</h3>
