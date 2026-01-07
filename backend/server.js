@@ -240,7 +240,7 @@ app.set("trust proxy", 1);
 // -------------------- CORS (API) --------------------
 const allowedOrigins = (
   process.env.CORS_ORIGINS ||
-  "http://localhost:5173,http://localhost:3000"
+  "http://localhost:5173,http://localhost:3000","https://yarrowtech.vercel.app"
 )
   .split(",")
   .map((s) => s.trim())
