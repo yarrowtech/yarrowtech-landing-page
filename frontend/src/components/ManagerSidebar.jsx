@@ -16,7 +16,7 @@ export default function ManagerSidebar() {
       <h2 className="manager-logo">Manager Panel</h2>
 
       <nav className="manager-nav">
-        <NavLink to="/manager" className="nav-item">
+        <NavLink to="/manager/dashboard" className="nav-item">
           <LayoutDashboard size={18} />
           Dashboard
         </NavLink>
@@ -29,6 +29,11 @@ export default function ManagerSidebar() {
         <NavLink to="/manager/create-client" className="nav-item">
           <Users size={18} />
           Create Client
+        </NavLink>
+
+        <NavLink to="/manager/requests" className="nav-item">
+          <Users size={18} />
+          CRM Requests
         </NavLink>
 
         <NavLink to="/manager/notifications" className="nav-item">

@@ -26,7 +26,6 @@ export const getERPUsers = async () => {
 
 /* ===============================
    CREATE ERP USER (ADMIN)
-   role: admin | manager | techlead
 ================================ */
 export const createERPUser = async (payload) => {
   const res = await API.post("/erp/admin/create-user", payload);
@@ -35,7 +34,6 @@ export const createERPUser = async (payload) => {
 
 /* ===============================
    TOGGLE USER STATUS (ADMIN)
-   active ↔ inactive
 ================================ */
 export const toggleUserStatus = async (userId) => {
   const res = await API.put(`/erp/admin/user/${userId}/toggle-status`);
@@ -61,7 +59,7 @@ export const getContacts = async () => {
 };
 
 /* ===============================
-   DEMO REQUESTS
+   DEMO REQUESTS (CRM LEADS)
 ================================ */
 export const getDemoRequests = async () => {
   const res = await API.get("/forms/demo");
@@ -69,7 +67,53 @@ export const getDemoRequests = async () => {
 };
 
 /* ===============================
-   UPDATE ADMIN PROFILE
+   EXPORT CRM LEADS → EXCEL
+================================ */
+export const exportLeadsExcel = async () => {
+  const res = await API.get("/erp/admin/leads/export/excel", {
+    responseType: "blob",
+  });
+
+  const blob = new Blob([res.data], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+
+  const link = document.createElement("a");
+  link.href = window.URL.createObjectURL(blob);
+  link.download = "crm-leads.xlsx";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+};
+
+/* ===============================
+   EXPORT CRM LEADS → PDF
+================================ */
+export const exportLeadsPDF = async () => {
+  const res = await API.get("/erp/admin/leads/export/pdf", {
+    responseType: "blob",
+  });
+
+  const blob = new Blob([res.data], { type: "application/pdf" });
+
+  const link = document.createElement("a");
+  link.href = window.URL.createObjectURL(blob);
+  link.download = "crm-leads.pdf";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+};
+
+/* ===============================
+   LEAD TIMELINE / HISTORY
+================================ */
+export const getLeadTimeline = async (leadId) => {
+  const res = await API.get(`/erp/admin/leads/${leadId}/timeline`);
+  return res.data;
+};
+
+/* ===============================
+   UPDATE ADMIN PROFILE  ✅ FIX
 ================================ */
 export const updateAdminProfile = async (payload) => {
   const res = await API.put("/erp/admin/profile", payload);

@@ -78,27 +78,19 @@
 
 
 
-
 import React from "react";
-// import "../../styles/AdminNavbar.css";
 import "../styles/AdminNavbar.css";
 
 export default function AdminNavbar() {
-  const logout = () => {
-    localStorage.removeItem("erp_token");
-    localStorage.removeItem("erp_role");
-    window.location.href = "/admin/login";
-  };
-
   return (
     <div className="admin-navbar">
       <h3>Admin Dashboard</h3>
 
-      <div className="admin-actions">
-        <button onClick={logout} className="logout-btn">
-          Logout
-        </button>
-      </div>
+      {/* 
+        Logout button intentionally removed.
+        Logout is handled from Sidebar only.
+      */}
+      <div className="admin-actions"></div>
     </div>
   );
 }

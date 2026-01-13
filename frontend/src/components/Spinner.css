@@ -1,23 +1,113 @@
+/* ==============================
+   GLOBAL LOADING SPINNER
+============================== */
+
 .spinner-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 200px;
+  min-height: 220px;
+  width: 100%;
+  gap: 14px;
   color: #ffcb05;
+  text-align: center;
 }
 
+/* Spinner ring */
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(255, 203, 5, 0.3);
-  border-top-color: #ffcb05;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  border: 4px solid rgba(255, 203, 5, 0.18);
+  border-top-color: #ffcb05;
+  border-right-color: #ffcb05;
+  animation: spin 0.9s linear infinite;
 }
 
+/* Optional loading text */
+.spinner-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 203, 5, 0.85);
+  letter-spacing: 0.4px;
+}
+
+/* Animation */
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* ==============================
+   SMALL SCREENS
+============================== */
+@media (max-width: 480px) {
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border-width: 3px;
+  }
+
+  .spinner-text {
+    font-size: 13px;
+  }
+}
+
+/* ==============================
+   GLOBAL LOADING SPINNER
+============================== */
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  width: 100%;
+  gap: 14px;
+  color: #ffcb05;
+  text-align: center;
+}
+
+/* Spinner ring */
+.spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 203, 5, 0.18);
+  border-top-color: #ffcb05;
+  border-right-color: #ffcb05;
+  animation: spin 0.9s linear infinite;
+}
+
+/* Optional loading text */
+.spinner-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 203, 5, 0.85);
+  letter-spacing: 0.4px;
+}
+
+/* Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==============================
+   SMALL SCREENS
+============================== */
+@media (max-width: 480px) {
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border-width: 3px;
+  }
+
+  .spinner-text {
+    font-size: 13px;
   }
 }

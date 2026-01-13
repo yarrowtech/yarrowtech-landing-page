@@ -193,18 +193,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // server.js
 import dotenv from "dotenv";
 dotenv.config();
@@ -222,7 +210,7 @@ import authRoutes from "./routes/auth.Routes.js";
 import careerRoutes from "./routes/career.Routes.js";
 import blogRoutes from "./routes/blog.routes.js";
 
-// ====== ERP ROUTES (NEW) ======
+// ====== ERP ROUTES ======
 import erpAuthRoutes from "./erp/routes/erpAuth.routes.js";
 import erpManagerRoutes from "./erp/routes/manager.routes.js";
 import erpTechLeadRoutes from "./erp/routes/techlead.routes.js";
@@ -233,27 +221,28 @@ import erpMessageRoutes from "./erp/routes/message.routes.js";
 import erpAdminRoutes from "./erp/routes/admin.routes.js";
 
 const app = express();
-
-// If deploying behind a proxy (Render/Railway/Nginx/Cloudflare)
 app.set("trust proxy", 1);
 
-// -------------------- CORS (API) --------------------
-const allowedOrigins = (
-  process.env.CORS_ORIGINS ||
-  "http://localhost:5173,http://localhost:3000","https://yarrowtech.vercel.app"
-)
-  .split(",")
-  .map((s) => s.trim())
-  .filter(Boolean);
+// -------------------- ALLOWED ORIGINS --------------------
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://yarrowtech.vercel.app",
+];
 
+// -------------------- CORS (EXPRESS 5 + CREDENTIAL SAFE) --------------------
 app.use(
   cors({
-    origin: (origin, cb) => {
-      // allow non-browser clients (like curl/postman) with no origin
-      if (!origin) return cb(null, true);
+    origin: (origin, callback) => {
+      // Allow server-to-server & Postman
+      if (!origin) return callback(null, true);
 
-      if (allowedOrigins.includes(origin)) return cb(null, true);
-      return cb(new Error(`CORS blocked for origin: ${origin}`));
+      if (allowedOrigins.includes(origin)) {
+        // 👇 RETURN EXACT ORIGIN (NOT true, NOT *)
+        return callback(null, origin);
+      }
+
+      return callback(new Error("CORS not allowed"));
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
@@ -261,10 +250,13 @@ app.use(
   })
 );
 
+// ❌ NO app.options() — Express 5 crashes with wildcards
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 // -------------------- ROUTES --------------------
+// Website
 app.use("/api/contact", contactRoutes);
 app.use("/api/forms", formRoutes);
 app.use("/api/auth", authRoutes);
@@ -272,6 +264,7 @@ app.use("/api/register", authRoutes);
 app.use("/api/career", careerRoutes);
 app.use("/api/blogs", blogRoutes);
 
+// ERP
 app.use("/api/erp/auth", erpAuthRoutes);
 app.use("/api/erp/manager", erpManagerRoutes);
 app.use("/api/erp/techlead", erpTechLeadRoutes);
@@ -281,7 +274,7 @@ app.use("/api/erp/payments", erpPaymentRoutes);
 app.use("/api/erp/message", erpMessageRoutes);
 app.use("/api/erp/admin", erpAdminRoutes);
 
-// Health check (useful for deployment monitoring)
+// -------------------- HEALTH --------------------
 app.get("/health", (req, res) => {
   res.status(200).json({
     ok: true,
@@ -290,19 +283,19 @@ app.get("/health", (req, res) => {
   });
 });
 
-app.get("/", (req, res) => res.send("🔥 YarrowTech API with ERP is running..."));
+app.get("/", (req, res) => {
+  res.send("🔥 YarrowTech API with ERP is running...");
+});
 
-// 404 handler
+// -------------------- 404 --------------------
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-// Error handler (including CORS errors)
+// -------------------- ERROR HANDLER --------------------
 app.use((err, req, res, next) => {
-  console.error("❌ Error:", err?.message || err);
-  res.status(500).json({
-    message: err?.message || "Internal Server Error",
-  });
+  console.error("❌ Error:", err.message);
+  res.status(500).json({ message: err.message });
 });
 
 // -------------------- SOCKET.IO --------------------
@@ -310,18 +303,14 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: (origin, cb) => {
-      if (!origin) return cb(null, true);
-      if (allowedOrigins.includes(origin)) return cb(null, true);
-      return cb(new Error(`Socket CORS blocked for origin: ${origin}`));
-    },
-    methods: ["GET", "POST"],
+    origin: allowedOrigins,
     credentials: true,
+    methods: ["GET", "POST"],
   },
   transports: ["websocket", "polling"],
 });
 
-// Online users map: email -> socketId
+// Online users: email → socketId
 const onlineUsers = new Map();
 
 io.on("connection", (socket) => {
@@ -330,51 +319,43 @@ io.on("connection", (socket) => {
   socket.on("register", (email) => {
     if (!email) return;
     onlineUsers.set(String(email).toLowerCase(), socket.id);
-    console.log("📌 Registered online:", email);
   });
 
   socket.on("send-message", (msg) => {
-    try {
-      const toEmail = msg?.toEmail ? String(msg.toEmail).toLowerCase() : null;
-      if (!toEmail) return;
+    const toEmail = msg?.toEmail?.toLowerCase();
+    if (!toEmail) return;
 
-      const receiverSocket = onlineUsers.get(toEmail);
-      if (receiverSocket) {
-        io.to(receiverSocket).emit("new-message", msg);
-      }
-    } catch (e) {
-      console.error("❌ send-message error:", e);
+    const receiverSocket = onlineUsers.get(toEmail);
+    if (receiverSocket) {
+      io.to(receiverSocket).emit("new-message", msg);
     }
   });
 
   socket.on("disconnect", () => {
-    // Remove this socket from the map
     for (const [email, id] of onlineUsers.entries()) {
       if (id === socket.id) onlineUsers.delete(email);
     }
-    console.log("🔴 Socket disconnected:", socket.id);
   });
 });
 
-// -------------------- START --------------------
+// -------------------- START SERVER --------------------
 const PORT = Number(process.env.PORT) || 5000;
 
 async function start() {
   if (!process.env.MONGO_URI) {
-    console.error("❌ MONGO_URI missing in environment variables");
+    console.error("❌ MONGO_URI missing");
     process.exit(1);
   }
 
   try {
     await mongoose.connect(process.env.MONGO_URI, {
-      // These are safe defaults; optional
       serverSelectionTimeoutMS: 15000,
     });
 
     console.log("✅ MongoDB Connected");
 
     server.listen(PORT, () => {
-      console.log(`🚀 Server + WebSocket running on port ${PORT}`);
+      console.log(`🚀 Server running on port ${PORT}`);
       console.log("✅ Allowed CORS origins:", allowedOrigins);
     });
   } catch (err) {

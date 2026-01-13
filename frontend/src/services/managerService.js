@@ -14,7 +14,6 @@ export const createClientAndProject = async (payload) => {
 
 /**
  * Get all manager projects
- * Uses MongoDB _id internally
  */
 export const getManagerProjects = async () => {
   const res = await API.get("/erp/manager/projects");
@@ -23,7 +22,6 @@ export const getManagerProjects = async () => {
 
 /**
  * Update project (progress, status, delivery)
- * @param {string} projectId MongoDB _id
  */
 export const updateManagerProject = async (projectId, payload) => {
   const res = await API.put(`/erp/manager/projects/${projectId}`, payload);
@@ -32,7 +30,6 @@ export const updateManagerProject = async (projectId, payload) => {
 
 /**
  * Delete project (optionally delete client)
- * @param {string} projectId MongoDB _id
  */
 export const deleteManagerProject = async (
   projectId,
@@ -45,6 +42,32 @@ export const deleteManagerProject = async (
 };
 
 /* =====================================================
+   MANAGER → CRM (DEMO REQUESTS / LEADS)
+===================================================== */
+
+/**
+ * Get all CRM demo requests (leads)
+ * ✅ CORRECT ROUTE
+ */
+export const getManagerDemoRequests = async () => {
+  const res = await API.get("/forms/manager/demo");
+  return Array.isArray(res.data?.requests) ? res.data.requests : [];
+};
+
+/**
+ * Update CRM lead status
+ * status: new | contacted | in-progress | closed
+ * ✅ CORRECT ROUTE
+ */
+export const updateManagerLeadStatus = async (leadId, status) => {
+  const res = await API.put(
+    `/forms/manager/demo/${leadId}/status`,
+    { status }
+  );
+  return res.data;
+};
+
+/* =====================================================
    MANAGER → TECH LEADS
 ===================================================== */
 export const getTechLeads = async () => {
@@ -52,10 +75,7 @@ export const getTechLeads = async () => {
 
   const list =
     res.data?.techLeads ||
-    res.data?.techLead ||
-    res.data?.leads ||
     res.data?.users ||
-    res.data?.data ||
     [];
 
   return Array.isArray(list) ? list : [];
@@ -67,7 +87,6 @@ export const getTechLeads = async () => {
 
 /**
  * Get payments for a project
- * @param {string} projectId MongoDB _id ONLY
  */
 export const getProjectPayments = async (projectId) => {
   if (!projectId) return [];
@@ -76,7 +95,7 @@ export const getProjectPayments = async (projectId) => {
 };
 
 /**
- * Add new payment
+ * Add payment
  */
 export const addProjectPayment = async (payload) => {
   const res = await API.post("/erp/payments", payload);
@@ -84,8 +103,7 @@ export const addProjectPayment = async (payload) => {
 };
 
 /**
- * Update payment (PUT matches backend)
- * @param {string} paymentId MongoDB _id
+ * Update payment
  */
 export const updateProjectPayment = async (paymentId, payload) => {
   const res = await API.put(`/erp/payments/${paymentId}`, payload);

@@ -257,8 +257,6 @@
 
 
 
-
-
 import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -303,6 +301,7 @@ import CreateClient from "./pages/manager/CreateClient";
 import Notifications from "./pages/manager/Notifications";
 import ManagerSettings from "./pages/manager/Settings";
 import ChatWindow from "./pages/manager/ChatWindow";
+import RequestDemoManager from "./pages/manager/RequestDemoManager";
 
 /* 🧩 TECH LEAD */
 import TechnicalLayout from "./pages/technical/TechnicalLayout";
@@ -363,7 +362,7 @@ function ContactMenuWrapper() {
 }
 
 /* =======================
-   404 PAGE (IMPORTANT)
+   404 PAGE
 ======================= */
 function NotFound() {
   return (
@@ -375,14 +374,14 @@ function NotFound() {
 }
 
 /* =======================
-   APP ROUTES
+   APP
 ======================= */
 export default function App() {
   return (
     <Router>
-      <div className="app">
-        <ContactMenuWrapper />
+      <ContactMenuWrapper />
 
+      <div className="app">
         <Routes>
           {/* 🌍 PUBLIC HOME */}
           <Route
@@ -396,7 +395,7 @@ export default function App() {
             }
           />
 
-          {/* Smooth Scroll Section Routes */}
+          {/* SECTION ROUTES */}
           {["services", "products", "expertise", "about", "contact"].map(
             (sec) => (
               <Route
@@ -449,6 +448,7 @@ export default function App() {
             <Route path="projects" element={<ManageProjects />} />
             <Route path="create-client" element={<CreateClient />} />
             <Route path="notifications" element={<Notifications />} />
+            <Route path="requests" element={<RequestDemoManager />} />
             <Route path="settings" element={<ManagerSettings />} />
             <Route path="chat" element={<ChatWindow />} />
           </Route>
@@ -490,7 +490,7 @@ export default function App() {
             <Route path="profile" element={<Profile />} />
           </Route>
 
-          {/* 🚫 404 – MUST BE LAST */}
+          {/* 🚫 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
 

@@ -1,152 +1,283 @@
-/* ======================================================
-   YARROWTECH ADMIN • REQUEST DEMO MODULE (PRO UI 2025)
-   Clean • Modern • Fully Responsive
-====================================================== */
+/* =========================================================
+   CRM – DEMO REQUESTS (ADMIN + MANAGER)
+========================================================= */
 
 .admin-requests-container {
-  padding: 30px 32px;
-  color: #e8eef5;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+  padding: 24px;
+  background: #0f172a;
+  min-height: 100vh;
+  color: #e5e7eb;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+.admin-header {
+  margin-bottom: 20px;
+}
+
 .admin-header h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffcb05;
-}
-.admin-header .subtitle {
-  margin-top: 5px;
-  color: #9bb2c8;
-  font-size: 1rem;
+  font-size: 24px;
+  font-weight: 600;
+  color: #f8fafc;
 }
 
-/* SEARCH BAR */
-.rd-search-bar {
-  background: #081726;
-  padding: 18px 22px;
-  border-radius: 16px;
+.admin-header .subtitle {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* ================= ACTION BAR ================= */
+.rd-action-bar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
 }
 
 .rd-search-box {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 10px 16px;
-  border-radius: 12px;
-  width: 320px;
+  gap: 8px;
+  background: #020617;
+  border: 1px solid #1e293b;
+  padding: 8px 12px;
+  border-radius: 8px;
+  min-width: 260px;
+  flex: 1;
 }
+
 .rd-search-box input {
   background: transparent;
   border: none;
   outline: none;
-  color: #dce4ee;
-  font-size: 0.95rem;
-}
-.rd-search-box .icon {
-  color: #ffcb05;
+  color: #e5e7eb;
+  width: 100%;
+  font-size: 14px;
 }
 
-.rd-count-chip {
-  background: #0e2e4d;
-  color: #ffcb05;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-weight: 600;
+.rd-search-box svg {
+  color: #64748b;
 }
 
-/* TABLE WRAPPER */
+/* ================= EXPORT BUTTONS (ADMIN ONLY) ================= */
+.rd-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.export-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.export-btn.excel {
+  background: #16a34a;
+  color: #ecfdf5;
+}
+
+.export-btn.excel:hover {
+  background: #15803d;
+}
+
+.export-btn.pdf {
+  background: #dc2626;
+  color: #fef2f2;
+}
+
+.export-btn.pdf:hover {
+  background: #b91c1c;
+}
+
+/* ================= TABLE ================= */
 .rd-table-wrapper {
-  background: #081726;
-  padding: 25px;
-  border-radius: 18px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+  background: #020617;
 }
 
-/* TABLE */
 .rd-table {
   width: 100%;
   border-collapse: collapse;
-  color: #dce4ee;
+  min-width: 950px;
 }
+
 .rd-table thead {
-  background: linear-gradient(90deg, #0c2235, #0a1a2c);
+  background: #020617;
 }
+
 .rd-table th {
-  padding: 15px;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.82rem;
-  color: #ffcb05;
-  border-bottom: 2px solid rgba(255,255,255,0.1);
+  text-align: left;
+  padding: 14px;
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 600;
+  border-bottom: 1px solid #1e293b;
+  white-space: nowrap;
 }
+
 .rd-table td {
-  padding: 15px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  font-size: 0.95rem;
-}
-.rd-table tr:hover td {
-  background: rgba(255,255,255,0.05);
+  padding: 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #1e293b;
+  vertical-align: top;
 }
 
-/* MESSAGE COLUMN (wrap text) */
-.rd-msg-cell {
-  max-width: 280px;
+/* ================= LEAD INFO ================= */
+.lead-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lead-name {
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.lead-email {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* ================= MESSAGE ================= */
+.rd-message {
+  max-width: 380px;
   white-space: normal;
-  line-height: 1.4;
+  word-break: break-word;
+  color: #e5e7eb;
+  line-height: 1.5;
 }
 
-/* EMPTY STATE */
+.rd-message svg {
+  margin-right: 6px;
+  vertical-align: middle;
+  color: #64748b;
+}
+
+/* ================= STATUS BADGES ================= */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Status colors */
+.status-badge.blue {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.status-badge.yellow {
+  background: rgba(234, 179, 8, 0.15);
+  color: #eab308;
+}
+
+.status-badge.purple {
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+}
+
+.status-badge.green {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.status-badge.gray {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+}
+
+/* ================= STATUS SELECT (MANAGER ONLY) ================= */
+.status-select {
+  margin-top: 6px;
+  width: 100%;
+  background: #020617;
+  border: 1px solid #1e293b;
+  color: #e5e7eb;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.status-select option {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* ================= ADMIN READ-ONLY MODE ================= */
+/* Admin should NOT see status dropdown */
+.admin-requests-container.admin-view .status-select {
+  display: none;
+}
+
+/* ================= NO DATA / LOADING ================= */
+.rd-loading {
+  padding: 40px;
+  text-align: center;
+  color: #94a3b8;
+}
+
 .rd-no-records {
   text-align: center;
-  padding: 35px 0;
-  color: #9fb1c5;
-}
-.rd-no-data-img {
-  width: 80px;
-  opacity: 0.7;
-  margin-bottom: 10px;
+  padding: 40px;
+  color: #94a3b8;
 }
 
-/* SKELETON LOADER */
-.rd-skeleton-wrapper {
-  background: #081726;
-  padding: 22px;
-  border-radius: 16px;
-}
-.rd-skeleton-row {
-  height: 48px;
-  margin-bottom: 12px;
-  background: linear-gradient(90deg,
-    rgba(20,45,70,0.5),
-    rgba(45,85,120,0.9),
-    rgba(20,45,70,0.5)
-  );
-  border-radius: 10px;
-  background-size: 200% 100%;
-  animation: shimmer 1.3s infinite;
-}
-
-@keyframes shimmer {
-  0% { background-position: 180% 0; }
-  100% { background-position: -180% 0; }
-}
-
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  .rd-search-bar {
-    flex-direction: column;
-    gap: 14px;
+  .admin-requests-container {
+    padding: 16px;
   }
 
-  .rd-search-box {
-    width: 100%;
+  .rd-action-bar {
+    flex-direction: column;
+    align-items: stretch;
   }
+
+  .rd-actions {
+    justify-content: flex-end;
+  }
+
+  .rd-table {
+    min-width: 800px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-header h2 {
+    font-size: 20px;
+  }
+
+  .export-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .rd-actions {
+    flex-direction: column;
+  }
+}
+.status-filter {
+  background: #020617;
+  border: 1px solid #1e293b;
+  color: #e5e7eb;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
 }
