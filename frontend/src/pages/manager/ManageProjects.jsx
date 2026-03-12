@@ -213,261 +213,145 @@
 
 
 
+
+
+
 import React, { useEffect, useState } from "react";
 import "../../styles/ManagerProjects.css";
 import { toast } from "react-hot-toast";
-import {
-  getManagerProjects,
-  updateManagerProject,
-} from "../../services/managerService";
 import API from "../../services/axiosInstance";
-import { io } from "socket.io-client";
-
-const socket = io("http://localhost:5000");
 
 /* =====================================================
-   PAYMENTS COMPONENT
+   MANAGER PROJECTS – FINAL VERSION
 ===================================================== */
-function ProjectPayments({ projectId }) {
-  const [payments, setPayments] = useState([]);
+export default function ManagerProjects() {
+  const [projects, setProjects] = useState([]);
+  const [activeId, setActiveId] = useState(null);
+  const [edit, setEdit] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [editingId, setEditingId] = useState(null);
-  const [form, setForm] = useState({ amount: "", status: "" });
 
-  const loadPayments = async () => {
-    if (!projectId) return;
-
+  /* ================= LOAD PROJECTS ================= */
+  const loadProjects = async () => {
     try {
       setLoading(true);
-      const res = await API.get(`/erp/payments/project/${projectId}`);
-      setPayments(Array.isArray(res.data) ? res.data : []);
-    } catch {
-      toast.error("Failed to load payments");
+      const res = await API.get("/erp/projects/manager");
+
+      setProjects(Array.isArray(res.data?.projects) ? res.data.projects : []);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to load projects");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadPayments();
-  }, [projectId]);
-
-  const startEdit = (payment) => {
-    setEditingId(payment._id);
-    setForm({
-      amount: payment.amount,
-      status: payment.status,
-    });
-  };
-
-  const cancelEdit = () => {
-    setEditingId(null);
-    setForm({ amount: "", status: "" });
-  };
-
-  const saveEdit = async () => {
-    try {
-      await API.put(`/erp/payments/${editingId}`, {
-        amount: Number(form.amount),
-        status: form.status,
-      });
-
-      toast.success("Payment updated");
-      cancelEdit();
-      loadPayments();
-    } catch {
-      toast.error("Failed to update payment");
-    }
-  };
-
-  const total = payments.reduce((sum, p) => sum + p.amount, 0);
-  const paid = payments
-    .filter((p) => p.status === "paid")
-    .reduce((sum, p) => sum + p.amount, 0);
-  const due = total - paid;
-
-  return (
-    <div className="payments-box">
-      <h4>Payments</h4>
-      <p className="muted">Invoices, totals & history</p>
-
-      {loading ? (
-        <p className="muted">Loading payments...</p>
-      ) : (
-        <>
-          {/* SUMMARY */}
-          <div className="payment-summary">
-            <div>
-              <span>Total</span>
-              <strong>₹ {total}</strong>
-            </div>
-            <div>
-              <span>Paid</span>
-              <strong className="paid">₹ {paid}</strong>
-            </div>
-            <div>
-              <span>Due</span>
-              <strong className="due">₹ {due}</strong>
-            </div>
-          </div>
-
-          {/* LIST */}
-          <div className="invoice-list">
-            {payments.length === 0 && (
-              <div className="muted">No payments found</div>
-            )}
-
-            {payments.map((p) => (
-              <div key={p._id} className="invoice-row">
-                {editingId === p._id ? (
-                  <>
-                    <input
-                      type="number"
-                      value={form.amount}
-                      onChange={(e) =>
-                        setForm({ ...form, amount: e.target.value })
-                      }
-                    />
-
-                    <select
-                      value={form.status}
-                      onChange={(e) =>
-                        setForm({ ...form, status: e.target.value })
-                      }
-                    >
-                      <option value="pending">Pending</option>
-                      <option value="paid">Paid</option>
-                    </select>
-
-                    <button onClick={saveEdit}>Save</button>
-                    <button onClick={cancelEdit}>Cancel</button>
-                  </>
-                ) : (
-                  <>
-                    <div>
-                      <strong>{p.invoiceNo}</strong>
-                      <div className="muted">
-                        {new Date(p.createdAt).toLocaleDateString()}
-                      </div>
-                    </div>
-
-                    <span>₹ {p.amount}</span>
-
-                    <span className={`badge ${p.status}`}>
-                      {p.status}
-                    </span>
-
-                    <button onClick={() => startEdit(p)}>Edit</button>
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
-/* =====================================================
-   MAIN PAGE
-===================================================== */
-export default function ManageProjects() {
-  const [projects, setProjects] = useState([]);
-  const [openId, setOpenId] = useState(null);
-  const [edit, setEdit] = useState(null);
-  const [chatInput, setChatInput] = useState({});
-
-  useEffect(() => {
     loadProjects();
   }, []);
 
-  const loadProjects = async () => {
-    try {
-      const list = await getManagerProjects();
-      setProjects(Array.isArray(list) ? list : []);
-    } catch {
-      toast.error("Failed to load projects");
-    }
-  };
-
-  const toggleProject = (project) => {
-    if (openId === project._id) {
-      setOpenId(null);
+  /* ================= TOGGLE DETAILS ================= */
+  const toggleDetails = (project) => {
+    if (activeId === project._id) {
+      setActiveId(null);
       setEdit(null);
       return;
     }
 
-    setOpenId(project._id);
+    setActiveId(project._id);
     setEdit({
       _id: project._id,
+      status: project.status,
       progress: project.progress || 0,
-      status: project.status || "pending",
-      expectedDelivery: project.expectedDelivery?.slice(0, 10) || "",
+      expectedDelivery: project.expectedDelivery
+        ? project.expectedDelivery.slice(0, 10)
+        : "",
     });
   };
 
-  const saveProject = async () => {
+  /* ================= UPDATE PROJECT ================= */
+  const saveChanges = async () => {
     try {
-      await updateManagerProject(edit._id, {
-        progress: Number(edit.progress),
+      await API.put(`/erp/projects/${edit._id}`, {
         status: edit.status,
+        progress: Number(edit.progress),
         expectedDelivery: edit.expectedDelivery,
       });
 
-      socket.emit("project-update", {
-        projectId: edit._id,
-        ...edit,
-      });
-
       toast.success("Project updated");
-      setOpenId(null);
+      setActiveId(null);
       setEdit(null);
       loadProjects();
-    } catch {
+    } catch (err) {
       toast.error("Update failed");
     }
   };
 
-  const sendMessage = (project) => {
-    const msg = chatInput[project._id];
-    if (!msg) return;
-
-    socket.emit("send-message", {
-      projectId: project._id,
-      toEmail: project.clientEmail,
-      fromRole: "manager",
-      text: msg,
-    });
-
-    setChatInput((c) => ({ ...c, [project._id]: "" }));
-    toast.success("Message sent");
+  /* ================= EXPORT PDF ================= */
+  const exportPDF = (project) => {
+    toast.success(`PDF export started for ${project.projectId}`);
+    // backend/pdf route can be attached here later
   };
+
+  /* ================= UI ================= */
+  if (loading) {
+    return <p className="muted">Loading projects...</p>;
+  }
 
   return (
     <div className="manager-projects-page">
-      <h2 className="page-title">Manage Projects</h2>
+      <h2 className="page-title">Manage Client Projects</h2>
 
-      {projects.map((p) => (
-        <div key={p._id} className="project-card">
+      {projects.length === 0 && (
+        <p className="muted">
+          No client projects found. Create a client to start managing projects.
+        </p>
+      )}
+
+      {projects.map((project) => (
+        <div key={project._id} className="project-card">
+          {/* ================= HEADER ================= */}
           <div className="project-header">
             <div>
-              <h3>{p.name}</h3>
-              <p className="muted">{p.clientEmail}</p>
+              <h3>{project.name}</h3>
+              <p className="muted">
+                {project.clientEmail || "Client email not available"}
+              </p>
             </div>
 
             <div className="summary">
-              <span className={`status ${p.status}`}>{p.status}</span>
-              <span>{p.progress || 0}%</span>
-              <button onClick={() => toggleProject(p)}>
-                {openId === p._id ? "▲" : "▼"}
+              <span className={`status ${project.status}`}>
+                {project.status}
+              </span>
+              <span>{project.progress || 0}%</span>
+              <button onClick={() => toggleDetails(project)}>
+                {activeId === project._id ? "▲" : "▼"}
               </button>
             </div>
           </div>
 
-          {openId === p._id && edit && (
-            <div className="erp-panel">
-              <div className="erp-section">
+          {/* ================= DETAILS ================= */}
+          {activeId === project._id && edit && (
+            <div className="project-details">
+
+              {/* PROJECT INFO */}
+              <section className="detail-section">
+                <h4>Project Info</h4>
+                <p><strong>ID:</strong> {project.projectId}</p>
+                <p><strong>Name:</strong> {project.name}</p>
+                <p><strong>Tech Lead:</strong> {project.techLeadEmail}</p>
+              </section>
+
+              {/* CLIENT INFO */}
+              <section className="detail-section">
+                <h4>Client Info</h4>
+                <p><strong>Name:</strong> {project.clientName}</p>
+                <p><strong>Email:</strong> {project.clientEmail}</p>
+              </section>
+
+              {/* PROGRESS UPDATE */}
+              <section className="detail-section">
+                <h4>Progress Update</h4>
+
                 <label>Progress ({edit.progress}%)</label>
                 <input
                   type="range"
@@ -478,9 +362,7 @@ export default function ManageProjects() {
                     setEdit({ ...edit, progress: e.target.value })
                   }
                 />
-              </div>
 
-              <div className="erp-section">
                 <label>Status</label>
                 <select
                   value={edit.status}
@@ -492,46 +374,50 @@ export default function ManageProjects() {
                   <option value="ongoing">Ongoing</option>
                   <option value="completed">Completed</option>
                 </select>
-              </div>
 
-              <div className="erp-section">
                 <label>Expected Delivery</label>
                 <input
                   type="date"
                   value={edit.expectedDelivery}
                   onChange={(e) =>
-                    setEdit({
-                      ...edit,
-                      expectedDelivery: e.target.value,
-                    })
+                    setEdit({ ...edit, expectedDelivery: e.target.value })
                   }
                 />
-              </div>
+              </section>
 
               {/* PAYMENTS */}
-              <div className="erp-section">
-                <ProjectPayments projectId={p._id} />
-              </div>
+              <section className="detail-section">
+                <h4>Payments</h4>
+                <p className="muted">Payment module coming soon</p>
+              </section>
 
               {/* CHAT */}
-              <div className="erp-section chat-box">
-                <h4>Client Chat</h4>
-                <input
-                  placeholder="Message client..."
-                  value={chatInput[p._id] || ""}
-                  onChange={(e) =>
-                    setChatInput({
-                      ...chatInput,
-                      [p._id]: e.target.value,
-                    })
-                  }
-                />
-                <button onClick={() => sendMessage(p)}>Send</button>
-              </div>
+              <section className="detail-section">
+                <h4>Chat</h4>
+                <p className="muted">Chat with client (integration pending)</p>
+              </section>
 
-              <div className="erp-actions">
-                <button className="save-btn" onClick={saveProject}>
+              {/* ACTIONS */}
+              <div className="detail-actions">
+                <button className="save-btn" onClick={saveChanges}>
                   Save Changes
+                </button>
+
+                <button
+                  className="pdf-btn"
+                  onClick={() => exportPDF(project)}
+                >
+                  Export PDF
+                </button>
+
+                <button
+                  className="cancel-btn"
+                  onClick={() => {
+                    setActiveId(null);
+                    setEdit(null);
+                  }}
+                >
+                  Close
                 </button>
               </div>
             </div>

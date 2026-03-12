@@ -1,44 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/ClientMyProject.css";
+import API from "../../services/axiosInstance";
+import { toast } from "react-hot-toast";
 
 export default function ClientMyProjects() {
-  // SAMPLE DATA (Replace with API later)
-  const projects = [
-    {
-      id: 1,
-      name: "Yarrowtech Website",
-      manager: "Anshika",
-      startDate: "2025-01-10",
-      progress: 85,
-      status: "completed",
-    },
-    {
-      id: 2,
-      name: "CRM Dashboard",
-      manager: "Rohit",
-      startDate: "2025-02-15",
-      progress: 60,
-      status: "ongoing",
-    },
-    {
-      id: 3,
-      name: "Billing System",
-      manager: "Neeraj",
-      startDate: "2025-03-01",
-      progress: 25,
-      status: "pending",
-    },
-  ];
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  /* ================= LOAD PROJECTS ================= */
+  const loadProjects = async () => {
+    try {
+      setLoading(true);
+
+      // ✅ REAL BACKEND CALL
+      const res = await API.get("/erp/client/projects");
+
+      setProjects(res.data.projects || []);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to load projects");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadProjects();
+  }, []);
+
+  /* ================= UI STATES ================= */
+  if (loading) {
+    return <p className="muted">Loading projects...</p>;
+  }
+
+  if (!projects.length) {
+    return (
+      <div className="client-projects-container">
+        <div className="client-header">
+          <h2>My Projects</h2>
+          <p className="subtitle">No projects assigned yet</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="client-projects-container">
-      {/* Header */}
+      {/* HEADER */}
       <div className="client-header">
         <h2>My Projects</h2>
         <p className="subtitle">Track all your project details here</p>
       </div>
 
-      {/* Table */}
+      {/* TABLE */}
       <div className="client-projects-table-wrapper">
         <table className="client-projects-table">
           <thead>
@@ -53,28 +67,36 @@ export default function ClientMyProjects() {
           </thead>
 
           <tbody>
-            {projects.map((p) => (
-              <tr key={p.id}>
-                <td>{p.id}</td>
+            {projects.map((p, index) => (
+              <tr key={p._id || index}>
+                <td>{index + 1}</td>
                 <td>{p.name}</td>
-                <td>{p.manager}</td>
-                <td>{p.startDate}</td>
+                <td>{p.managerEmail || "—"}</td>
+                <td>
+                  {p.createdAt
+                    ? new Date(p.createdAt).toLocaleDateString()
+                    : "—"}
+                </td>
 
+                {/* PROGRESS */}
                 <td>
                   <div className="client-progress-bar">
                     <div
                       className="client-progress-fill"
-                      style={{ width: `${p.progress}%` }}
+                      style={{ width: `${p.progress || 0}%` }}
                     ></div>
                   </div>
-                  <span className="client-progress-text">{p.progress}%</span>
+                  <span className="client-progress-text">
+                    {p.progress || 0}%
+                  </span>
                 </td>
 
+                {/* STATUS */}
                 <td>
                   <span
-                    className={`client-status client-status-${p.status}`}
+                    className={`client-status client-status-${p.status || "pending"}`}
                   >
-                    {p.status}
+                    {p.status || "pending"}
                   </span>
                 </td>
               </tr>

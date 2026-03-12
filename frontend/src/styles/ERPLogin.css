@@ -1,0 +1,180 @@
+/* ======================================================
+   ERP LOGIN PAGE
+====================================================== */
+
+.erp-login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #071a2d, #0d2a47);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ======================================================
+   LOGIN CARD
+====================================================== */
+
+.erp-login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 36px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: fadeUp 0.45s ease;
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================================================
+   TITLE
+====================================================== */
+
+.erp-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-align: center;
+  color: #071a2d;
+}
+
+.erp-subtitle {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 10px 0 28px;
+}
+
+/* ======================================================
+   INPUT GROUP
+====================================================== */
+
+.erp-input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.erp-input-group:focus-within {
+  background: #eef6ff;
+  box-shadow: 0 0 0 2px #007bff;
+}
+
+.erp-input-group input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+  color: #111827;
+}
+
+/* ======================================================
+   PASSWORD EYE BUTTON
+====================================================== */
+
+.erp-eye-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+}
+
+.erp-eye-btn:hover {
+  color: #111827;
+}
+
+/* ======================================================
+   FORGOT PASSWORD
+====================================================== */
+
+.erp-forgot {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.erp-forgot a {
+  font-size: 0.85rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.erp-forgot a:hover {
+  text-decoration: underline;
+}
+
+/* ======================================================
+   LOGIN BUTTON
+====================================================== */
+
+.erp-login-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #071a2d;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.erp-login-btn:hover {
+  background: #0d2a47;
+}
+
+.erp-login-btn:active {
+  transform: scale(0.98);
+}
+
+.erp-login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+.erp-footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 28px;
+}
+
+/* ======================================================
+   MOBILE RESPONSIVE
+====================================================== */
+
+@media (max-width: 420px) {
+  .erp-login-card {
+    padding: 28px 22px;
+  }
+
+  .erp-title {
+    font-size: 1.5rem;
+  }
+
+  .erp-subtitle {
+    font-size: 0.9rem;
+  }
+}

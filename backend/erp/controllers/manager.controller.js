@@ -1,65 +1,96 @@
-// // erp/controllers/manager.controller.js
+
 // import ERPClient from "../models/Client.js";
 // import ERPProject from "../models/Project.js";
+// import ERPUser from "../models/User.js";
+
 // import { generatePassword } from "../utils/generatePassword.js";
 // import sendEmail from "../utils/sendEmail.js";
 
 // /* ============================================================
-//    MANAGER → Create Client (if not exists) + Create Project
+//    MANAGER → GET TECH LEADS
+// ============================================================ */
+// export const getTechLeads = async (req, res) => {
+//   try {
+//     const techLeads = await ERPUser.find(
+//       { role: "techlead", status: "active" },
+//       { name: 1, email: 1 }
+//     );
+
+//     res.json({ success: true, techLeads });
+//   } catch (err) {
+//     console.error("❌ GET TECH LEADS ERROR:", err);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// };
+
+// /* ============================================================
+//    MANAGER → CREATE CLIENT + PROJECT
 // ============================================================ */
 // export const createClientAndProject = async (req, res) => {
 //   try {
 //     const {
 //       projectId,
-//       projectName,
-//       projectDetails,
+//       name,               // project name
 //       clientName,
 //       clientEmail,
 //       expectedDelivery,
 //       techLeadEmail,
 //     } = req.body;
 
-//     // 1️⃣ Check if client already exists
-//     let client = await ERPClient.findOne({ email: clientEmail });
-//     let password = null;
+//     /* ================= VALIDATE TECH LEAD ================= */
+//     const techLead = await ERPUser.findOne({
+//       email: techLeadEmail.toLowerCase(),
+//       role: "techlead",
+//       status: "active",
+//     });
+
+//     if (!techLead) {
+//       return res.status(400).json({
+//         message: "Invalid or inactive Tech Lead selected",
+//       });
+//     }
+
+//     /* ================= FIND / CREATE CLIENT ================= */
+//     let client = await ERPClient.findOne({
+//       email: clientEmail.toLowerCase(),
+//     });
+
+//     let generatedPassword;
 
 //     if (!client) {
-//       // Generate password for new client
-//       password = generatePassword();
+//       generatedPassword = generatePassword();
 
-//       // Create new client
 //       client = await ERPClient.create({
 //         name: clientName,
-//         email: clientEmail,
-//         password,
+//         email: clientEmail.toLowerCase(),
+//         password: generatedPassword, // 🔐 hashed automatically
+//         status: "active",
+//         role: "client",
 //       });
 
-//       // Send login credentials to client
 //       await sendEmail(
 //         clientEmail,
-//         "Your ERP Login",
-//         `
-//         Welcome to YarrowTech ERP!
-        
-//         Your client account has been created.
-        
-//         Login Credentials:
-//         Email: ${clientEmail}
-//         Password: ${password}
-//         `
+//         "Your YarrowTech ERP Login",
+//         `Welcome to YarrowTech ERP!
+
+// Login URL: https://yourdomain.com/login
+
+// Email: ${clientEmail}
+// Password: ${generatedPassword}
+
+// Please change your password after login.`
 //       );
 //     }
 
-//     // 2️⃣ Create Project
+//     /* ================= CREATE PROJECT ================= */
 //     const project = await ERPProject.create({
 //       projectId,
-//       name: projectName,
-//       projectDetails,
+//       name,
 //       client: client._id,
 //       clientName,
-//       clientEmail,
-//       managerEmail: req.erpUser.email,  // manager email from token
-//       techLeadEmail,
+//       clientEmail: clientEmail.toLowerCase(),
+//       managerEmail: req.erpUser.email,
+//       techLeadEmail: techLead.email,
 //       expectedDelivery,
 //       status: "pending",
 //       progress: 0,
@@ -70,58 +101,60 @@
 //       message: "Client & Project created successfully",
 //       project,
 //     });
-
 //   } catch (err) {
-//     console.error("❌ MANAGER CREATE PROJECT ERROR:", err);
-//     res.status(500).json({ message: "Server error", error: err.message });
+//     console.error("❌ CREATE PROJECT ERROR:", err);
+//     res.status(500).json({ message: "Server error" });
 //   }
 // };
 
 // /* ============================================================
-//    MANAGER → Get All Projects he manages
+//    MANAGER → GET PROJECTS
 // ============================================================ */
 // export const getProjects = async (req, res) => {
 //   try {
 //     const projects = await ERPProject.find({
 //       managerEmail: req.erpUser.email,
-//     }).populate("client");
+//     }).sort({ createdAt: -1 });
 
-//     res.json({
-//       success: true,
-//       count: projects.length,
-//       projects,
-//     });
+//     res.json({ success: true, projects });
 //   } catch (err) {
-//     console.error("❌ MANAGER GET PROJECT ERROR:", err);
 //     res.status(500).json({ message: "Server error" });
 //   }
 // };
 
 // /* ============================================================
-//    MANAGER → Update Project (inline editing)
+//    MANAGER → UPDATE PROJECT
 // ============================================================ */
 // export const updateProject = async (req, res) => {
 //   try {
+//     const allowed = ["name", "techLeadEmail", "expectedDelivery", "status"];
+//     const updateData = {};
+
+//     allowed.forEach((key) => {
+//       if (req.body[key] !== undefined) updateData[key] = req.body[key];
+//     });
+
 //     const updated = await ERPProject.findByIdAndUpdate(
 //       req.params.id,
-//       req.body,
+//       updateData,
 //       { new: true }
 //     );
 
-//     if (!updated)
+//     if (!updated) {
 //       return res.status(404).json({ message: "Project not found" });
+//     }
 
 //     res.json({
 //       success: true,
-//       message: "Project updated successfully",
+//       message: "Project updated",
 //       project: updated,
 //     });
-
 //   } catch (err) {
-//     console.error("❌ MANAGER UPDATE PROJECT ERROR:", err);
 //     res.status(500).json({ message: "Server error" });
 //   }
 // };
+
+
 
 
 
@@ -134,7 +167,7 @@ import { generatePassword } from "../utils/generatePassword.js";
 import sendEmail from "../utils/sendEmail.js";
 
 /* ============================================================
-   MANAGER → GET TECH LEADS (DB)
+   MANAGER → GET TECH LEADS
 ============================================================ */
 export const getTechLeads = async (req, res) => {
   try {
@@ -143,10 +176,7 @@ export const getTechLeads = async (req, res) => {
       { name: 1, email: 1 }
     );
 
-    res.json({
-      success: true,
-      techLeads,
-    });
+    res.json({ success: true, techLeads });
   } catch (err) {
     console.error("❌ GET TECH LEADS ERROR:", err);
     res.status(500).json({ message: "Server error" });
@@ -154,20 +184,29 @@ export const getTechLeads = async (req, res) => {
 };
 
 /* ============================================================
-   MANAGER → CREATE CLIENT + PROJECT
+   MANAGER → CREATE CLIENT + PROJECT  ✅ FIXED
 ============================================================ */
 export const createClientAndProject = async (req, res) => {
   try {
     const {
       projectId,
-      name,                // ✅ FIXED
+      name, // project name
       clientName,
       clientEmail,
       expectedDelivery,
       techLeadEmail,
     } = req.body;
 
-    // Validate tech lead
+    /* 🔐 MANAGER FROM TOKEN */
+    const managerId = req.erpUser?.id || req.erpUser?._id;
+
+    if (!managerId) {
+      return res.status(401).json({
+        message: "Invalid manager token",
+      });
+    }
+
+    /* ================= VALIDATE TECH LEAD ================= */
     const techLead = await ERPUser.findOne({
       email: techLeadEmail.toLowerCase(),
       role: "techlead",
@@ -180,39 +219,53 @@ export const createClientAndProject = async (req, res) => {
       });
     }
 
-    // Create / find client
+    /* ================= FIND / CREATE CLIENT ================= */
     let client = await ERPClient.findOne({
       email: clientEmail.toLowerCase(),
     });
 
-    let password;
+    let generatedPassword;
+
     if (!client) {
-      password = generatePassword();
+      generatedPassword = generatePassword();
+
       client = await ERPClient.create({
         name: clientName,
         email: clientEmail.toLowerCase(),
-        password,
+        password: generatedPassword, // hashed via model
+        status: "active",
+        role: "client",
       });
 
       await sendEmail(
         clientEmail,
-        "Your ERP Login",
+        "Your YarrowTech ERP Login",
         `Welcome to YarrowTech ERP!
 
+Login URL: https://yourdomain.com/erp
+
 Email: ${clientEmail}
-Password: ${password}`
+Password: ${generatedPassword}
+
+Please change your password after login.`
       );
     }
 
-    // Create project
+    /* ================= CREATE PROJECT ================= */
     const project = await ERPProject.create({
       projectId,
-      name,                       // ✅ FIXED
+      name,
       client: client._id,
       clientName,
-      clientEmail: clientEmail.toLowerCase(),
+      clientEmail: client.email,
+
+      /* ✅ REAL RELATION */
+      manager: managerId,
+
+      /* DISPLAY / EMAIL */
       managerEmail: req.erpUser.email,
       techLeadEmail: techLead.email,
+
       expectedDelivery,
       status: "pending",
       progress: 0,
@@ -230,19 +283,30 @@ Password: ${password}`
 };
 
 /* ============================================================
-   MANAGER → GET PROJECTS
+   MANAGER → GET PROJECTS  ✅ FIXED
 ============================================================ */
 export const getProjects = async (req, res) => {
   try {
+    const managerId = req.erpUser?.id || req.erpUser?._id;
+
+    if (!managerId) {
+      return res.status(401).json({
+        message: "Invalid manager token",
+      });
+    }
+
     const projects = await ERPProject.find({
-      managerEmail: req.erpUser.email,
-    }).sort({ createdAt: -1 });
+      manager: managerId,
+    })
+      .populate("client", "name email status")
+      .sort({ createdAt: -1 });
 
     res.json({
       success: true,
       projects,
     });
   } catch (err) {
+    console.error("❌ GET MANAGER PROJECTS ERROR:", err);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -252,11 +316,20 @@ export const getProjects = async (req, res) => {
 ============================================================ */
 export const updateProject = async (req, res) => {
   try {
-    const allowed = ["name", "techLeadEmail", "expectedDelivery", "status"];
-    const updateData = {};
+    const allowed = [
+      "name",
+      "techLeadEmail",
+      "expectedDelivery",
+      "status",
+      "progress",
+      "projectDetails",
+    ];
 
-    allowed.forEach((k) => {
-      if (req.body[k] !== undefined) updateData[k] = req.body[k];
+    const updateData = {};
+    allowed.forEach((key) => {
+      if (req.body[key] !== undefined) {
+        updateData[key] = req.body[key];
+      }
     });
 
     const updated = await ERPProject.findByIdAndUpdate(
@@ -271,10 +344,11 @@ export const updateProject = async (req, res) => {
 
     res.json({
       success: true,
-      message: "Project updated",
+      message: "Project updated successfully",
       project: updated,
     });
   } catch (err) {
+    console.error("❌ UPDATE PROJECT ERROR:", err);
     res.status(500).json({ message: "Server error" });
   }
 };

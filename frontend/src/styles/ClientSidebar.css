@@ -1,16 +1,18 @@
 /* ==========================================================
-   DESKTOP SIDEBAR (Default)
+   DESKTOP SIDEBAR
 ========================================================== */
 .client-sidebar {
   width: 16rem;
   background: #071a2d;
   color: #fff;
-  min-height: 100vh;
+  height: 100vh;
   padding: 20px 15px;
   position: fixed;
   left: 0;
   top: 0;
-  transition: width 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   z-index: 999;
 }
@@ -20,7 +22,7 @@
   font-size: 1.3rem;
   font-weight: 700;
   color: #ffcb05;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 
 /* Menu */
@@ -28,6 +30,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  flex: 1;
 }
 
 .client-sidebar-link {
@@ -48,60 +51,98 @@
 
 .client-sidebar-link.active {
   background: #ffcb05;
-  color: #000 !important;
+  color: #000;
   font-weight: 600;
 }
 
+/* ==========================================================
+   LOGOUT
+========================================================== */
+.client-sidebar-bottom {
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.client-logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: #ff6b6b;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.client-logout-btn:hover {
+  background: rgba(255, 107, 107, 0.15);
+}
 
 /* ==========================================================
-   TABLET VIEW (sidebar shrinks)
+   MOBILE OVERLAY
+========================================================== */
+.client-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+  display: none;
+}
+
+.client-sidebar-overlay.show {
+  display: block;
+}
+
+/* ==========================================================
+   MOBILE TOGGLE BUTTON
+========================================================== */
+.client-sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
+  background: #071a2d;
+  border: none;
+  color: #fff;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ==========================================================
+   TABLET
 ========================================================== */
 @media (max-width: 1024px) {
   .client-sidebar {
     width: 14rem;
   }
-
-  .client-sidebar-link {
-    padding: 10px 12px;
-  }
 }
 
 /* ==========================================================
-   MOBILE VIEW (sidebar becomes slide-in drawer)
+   MOBILE (SLIDE-IN)
 ========================================================== */
 @media (max-width: 768px) {
   .client-sidebar {
     transform: translateX(-100%);
-    width: 16rem; /* full width sidebar on mobile */
-    padding: 20px;
+    width: 16rem;
   }
 
   .client-sidebar.open {
     transform: translateX(0);
   }
 
-  .client-sidebar-logo {
-    font-size: 1.2rem;
-    text-align: left;
-  }
-
-  /* Dim background when sidebar is open */
-  .client-sidebar-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(2px);
-    z-index: 998;
-    display: none;
-  }
-
-  .client-sidebar-overlay.show {
+  .client-sidebar-toggle {
     display: block;
   }
 }
 
 /* ==========================================================
-   EXTRA SMALL MOBILE < 480px
+   EXTRA SMALL
 ========================================================== */
 @media (max-width: 480px) {
   .client-sidebar {
@@ -109,12 +150,6 @@
   }
 
   .client-sidebar-link {
-    padding: 10px 10px;
-    gap: 10px;
     font-size: 0.9rem;
-  }
-
-  .client-sidebar-logo {
-    font-size: 1.1rem;
   }
 }

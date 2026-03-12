@@ -13,7 +13,7 @@ export const createClientAndProject = async (payload) => {
 ===================================================== */
 
 /**
- * Get all manager projects
+ * Get all projects assigned to logged-in manager
  */
 export const getManagerProjects = async () => {
   const res = await API.get("/erp/manager/projects");
@@ -21,7 +21,7 @@ export const getManagerProjects = async () => {
 };
 
 /**
- * Update project (progress, status, delivery)
+ * Update project (status, progress, expectedDelivery)
  */
 export const updateManagerProject = async (projectId, payload) => {
   const res = await API.put(`/erp/manager/projects/${projectId}`, payload);
@@ -29,7 +29,7 @@ export const updateManagerProject = async (projectId, payload) => {
 };
 
 /**
- * Delete project (optionally delete client)
+ * Delete project (optional delete client)
  */
 export const deleteManagerProject = async (
   projectId,
@@ -42,34 +42,12 @@ export const deleteManagerProject = async (
 };
 
 /* =====================================================
-   MANAGER → CRM (DEMO REQUESTS / LEADS)
-===================================================== */
-
-/**
- * Get all CRM demo requests (leads)
- * ✅ CORRECT ROUTE
- */
-export const getManagerDemoRequests = async () => {
-  const res = await API.get("/forms/manager/demo");
-  return Array.isArray(res.data?.requests) ? res.data.requests : [];
-};
-
-/**
- * Update CRM lead status
- * status: new | contacted | in-progress | closed
- * ✅ CORRECT ROUTE
- */
-export const updateManagerLeadStatus = async (leadId, status) => {
-  const res = await API.put(
-    `/forms/manager/demo/${leadId}/status`,
-    { status }
-  );
-  return res.data;
-};
-
-/* =====================================================
    MANAGER → TECH LEADS
 ===================================================== */
+
+/**
+ * Get active tech leads
+ */
 export const getTechLeads = async () => {
   const res = await API.get("/erp/manager/techleads");
 
@@ -79,6 +57,30 @@ export const getTechLeads = async () => {
     [];
 
   return Array.isArray(list) ? list : [];
+};
+
+/* =====================================================
+   MANAGER → CRM DEMO REQUESTS (✅ FIXED)
+===================================================== */
+
+/**
+ * Get all demo requests (CRM leads)
+ */
+export const getManagerDemoRequests = async () => {
+  const res = await API.get("/forms/manager/demo");
+  return Array.isArray(res.data?.requests) ? res.data.requests : [];
+};
+
+/**
+ * Update demo request status
+ * status: new | contacted | in-progress | closed
+ */
+export const updateManagerLeadStatus = async (leadId, status) => {
+  const res = await API.put(
+    `/forms/manager/demo/${leadId}/status`,
+    { status }
+  );
+  return res.data;
 };
 
 /* =====================================================

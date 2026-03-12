@@ -1,23 +1,42 @@
+import API from "./axiosInstance";
+
+/* =====================================================
+   CLIENT SERVICE – ERP VERSION
+===================================================== */
 export const clientService = {
-  dashboard: () =>
-    fetch("/api/client/dashboard").then((res) => res.json()),
+  /* ================= DASHBOARD ================= */
+  dashboard: async () => {
+    const res = await API.get("/erp/client/dashboard");
+    return res.data;
+  },
 
-  projects: () =>
-    fetch("/api/client/projects").then((res) => res.json()),
+  /* ================= PROJECTS ================= */
+  projects: async () => {
+    const res = await API.get("/erp/client/projects");
+    return res.data;
+  },
 
-  payments: () =>
-    fetch("/api/client/payments").then((res) => res.json()),
+  /* ================= PAYMENTS ================= */
+  payments: async () => {
+    const res = await API.get("/erp/client/payments");
+    return res.data;
+  },
 
-  history: () =>
-    fetch("/api/client/project-history").then((res) => res.json()),
+  /* ================= PROJECT HISTORY ================= */
+  history: async () => {
+    const res = await API.get("/erp/client/project-history");
+    return res.data;
+  },
 
-  profile: () =>
-    fetch("/api/client/profile").then((res) => res.json()),
+  /* ================= PROFILE ================= */
+  profile: async () => {
+    const res = await API.get("/erp/client/profile");
+    return res.data;
+  },
 
-  updateProfile: (data) =>
-    fetch("/api/client/profile", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    }).then((res) => res.json()),
+  /* ================= UPDATE PROFILE ================= */
+  updateProfile: async (data) => {
+    const res = await API.put("/erp/client/profile", data);
+    return res.data;
+  },
 };

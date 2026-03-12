@@ -1,76 +1,65 @@
-/* =======================================================================
-   YARROWTECH — PROFESSIONAL HEADER UI
-   Structured, scalable, optimized for production
-======================================================================= */
-
-/* -----------------------------------------------------------------------
-   1. GLOBAL HEADER WRAPPER
------------------------------------------------------------------------- */
+/* ======================================================
+   GLOBAL HEADER
+====================================================== */
 
 .header {
   position: fixed;
-  inset: 0 auto auto 0;
-  height: 75px;
+  top: 0;
   width: 100%;
-  background: rgba(5, 20, 35, 0.45);
-  backdrop-filter: blur(20px);
-  display: flex;
-  align-items: center;
+  height: 75px;
+  background: rgba(5, 20, 35, 0.65);
+  backdrop-filter: blur(18px);
   z-index: 2000;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header-container {
-  width: 92%;
   max-width: 1300px;
+  height: 100%;
   margin: 0 auto;
-  display: flex;
+  padding: 0 24px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
 }
 
-/* -----------------------------------------------------------------------
-   2. BRAND LOGO
------------------------------------------------------------------------- */
+/* ======================================================
+   LOGO
+====================================================== */
 
 .logo {
-  width: 260px;
-  height: 260px;
+  width: 220px;
+  height: 60px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin-left: -6rem;
+  overflow: hidden;
 }
 
-.logo canvas,
-.logo lottie-player,
-.logo svg {
-  width: 100%;
-  height: 100%;
+.logo canvas {
+  transform: scale(1.4);
 }
 
-/* -----------------------------------------------------------------------
-   3. NAVIGATION MENU
------------------------------------------------------------------------- */
+/* ======================================================
+   NAVIGATION (DESKTOP)
+====================================================== */
 
 .nav-menu {
   display: flex;
-  align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  gap: 28px;
 }
 
 .nav-link {
   color: #ffffff;
-  font-size: 0.98rem;
   font-weight: 500;
   text-decoration: none;
   position: relative;
-  transition: 0.3s ease;
+  padding: 6px 2px;
 }
 
-.nav-link:hover,
-.nav-link.active {
-  color: #ffa500;
+.nav-link.active,
+.nav-link:hover {
+  color: #facc15;
 }
 
 .nav-link::after {
@@ -80,323 +69,253 @@
   bottom: -4px;
   width: 0;
   height: 2px;
-  background: #ffa500;
-  transition: width 0.3s ease;
+  background: #facc15;
+  transition: width 0.25s ease;
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
+.nav-link.active::after,
+.nav-link:hover::after {
   width: 100%;
 }
 
-/* -----------------------------------------------------------------------
-   4. CTA BUTTONS (RIGHT SIDE)
------------------------------------------------------------------------- */
+/* ======================================================
+   HEADER ACTIONS
+====================================================== */
 
 .header-buttons {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
+
+/* ======================================================
+   BUTTONS
+====================================================== */
 
 .btn {
-  padding: 0.5rem 1.1rem;
+  padding: 8px 16px;
   border-radius: 999px;
   font-weight: 600;
-  font-size: 0.9rem;
   cursor: pointer;
-  transition: 0.25s ease;
-  white-space: nowrap;
   border: none;
+  white-space: nowrap;
 }
 
-/* CONTACT BUTTON */
 .contact-btn {
   background: transparent;
-  color: #ffa500;
-  border: 1px solid rgba(255, 165, 0, 0.6);
+  border: 1px solid #facc15;
+  color: #facc15;
 }
 
-.contact-btn:hover {
-  background: rgba(255, 165, 0, 0.12);
-  transform: translateY(-1px);
-}
-
-/* LOGIN BUTTON */
 .login-btn {
   background: transparent;
-  border: 1px solid #007bff;
-  color: #007bff;
+  border: 1px solid #3b82f6;
+  color: #3b82f6;
 }
 
-.login-btn:hover {
-  background: #007bff;
-  color: #fff;
-}
-
-/* -----------------------------------------------------------------------
-   5. USER AVATAR + MENU
------------------------------------------------------------------------- */
+/* ======================================================
+   AVATAR
+====================================================== */
 
 .user-box {
   position: relative;
-  display: flex;
-  align-items: center;
 }
 
 .navbar-user-avatar {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #fff;
+  border: 2px solid #ffffff;
   cursor: pointer;
-  transition: 0.25s ease;
 }
 
-.navbar-user-avatar:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
+/* ======================================================
+   PROFILE DROPDOWN
+====================================================== */
 
 .profile-dropdown {
   position: absolute;
-  top: 55px;
+  top: 60px;
   right: 0;
-  width: 180px;
-  background: #0d1525;
+  width: 190px;
+  background: #0b1628;
   padding: 14px;
   border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-  z-index: 2100;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  z-index: 3000;
 }
 
 .profile-dropdown .user-name {
   text-align: center;
   color: #ffffff;
-  font-size: 0.95rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .logout-btn {
   width: 100%;
-  padding: 9px;
-  background: #ff4646;
-  color: #fff;
-  border: none;
+  padding: 10px;
+  background: #ef4444;
+  color: #ffffff;
   border-radius: 8px;
-  font-weight: 600;
+  border: none;
   cursor: pointer;
-  font-size: 0.9rem;
 }
 
-.logout-btn:hover {
-  background: #d93636;
-}
-
-/* -----------------------------------------------------------------------
-   6. MODAL SYSTEM (LOGIN / SIGNUP / CAREER / DEMO)
------------------------------------------------------------------------- */
+/* ======================================================
+   MODAL OVERLAY
+====================================================== */
 
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(5, 20, 35, 0.78);
-  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 5000;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 5000;
 }
 
-.modal {
-  width: 380px;
-  max-width: 90%;
+/* ======================================================
+   LOGIN CARD (ANIMATED)
+====================================================== */
+
+.modal.login-card {
+  width: 100%;
+  max-width: 420px;
   background: #ffffff;
-  border-radius: 20px;
-  padding: 32px 36px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-  animation: modalIn 0.3s ease;
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
 }
 
 .modal-title {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #0c1a2d;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
+
+/* ======================================================
+   FORMS
+====================================================== */
 
 .modal-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
 }
 
 .modal-form label {
-  font-size: 0.86rem;
   font-weight: 600;
-  color: #0c1a2d;
+  font-size: 0.9rem;
 }
 
 .modal-form input {
-  padding: 12px;
-  border: 1px solid #c9c9c9;
+  padding: 12px 14px;
   border-radius: 12px;
-  font-size: 14px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
 }
 
-.modal-form input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.18);
+/* PASSWORD FIELD */
+
+.password-field {
+  position: relative;
 }
+
+.password-field input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+}
+
+/* SUBMIT */
 
 .submit-btn {
-  margin-top: 8px;
-  padding: 0.65rem 1.3rem;
+  margin-top: 10px;
+  padding: 12px;
   border-radius: 999px;
   border: none;
-  background: linear-gradient(135deg, #005ed1, #0099ff);
+  background: #2563eb;
   color: #ffffff;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
-.submit-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(0, 94, 209, 0.35);
-}
+/* ======================================================
+   GOOGLE LOGIN
+====================================================== */
 
 .google-auth-box {
-  margin-top: 15px;
+  margin-top: 18px;
   display: flex;
   justify-content: center;
 }
 
-.modal-links {
-  margin-top: 18px;
-  font-size: 0.86rem;
-  text-align: center;
-  color: #444;
-}
-
-.link-btn {
-  border: none;
-  background: none;
-  color: #005ed1;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* -----------------------------------------------------------------------
-   7. TOAST NOTIFICATIONS
------------------------------------------------------------------------- */
+/* ======================================================
+   TOAST
+====================================================== */
 
 .toast {
   position: fixed;
-  top: 22px;
+  top: 25px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 12px 26px;
-  border-radius: 10px;
-  color: white;
-  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  color: #ffffff;
   z-index: 9999;
-  animation: toastIn 0.3s ease;
-  font-size: 0.9rem;
 }
 
 .toast.success {
-  background: #0f8b44;
+  background: #16a34a;
 }
 
 .toast.error {
-  background: #d93d3d;
+  background: #dc2626;
 }
 
-/* -----------------------------------------------------------------------
-   8. HAMBURGER (Mobile)
------------------------------------------------------------------------- */
+/* ======================================================
+   MOBILE NAV
+====================================================== */
 
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   background: none;
   border: none;
   cursor: pointer;
 }
 
 .hamburger span {
-  width: 26px;
-  height: 3px;
+  width: 22px;
+  height: 2px;
   background: #ffffff;
-  border-radius: 2px;
 }
 
-/* MOBILE MENU */
 .mobile-buttons {
   display: none;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.5rem 1.75rem 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.mobile-user-name {
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-/* -----------------------------------------------------------------------
-   9. ANIMATIONS
------------------------------------------------------------------------- */
-
-@keyframes modalIn {
-  from {
-    transform: scale(0.9) translateY(15px);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes toastIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-
-/* -----------------------------------------------------------------------
-   10. RESPONSIVE BREAKPOINTS
------------------------------------------------------------------------- */
+/* ======================================================
+   RESPONSIVE
+====================================================== */
 
 @media (max-width: 900px) {
-  .logo {
-    width: 220px;
-    height: 220px;
-    margin-left: -3.5rem;
-  }
-
   .nav-menu {
-    display: none;
-  }
-
-  .header-buttons {
     display: none;
   }
 
@@ -405,155 +324,27 @@
   }
 
   .nav-menu.open {
-    display: flex;
-    flex-direction: column;
     position: fixed;
-    inset: 75px 0 auto auto;
+    top: 75px;
+    right: 0;
     width: 75%;
     height: calc(100vh - 75px);
-    background: rgba(5, 20, 35, 0.96);
-    padding: 1.8rem 1.75rem 1rem;
-    gap: 1.5rem;
-    z-index: 5000;
-  }
-
-  .nav-menu.open .mobile-buttons {
+    background: #051423;
     display: flex;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo {
-    width: 200px;
-    height: 210px;
-    margin-left: -2.2rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 2rem;
   }
 
-  .modal {
-    width: 92%;
-    padding: 26px;
+  .mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: auto;
   }
 
-  .toast {
-    width: 90%;
-    text-align: center;
-  }
-}
-
-/* -----------------------------------------------------------------------
-   11. ERP LOGIN TOGGLE SWITCH
------------------------------------------------------------------------- */
-
-.login-switch {
-  display: flex;
-  justify-content: center;
-  background: #f4f5f7;
-  border-radius: 14px;
-  padding: 4px;
-  margin-bottom: 18px;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.06);
-}
-
-.switch-btn {
-  padding: 10px 22px;
-  border-radius: 10px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #0c1a2d;
-  transition: all 0.25s ease;
-}
-
-.switch-btn:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.switch-btn.active {
-  background: linear-gradient(135deg, #e8b100, #ffcb05);
-  color: black;
-  box-shadow: 0 3px 10px rgba(255, 200, 40, 0.35);
-  transform: translateY(-2px);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* =======================================================================
-   12. BLOG STRIP (BELOW HEADER)
-======================================================================= */
-
-.blog-strip {
-  position: fixed;
-  top: 75px;
-  /* exactly below header */
-  width: 100%;
-  height: 48px;
-  background: linear-gradient(90deg, #061c2d, #0b2b45);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  z-index: 1800;
-  display: flex;
-  align-items: center;
-}
-
-.blog-strip-container {
-  width: 92%;
-  max-width: 1300px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* LEFT TEXT */
-.blog-strip-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  color: #9fc5ff;
-}
-
-/* BLOG BUTTON */
-.blog-strip-btn {
-  padding: 6px 16px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #007bff, #00c6ff);
-  color: #fff;
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.35);
-}
-
-.blog-strip-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(0, 123, 255, 0.55);
-}
-
-/* ===============================
-   MOBILE ADJUSTMENT
-================================ */
-@media (max-width: 900px) {
-  .blog-strip {
-    height: 44px;
-  }
-
-  .blog-strip-label {
-    font-size: 0.78rem;
-  }
-
-  .blog-strip-btn {
-    font-size: 0.75rem;
-    padding: 5px 14px;
+  .modal.login-card {
+    margin: 0 16px;
   }
 }

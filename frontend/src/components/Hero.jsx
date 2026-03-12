@@ -481,7 +481,7 @@ const Hero = () => {
   }, [wordIndex]);
 
   return (
-    <section className="hero">
+    <section id="home" className="hero">
       <HeroParticles />
 
       <div className="hero-content">

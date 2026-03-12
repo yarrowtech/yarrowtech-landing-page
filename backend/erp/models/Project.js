@@ -22,8 +22,6 @@
 
 
 
-
-
 import mongoose from "mongoose";
 
 const projectSchema = new mongoose.Schema({
@@ -31,15 +29,28 @@ const projectSchema = new mongoose.Schema({
   name: { type: String, required: true },
   projectDetails: String,
 
-  client: { type: mongoose.Schema.Types.ObjectId, ref: "ERPClient" },
+  /* ✅ CLIENT RELATION */
+  client: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "ERPClient",
+    required: true,
+  },
   clientName: String,
   clientEmail: String,
 
+  /* ✅ MANAGER REAL RELATION (THIS FIXED YOUR ISSUE) */
+  manager: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "ERPUser",
+    required: true,
+  },
+
+  /* ✅ KEEP EMAILS FOR DISPLAY / EMAIL PURPOSE */
   managerEmail: String,
   techLeadEmail: String,
 
   expectedDelivery: Date,
-  status: { type: String, default: "new" },
+  status: { type: String, default: "pending" },
   progress: { type: Number, default: 0 },
 
   createdAt: { type: Date, default: Date.now },

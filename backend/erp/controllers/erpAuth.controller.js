@@ -96,6 +96,14 @@
 //   });
 // };
 
+
+
+
+
+
+
+
+
 import ERPUser from "../models/User.js";
 import ERPClient from "../models/Client.js";
 import { signErpToken } from "../middleware/erpAuth.js";
@@ -105,16 +113,25 @@ import { signErpToken } from "../middleware/erpAuth.js";
 ============================================================ */
 export const erpLogin = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    /* 🔍 DEBUG (REMOVE AFTER FIX IS CONFIRMED) */
+    console.log("🔥 ERP LOGIN BODY:", req.body);
 
+    /* ================= SAFE BODY DESTRUCTURE ================= */
+    const body = req.body || {};
+    const email = body.email?.toLowerCase()?.trim();
+    const password = body.password;
+
+    /* ================= VALIDATION ================= */
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Email and password are required" });
+      return res.status(400).json({
+        message: "Email and password are required",
+      });
     }
 
-    /* ================= ADMIN / MANAGER / TECH LEAD ================= */
-    const user = await ERPUser.findOne({ email: email.toLowerCase() });
+    /* ============================================================
+       ADMIN / MANAGER / TECH LEAD LOGIN
+    ============================================================ */
+    const user = await ERPUser.findOne({ email });
 
     if (user) {
       if (user.status !== "active") {
@@ -123,12 +140,14 @@ export const erpLogin = async (req, res) => {
         });
       }
 
-      const match = await user.matchPassword(password);
-      if (!match) {
-        return res.status(400).json({ message: "Invalid credentials" });
+      const isMatch = await user.matchPassword(password);
+      if (!isMatch) {
+        return res.status(401).json({
+          message: "Invalid credentials",
+        });
       }
 
-      return res.json({
+      return res.status(200).json({
         token: signErpToken({
           id: user._id,
           email: user.email,
@@ -140,21 +159,31 @@ export const erpLogin = async (req, res) => {
       });
     }
 
-    /* ================= CLIENT LOGIN ================= */
-    const client = await ERPClient.findOne({
-      email: email.toLowerCase(),
-    });
+    /* ============================================================
+       CLIENT LOGIN
+    ============================================================ */
+    const client = await ERPClient.findOne({ email });
 
     if (!client) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({
+        message: "User not found",
+      });
     }
 
-    const match = await client.matchPassword(password);
-    if (!match) {
-      return res.status(400).json({ message: "Invalid credentials" });
+    if (!client.password) {
+      return res.status(400).json({
+        message: "Client account has no password. Contact support.",
+      });
     }
 
-    return res.json({
+    const isMatch = await client.matchPassword(password);
+    if (!isMatch) {
+      return res.status(401).json({
+        message: "Invalid credentials",
+      });
+    }
+
+    return res.status(200).json({
       token: signErpToken({
         id: client._id,
         email: client.email,
@@ -167,21 +196,25 @@ export const erpLogin = async (req, res) => {
 
   } catch (err) {
     console.error("❌ ERP LOGIN ERROR:", err);
-    res.status(500).json({ message: "Server error during login" });
+    return res.status(500).json({
+      message: "Server error during login",
+    });
   }
 };
 
 /* ============================================================
-   ERP LOGOUT (JWT – Stateless)
+   ERP LOGOUT (JWT – STATELESS)
 ============================================================ */
 export const erpLogout = async (req, res) => {
   try {
-    res.json({
+    return res.status(200).json({
       success: true,
       message: "Logged out successfully",
     });
   } catch (err) {
     console.error("❌ ERP LOGOUT ERROR:", err);
-    res.status(500).json({ message: "Logout failed" });
+    return res.status(500).json({
+      message: "Logout failed",
+    });
   }
 };

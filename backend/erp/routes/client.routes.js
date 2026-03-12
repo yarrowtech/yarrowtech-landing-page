@@ -3,7 +3,8 @@ import express from "express";
 import {
   getMyProjects,
   getPaymentsForProject,
-  sendMessage
+  sendMessage,
+  
 } from "../controllers/client.controller.js";
 
 import { verifyErpToken } from "../middleware/erpAuth.js";
@@ -16,5 +17,6 @@ router.use(verifyErpToken, verifyRoles("client"));
 router.get("/projects", getMyProjects);
 router.get("/project/:projectId/payments", getPaymentsForProject);
 router.post("/project/:projectId/message", sendMessage);
+// router.get("/dashboard", getClientDashboard);
 
 export default router;

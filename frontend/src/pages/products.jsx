@@ -159,7 +159,7 @@ export default function ProductsPage() {
   ];
 
   return (
-    <section ref={sectionRef} className="products-section">
+    <section id="products" ref={sectionRef} className="products-section">
       {/* BACKGROUND AMBIENT MOTION */}
       <motion.div
         className="ambient-particles"

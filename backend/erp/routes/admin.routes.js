@@ -1,25 +1,54 @@
 // import express from "express";
-// import { getAdminStats, getERPUsers } from "../controllers/admin.controller.js";
+// import {
+//   getAdminStats,
+//   getERPUsers,
+//   createERPUser,
+//   toggleUserStatus,
+//   resetUserPassword,
+// } from "../controllers/admin.controller.js";
+
 // import { verifyErpToken } from "../middleware/erpAuth.js";
 // import verifyRoles from "../middleware/verifyRoles.js";
 
 // const router = express.Router();
 
-// // Apply authentication & role check on all admin routes
+// /* ============================================================
+//    🔐 ADMIN AUTH + ROLE GUARD
+// ============================================================ */
 // router.use(verifyErpToken, verifyRoles("admin"));
 
-// // ⭐ Admin Stats
+// /* ============================================================
+//    📊 ADMIN DASHBOARD
+// ============================================================ */
 // router.get("/stats", getAdminStats);
 
-// // ⭐ Admin — Get ERP Users
+// /* ============================================================
+//    👥 USER MANAGEMENT (ADMIN)
+// ============================================================ */
+
+// // Get all ERP users
 // router.get("/users", getERPUsers);
+
+// // Create new ERP user (manager / techlead / admin)
+// router.post("/create-user", createERPUser);
+
+// // Toggle user status (active / inactive)
+// router.put("/user/:id/toggle-status", toggleUserStatus);
+
+// // Reset user password
+// router.put("/user/:id/reset-password", resetUserPassword);
 
 // export default router;
 
 
 
 
+
+
 import express from "express";
+import bcrypt from "bcryptjs";
+
+/* ================= CONTROLLERS ================= */
 import {
   getAdminStats,
   getERPUsers,
@@ -28,13 +57,18 @@ import {
   resetUserPassword,
 } from "../controllers/admin.controller.js";
 
+/* ================= MODELS ================= */
+import ERPClient from "../models/Client.js";
+import ERPProject from "../models/Project.js";
+
+/* ================= MIDDLEWARE ================= */
 import { verifyErpToken } from "../middleware/erpAuth.js";
 import verifyRoles from "../middleware/verifyRoles.js";
 
 const router = express.Router();
 
 /* ============================================================
-   🔐 ADMIN AUTH + ROLE GUARD
+   🔐 ADMIN AUTH + ROLE GUARD (GLOBAL)
 ============================================================ */
 router.use(verifyErpToken, verifyRoles("admin"));
 
@@ -44,19 +78,159 @@ router.use(verifyErpToken, verifyRoles("admin"));
 router.get("/stats", getAdminStats);
 
 /* ============================================================
-   👥 USER MANAGEMENT (ADMIN)
+   👥 ERP USER MANAGEMENT (ADMIN)
 ============================================================ */
 
-// Get all ERP users
+// Get all ERP users (admin / manager / techlead)
 router.get("/users", getERPUsers);
 
-// Create new ERP user (manager / techlead / admin)
+// Create ERP user
 router.post("/create-user", createERPUser);
 
-// Toggle user status (active / inactive)
+// Toggle ERP user status
 router.put("/user/:id/toggle-status", toggleUserStatus);
 
-// Reset user password
+// Reset ERP user password
 router.put("/user/:id/reset-password", resetUserPassword);
+
+/* ============================================================
+   👤 CLIENT MANAGEMENT (ADMIN ONLY)
+============================================================ */
+
+// Get all clients
+router.get("/clients", async (req, res) => {
+  try {
+    const clients = await ERPClient.find().select("-password");
+    res.json(clients);
+  } catch (err) {
+    console.error("❌ GET CLIENTS ERROR:", err);
+    res.status(500).json({ message: "Failed to fetch clients" });
+  }
+});
+
+// Create client account
+router.post("/clients", async (req, res) => {
+  try {
+    const { name, email } = req.body;
+
+    if (!name || !email) {
+      return res.status(400).json({ message: "Name and email are required" });
+    }
+
+    const exists = await ERPClient.findOne({ email });
+    if (exists) {
+      return res.status(409).json({ message: "Client already exists" });
+    }
+
+    const tempPassword = "12345"; // 🔐 later: generate dynamically
+    const hashedPassword = await bcrypt.hash(tempPassword, 10);
+
+    const client = await ERPClient.create({
+      name,
+      email: email.toLowerCase(),
+      password: hashedPassword,
+      role: "client",
+      status: "active",
+    });
+
+    res.status(201).json({
+      success: true,
+      tempPassword,
+      client,
+    });
+  } catch (err) {
+    console.error("❌ CREATE CLIENT ERROR:", err);
+    res.status(500).json({ message: "Failed to create client" });
+  }
+});
+
+// Activate / Deactivate client
+router.patch("/clients/:id/status", async (req, res) => {
+  try {
+    const { status } = req.body;
+
+    const client = await ERPClient.findById(req.params.id);
+    if (!client) {
+      return res.status(404).json({ message: "Client not found" });
+    }
+
+    client.status = status;
+    await client.save();
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error("❌ UPDATE CLIENT STATUS ERROR:", err);
+    res.status(500).json({ message: "Failed to update status" });
+  }
+});
+
+// Reset client password
+router.post("/clients/:id/reset-password", async (req, res) => {
+  try {
+    const client = await ERPClient.findById(req.params.id);
+    if (!client) {
+      return res.status(404).json({ message: "Client not found" });
+    }
+
+    const tempPassword = "12345";
+    client.password = await bcrypt.hash(tempPassword, 10);
+    await client.save();
+
+    res.json({
+      success: true,
+      tempPassword,
+    });
+  } catch (err) {
+    console.error("❌ RESET CLIENT PASSWORD ERROR:", err);
+    res.status(500).json({ message: "Failed to reset password" });
+  }
+});
+
+/* ============================================================
+   📦 CLIENT DETAILS + PROJECTS (ADMIN)
+============================================================ */
+
+// Get client details + all projects
+router.get("/clients/:id/details", async (req, res) => {
+  try {
+    const client = await ERPClient.findById(req.params.id).select("-password");
+    if (!client) {
+      return res.status(404).json({ message: "Client not found" });
+    }
+
+    const projects = await ERPProject.find({ clientId: client._id })
+      .populate("managerId", "name email")
+      .populate("techLeadId", "name email");
+
+    res.json({ client, projects });
+  } catch (err) {
+    console.error("❌ CLIENT DETAILS ERROR:", err);
+    res.status(500).json({ message: "Failed to fetch client details" });
+  }
+});
+
+// Create project for a client
+router.post("/clients/:id/projects", async (req, res) => {
+  try {
+    const { name, paymentAmount, expectedDeliveryDate } = req.body;
+
+    if (!name) {
+      return res.status(400).json({ message: "Project name is required" });
+    }
+
+    const project = await ERPProject.create({
+      name,
+      clientId: req.params.id,
+      paymentAmount: paymentAmount || 0,
+      expectedDeliveryDate: expectedDeliveryDate || null,
+      status: "active",
+    });
+
+    res.status(201).json(project);
+  } catch (err) {
+    console.error("❌ CREATE PROJECT ERROR:", err);
+    res.status(500).json({ message: "Failed to create project" });
+  }
+});
 
 export default router;

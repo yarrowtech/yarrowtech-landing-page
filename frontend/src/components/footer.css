@@ -14,7 +14,7 @@
     FOOTER SECTION
 ------------------------------------ */
 .footer-section {
-  background: #05182a; /* YarrowTech dark blue theme */
+  background: #05182a;
   color: #fff;
   padding: 2rem 1rem 2rem;
   position: relative;
@@ -23,7 +23,7 @@
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -60,6 +60,20 @@
 }
 
 /* -----------------------------------
+    CONTACT + MAP LAYOUT
+------------------------------------ */
+.contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.contact-text {
+  flex: 1;
+}
+
+/* -----------------------------------
     CONTACT INFO
 ------------------------------------ */
 .footer-info {
@@ -73,6 +87,28 @@
 
 .footer-info svg {
   color: #ffcb05;
+}
+
+/* -----------------------------------
+    GOOGLE MAP CARD
+------------------------------------ */
+.footer-map {
+  width: 220px;
+  height: 140px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease;
+}
+
+.footer-map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.footer-map:hover {
+  transform: scale(1.05);
 }
 
 /* -----------------------------------
@@ -141,6 +177,7 @@
     RESPONSIVE
 ------------------------------------ */
 @media (max-width: 768px) {
+
   .footer-container {
     flex-direction: column;
     text-align: center;
@@ -151,6 +188,11 @@
     align-items: center;
   }
 
+  .contact-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .footer-info {
     justify-content: center;
   }
@@ -158,4 +200,11 @@
   .footer-socials {
     justify-content: center;
   }
+
+  .footer-map {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 15px;
+  }
+
 }

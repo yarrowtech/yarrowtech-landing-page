@@ -40,3 +40,39 @@
   background: rgba(255, 255, 255, 0.08);
   color: #ffcb05;
 }
+
+.manager-sidebar-bottom {
+  margin-top: auto;
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.manager-logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.manager-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.manager-sidebar-top {
+  padding-bottom: 16px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.manager-name {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: #9bb3c9;
+}

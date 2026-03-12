@@ -1,0 +1,272 @@
+/* =====================================================
+   CRM – DEMO REQUESTS (MANAGER)
+===================================================== */
+
+.admin-requests-container {
+  padding: 24px;
+  color: #ffffff;
+}
+
+/* ================= HEADER ================= */
+
+.admin-header {
+  margin-bottom: 18px;
+}
+
+.admin-header h2 {
+  font-size: 1.9rem;
+  color: #ffcb05;
+  margin-bottom: 4px;
+}
+
+.admin-header .subtitle {
+  color: #9bb3c9;
+  font-size: 0.95rem;
+}
+
+/* ================= ACTION BAR ================= */
+
+.rd-action-bar {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+/* SEARCH */
+.rd-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #0c2238;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex: 1;
+}
+
+.rd-search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  width: 100%;
+}
+
+/* STATUS FILTER */
+.status-filter {
+  padding: 10px 14px;
+  background: #0c2238;
+  color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  min-width: 160px;
+}
+
+/* ================= TABLE ================= */
+
+.rd-table-wrapper {
+  background: #071a2d;
+  border-radius: 14px;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto; /* ✅ horizontal scroll on mobile */
+}
+
+.rd-table {
+  width: 100%;
+  min-width: 900px; /* ✅ keeps columns visible */
+  border-collapse: collapse;
+  background: #0c2238;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rd-table thead th {
+  background: #102b45;
+  color: #ffcb05;
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.rd-table td {
+  padding: 12px 14px;
+  font-size: 0.88rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  vertical-align: top;
+}
+
+.rd-row-clickable {
+  cursor: pointer;
+}
+
+.rd-row-clickable:hover {
+  background: #0f2c46;
+}
+
+/* ================= LEAD INFO ================= */
+
+.lead-name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.lead-email {
+  font-size: 0.8rem;
+  color: #9bb3c9;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ================= MESSAGE ================= */
+
+.rd-message {
+  max-width: 260px;
+  color: #dbeafe;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ================= STATUS ================= */
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+/* Status Colors */
+.status-badge.new {
+  background: #facc15;
+  color: #000;
+}
+
+.status-badge.contacted {
+  background: #60a5fa;
+  color: #001d2e;
+}
+
+.status-badge.in-progress {
+  background: #38bdf8;
+  color: #002b3f;
+}
+
+.status-badge.closed {
+  background: #22c55e;
+  color: #002b17;
+}
+
+/* ================= STATES ================= */
+
+.rd-loading,
+.rd-no-records {
+  padding: 24px;
+  text-align: center;
+  color: #9bb3c9;
+}
+
+/* =====================================================
+   SLIDE-IN DRAWER (MOBILE / TABLET)
+===================================================== */
+
+.rd-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rd-drawer {
+  width: 380px;
+  max-width: 92vw;
+  height: 100%;
+  background: #071a2d;
+  padding: 22px;
+  animation: slideIn 0.3s ease;
+  overflow-y: auto;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.rd-drawer h3 {
+  color: #ffcb05;
+  margin-bottom: 18px;
+}
+
+.drawer-section {
+  margin-bottom: 14px;
+}
+
+.drawer-section label {
+  display: block;
+  font-size: 0.8rem;
+  color: #9bb3c9;
+  margin-bottom: 4px;
+}
+
+.drawer-section p {
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.drawer-section select {
+  width: 100%;
+  padding: 10px;
+  background: #0c2238;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.drawer-close {
+  margin-top: 18px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: #ffcb05;
+  color: #071a2d;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+/* =====================================================
+   RESPONSIVE FIXES
+===================================================== */
+
+@media (max-width: 768px) {
+  .admin-requests-container {
+    padding: 16px;
+  }
+
+  .rd-action-bar {
+    flex-direction: column;
+  }
+
+  .rd-table {
+    min-width: 720px; /* horizontal swipe */
+  }
+}
+
+@media (max-width: 480px) {
+  .rd-table {
+    min-width: 640px;
+  }
+}
+
+
