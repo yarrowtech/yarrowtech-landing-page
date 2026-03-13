@@ -13,14 +13,17 @@
 }
 
 .header-container {
-  max-width: 1300px;
+  max-width: 1400px;
   height: 100%;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 18px;
 
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
+}
+.logo{
+  margin-left:-6px;
 }
 
 /* ======================================================
@@ -184,17 +187,19 @@
 .modal.login-card {
   width: 100%;
   max-width: 420px;
-  background: #ffffff;
-  border-radius: 22px;
-  padding: 28px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  background: rgba(11,22,40,0.95);
+  border-radius: 18px;
+  padding: 32px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  backdrop-filter: blur(14px);
 }
 
 .modal-title {
   font-size: 1.4rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 20px;
+  color: #ffffff;
 }
 
 /* ======================================================
@@ -204,19 +209,38 @@
 .modal-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
+  margin-top: 14px;
 }
 
 .modal-form label {
   font-weight: 600;
   font-size: 0.9rem;
+  color: #cbd5f5;
 }
 
+/* INPUT */
+
 .modal-form input {
+  background: #071220;
+  border: 1px solid rgba(255,255,255,0.08);
   padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  color: #ffffff;
   font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.modal-form input::placeholder {
+  color: #64748b;
+}
+
+/* FOCUS */
+
+.modal-form input:focus {
+  outline: none;
+  border-color: #facc15;
+  box-shadow: 0 0 0 2px rgba(250,204,21,0.2);
 }
 
 /* PASSWORD FIELD */
@@ -227,7 +251,7 @@
 
 .password-field input {
   width: 100%;
-  padding-right: 44px;
+  padding-right: 42px;
 }
 
 .eye-btn {
@@ -238,22 +262,27 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #64748b;
+  color: #94a3b8;
 }
 
-/* SUBMIT */
+/* SUBMIT BUTTON */
 
 .submit-btn {
-  margin-top: 10px;
+  margin-top: 12px;
   padding: 12px;
   border-radius: 999px;
   border: none;
-  background: #2563eb;
-  color: #ffffff;
+  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  color: white;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(37,99,235,0.45);
+}
 /* ======================================================
    GOOGLE LOGIN
 ====================================================== */
@@ -263,7 +292,9 @@
   display: flex;
   justify-content: center;
 }
-
+.google-auth-box iframe{
+  width:100% !important;
+}
 /* ======================================================
    TOAST
 ====================================================== */
@@ -323,28 +354,152 @@
     display: flex;
   }
 
-  .nav-menu.open {
-    position: fixed;
-    top: 75px;
-    right: 0;
-    width: 75%;
-    height: calc(100vh - 75px);
-    background: #051423;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 22px;
-    padding: 2rem;
-  }
+ .nav-menu.open {
+  position: fixed;
+  top: 75px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 75px);
+  background: #051423;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 18px;
+  padding: 30px 20px;
+}
 
   .mobile-buttons {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-top: auto;
+    gap: 12px;
+    margin-top: 20px;
   }
 
   .modal.login-card {
     margin: 0 16px;
   }
+}
+
+@media (max-width: 600px) {
+
+  .modal.login-card{
+    width: 92%;
+    max-width: none;
+    padding: 24px;
+    border-radius: 14px;
+  }
+
+  .modal-title{
+    font-size: 1.25rem;
+  }
+
+  .modal-form{
+    gap: 12px;
+  }
+
+  .modal-form input{
+    font-size: 0.9rem;
+    padding: 11px 12px;
+  }
+
+  .submit-btn{
+    padding: 11px;
+  }
+
+}
+@media (max-width:480px){
+
+  .header-container{
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+
+  .logo{
+    width:160px;
+  }
+
+  .header-buttons{
+    display:none;
+  }
+
+}
+/* ======================================================
+   LOGIN MODAL EXTRA UI
+====================================================== */
+
+/* CLOSE BUTTON */
+
+.modal.login-card {
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.modal-close:hover {
+  color: #111827;
+}
+
+/* SUBTITLE */
+
+.modal-subtitle {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 18px;
+}
+
+/* DIVIDER */
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.divider span {
+  padding: 0 10px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* FOOTER TEXT */
+
+.login-footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.login-footer span {
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-footer span:hover {
+  text-decoration: underline;
+}
+
+.modal-subtitle{
+  color:#94a3b8;
+  text-align:center;
+  margin-bottom:18px;
 }
