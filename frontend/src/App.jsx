@@ -532,6 +532,7 @@ import About from "./pages/about";
 import ScrollProgress from "./components/ScrollProgress";
 import SectionRouteRedirect from "./components/SectionRouteRedirect";
 import Footer from "./components/Footer";
+import RequestDemoForm from "./components/RequestDemoForm";
 
 /* ⭐ FLOATING CONTACT MENU */
 import ContactMenu from "./components/ContactMenu";
@@ -754,7 +755,19 @@ export default function App() {
             <Route path="history" element={<ProjectHistory />} />
             <Route path="profile" element={<Profile />} />
           </Route>
-
+{/* 📩 REQUEST DEMO PAGE */}
+<Route
+  path="/request-demo"
+  element={
+    <>
+      <Header />
+      <div style={{ paddingTop: "100px" }}>
+        <RequestDemoForm />
+      </div>
+      <Footer />
+    </>
+  }
+/>
           {/* 🚫 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>

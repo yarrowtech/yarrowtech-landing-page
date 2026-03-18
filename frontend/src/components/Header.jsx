@@ -347,6 +347,11 @@ export default function Header() {
   const [loginPassword, setLoginPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const [registerName, setRegisterName] = useState("");
+ const [registerEmail, setRegisterEmail] = useState("");
+ const [registerPassword, setRegisterPassword] = useState("");
+ const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
+const [showRegisterPassword, setShowRegisterPassword] = useState(false);
 
   /* ================= CHECK LOGIN ================= */
 
@@ -460,6 +465,50 @@ export default function Header() {
     }
 
   };
+
+  /* ================= REGISTER ================= */
+
+const handleRegister = async (e) => {
+  e.preventDefault();
+
+  if (!registerName || !registerEmail || !registerPassword || !registerConfirmPassword) {
+    showToastMessage("error", "All fields are required");
+    return;
+  }
+  if (registerPassword !== registerConfirmPassword) {
+  showToastMessage("error", "Passwords do not match");
+  return;
+}
+
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/api/auth/register",
+      {
+        name: registerName,
+        email: registerEmail,
+        password: registerPassword,
+      }
+    );
+
+    // ⭐ AUTO LOGIN
+    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("user", JSON.stringify(res.data.user));
+
+    // ⭐ update UI
+    setUser(res.data.user);
+
+    showToastMessage("success", "Account created & logged in!");
+
+    // close register modal
+    setShowRegister(false);
+
+  } catch (err) {
+    showToastMessage(
+      "error",
+      err.response?.data?.message || "Registration failed"
+    );
+  }
+};
 
 
   /* ================= LOGOUT ================= */
@@ -597,7 +646,7 @@ export default function Header() {
               <div className="user-box">
 
                 <img
-                  src="https://avatar.iran.liara.run/public"
+                  src={`https://ui-avatars.com/api/?name=${user?.name || "User"}`}
                   className="navbar-user-avatar"
                   alt="avatar"
                   onClick={() =>
@@ -687,13 +736,14 @@ export default function Header() {
 
                 <label>Email Address</label>
 
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
-                  required
-                />
+<input
+  type="email"
+  autoComplete="email"
+  placeholder="Enter your email"
+  value={loginEmail}
+  onChange={(e) => setLoginEmail(e.target.value)}
+  required
+/>
 
 
                 <label>Password</label>
@@ -702,6 +752,7 @@ export default function Header() {
 
                   <input
                     type={showPassword ? "text" : "password"}
+                    autoComplete="current-password"
                     placeholder="Enter your password"
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
@@ -791,16 +842,60 @@ export default function Header() {
           Sign up to start using YarrowTech
         </p>
 
-        <form className="modal-form">
+        <form className="modal-form" onSubmit={handleRegister}>
 
           <label>Name</label>
-          <input type="text" placeholder="Your name" required />
+          <input
+  type="text"
+  placeholder="Your name"
+  value={registerName}
+  onChange={(e) => setRegisterName(e.target.value)}
+  required
+/>
 
-          <label>Email</label>
-          <input type="email" placeholder="Enter your email" required />
+<label>Email</label>
+<input
+  type="email"
+  autoComplete="email"
+  placeholder="Enter your email"
+  value={registerEmail}
+  onChange={(e) => setRegisterEmail(e.target.value)}
+  required
+/>
 
-          <label>Password</label>
-          <input type="password" placeholder="Create password" required />
+<label>Password</label>
+
+<div className="password-field">
+
+<input
+  type={showRegisterPassword ? "text" : "password"}
+  autoComplete="new-password"
+  placeholder="Create password"
+  value={registerPassword}
+  onChange={(e) => setRegisterPassword(e.target.value)}
+  required
+/>
+
+<button
+  type="button"
+  className="eye-btn"
+  onClick={() => setShowRegisterPassword(!showRegisterPassword)}
+>
+  {showRegisterPassword ? <EyeOff size={18}/> : <Eye size={18}/>}
+</button>
+
+</div>
+
+
+<label>Confirm Password</label>
+
+<input
+  type={showRegisterPassword ? "text" : "password"}
+  placeholder="Confirm password"
+  value={registerConfirmPassword}
+  onChange={(e) => setRegisterConfirmPassword(e.target.value)}
+  required
+/>
 
           <button className="submit-btn">
             Create Account
